@@ -1,0 +1,1 @@
+import{_ as n}from"./_plugin-vue_export-helper.cdc0426e.js";import{o as t,c as o}from"./app.95a305cc.js";const e={};function r(c,_){return t(),o("div")}const s=n(e,[["render",r],["__file","SpringMVC-annotation.html.vue"]]);export{s as default};
