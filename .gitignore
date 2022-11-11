@@ -1,2 +1,3 @@
 /node_modules/
-*.sh
+deploy-ge.sh
+deploy-gh.sh
