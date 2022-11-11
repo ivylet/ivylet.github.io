@@ -1,0 +1,341 @@
+<template><div><h2 id="spring容器" tabindex="-1"><a class="header-anchor" href="#spring容器" aria-hidden="true">#</a> Spring容器</h2>
+<p>使用者之前使用B对象的时候都需要自己去创建和组装，而现在这些创建和组装都交给spring容器去给 完成了，使用者只需要去spring容器中查找需要使用的对象就可以了；这个过程中B对象的创建和组装 过程被反转了，之前是使用者自己主动去控制的，现在交给spring容器去创建和组装了，对象的构建过 程被反转了，所以叫做控制反转；IOC是是面相对象编程中的一种设计原则，主要是为了降低系统代码 的耦合度，让系统利于维护和扩展。</p>
+<h2 id="bean的管理" tabindex="-1"><a class="header-anchor" href="#bean的管理" aria-hidden="true">#</a> Bean的管理</h2>
+<div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span> <span class="token punctuation">"</span></span> <span class="token attr-name">class</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">scope</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span> <span class="token punctuation">"</span></span> <span class="token attr-name">init-method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span> <span class="token punctuation">"</span></span> <span class="token attr-name">destroy-method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span> <span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>\bean</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="bean标签基本配置" tabindex="-1"><a class="header-anchor" href="#bean标签基本配置" aria-hidden="true">#</a> <code v-pre>Bean</code>标签基本配置</h3>
+<ul>
+<li><code v-pre>id</code> Bean实例在<code v-pre>Spring</code>容器中的唯一标识</li>
+<li><code v-pre>class</code> Bean的全限定名称</li>
+</ul>
+<h3 id="bean标签的范围配置" tabindex="-1"><a class="header-anchor" href="#bean标签的范围配置" aria-hidden="true">#</a> <code v-pre>Bean</code>标签的范围配置</h3>
+<ul>
+<li><code v-pre>scope</code>:指对象的作用范围,取值如下:
+<ul>
+<li><code v-pre>singleton</code> 默认值,单例的</li>
+<li><code v-pre>prototype</code> 多例的</li>
+</ul>
+</li>
+</ul>
+<p><code v-pre>singleton</code> 默认值,单例的
+<code v-pre>Bean</code>的实例化个数: 1
+<code v-pre>Bean</code>的实例化时机: 当<code v-pre>Spring</code>核心文件被加载时,实例化配置的<code v-pre>Bean</code>实例
+<code v-pre>Bean</code>的生命周期:</p>
+<ol>
+<li>对象创建: 当应用加载,创建容器时,对象就被创建了.(应用初始化时创建)</li>
+<li>对象运行: 只要容器在,对象一直活着.</li>
+<li>对象销毁:当应用卸载,销毁容器时,对象就被销毁了.(与容器共存亡,容器创建,<code v-pre>Bean</code>创建,容器销毁,<code v-pre>Bean</code>销毁)</li>
+</ol>
+<p><code v-pre>prototype</code> 多例的
+<code v-pre>Bean</code>的实例化个数: 多个
+<code v-pre>Bean</code>的实例化时机: 当调用<code v-pre>getBean()</code>方法时实例化<code v-pre>Bean</code>
+<code v-pre>Bean</code>的生命周期:</p>
+<ol>
+<li>对象创建:当使用对象时,创建新的对象实例.(使用时创建)</li>
+<li>对象运行:只要对象在使用中,就一直活着.</li>
+<li>对象销毁:当对象长时间不用时,被<code v-pre>Java</code>的垃圾回收机制回收了.</li>
+</ol>
+<h3 id="bean生命周期配置" tabindex="-1"><a class="header-anchor" href="#bean生命周期配置" aria-hidden="true">#</a> <code v-pre>Bean</code>生命周期配置</h3>
+<p><code v-pre>init-method</code>:指定类中的初始化方法名称
+<code v-pre>destroy-method</code>:指定类中销毁方法名称</p>
+<h3 id="bean实例化三种方式" tabindex="-1"><a class="header-anchor" href="#bean实例化三种方式" aria-hidden="true">#</a> <code v-pre>Bean</code>实例化三种方式</h3>
+<ul>
+<li>无参<em>构造</em>方法实例化</li>
+<li>工厂<em>静态</em>方法实例化</li>
+<li>工厂<em>实例</em>方法实例化</li>
+</ul>
+<p>无参构造方法实例化</p>
+<p>工厂<em>静态</em>方法实例化</p>
+<div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code>//XML文件配置
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>noCanCreate<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.taytay.factory.StaticFactory<span class="token punctuation">"</span></span> <span class="token attr-name">factory-method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getUserDao<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>StaticFactory.java配置</p>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StaticFactory</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">UserDao</span> <span class="token function">getUserDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">UserDaoImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>工厂<em>实例</em>方法实例化
+//XML文件配置</p>
+<div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>factory<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.taytay.factory.DynamicFactory<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">factory-bean</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>factory<span class="token punctuation">"</span></span> <span class="token attr-name">factory-method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getUserDao<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>DynamicFactory.java配置</p>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DynamicFactory</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token class-name">UserDao</span> <span class="token function">getUserDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">UserDaoImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="bean依赖注入" tabindex="-1"><a class="header-anchor" href="#bean依赖注入" aria-hidden="true">#</a> <code v-pre>Bean</code>依赖注入</h3>
+<p>举例,因为<code v-pre>UserService</code>和<code v-pre>UserDao</code>都在<code v-pre>Spring</code>容器中,需要使用<code v-pre>UserService</code>类和<code v-pre>UserDao</code>的方法,可以在容器中将<code v-pre>UserDao</code>注入<code v-pre>UserService</code>,然后再获取<code v-pre>UserService</code>类进行使用.</p>
+<p>不提供依赖注入时,是将<code v-pre>UserService</code>和<code v-pre>UserDao</code>在程序代码中进行组装,能否直接在<code v-pre>Spring</code>容器中就组装呢?因为实际操作的只有<code v-pre>UserService</code>.</p>
+<p>提供依赖注入后,只需要获取<code v-pre>UserService</code>实例,再通过这个实例调用<code v-pre>UserDao</code>的方法.</p>
+<p>依赖注入(<code v-pre>Dependency Injection</code>): 是<code v-pre>Spring</code>框架核心<code v-pre>IOC</code>的具体实现
+降低耦合度,但并不是不需要耦合.主要是降低它们之间的依赖程度.</p>
+<p>所以要怎么在容器中组装呢?</p>
+<h4 id="基于xml的装配" tabindex="-1"><a class="header-anchor" href="#基于xml的装配" aria-hidden="true">#</a> 基于XML的装配</h4>
+<ul>
+<li>构造方法</li>
+<li><code v-pre>set</code>方法</li>
+</ul>
+<p>构造方法</p>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span><span class="token punctuation">{</span>
+	<span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+	    userDao<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"save running"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	<span class="token punctuation">}</span>  
+	<span class="token keyword">public</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">(</span><span class="token class-name">UserDao</span> userDao<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+	    <span class="token keyword">this</span><span class="token punctuation">.</span>userDao <span class="token operator">=</span> userDao<span class="token punctuation">;</span>  
+	<span class="token punctuation">}</span>  
+	<span class="token keyword">public</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">class</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>com.dao.UserDaoImpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userService<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.service.impl.UserServiceImpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>constructor-arg</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>constructor-arg</span><span class="token punctuation">></span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><code v-pre>set</code>方法</p>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span><span class="token punctuation">{</span>
+	<span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span>
+    
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUserDao</span><span class="token punctuation">(</span><span class="token class-name">UserDao</span> userDao<span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>userDao <span class="token operator">=</span> userDao<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+    
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		userDao<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//使用userDao的save方法;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">class</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>com.dao.UserDaoImpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>userService<span class="token punctuation">"</span></span> <span class="token attr-name">class</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>com.service.UserServiceImpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>\bean</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="custom-container tip">
+<p class="custom-container-title">提示</p>
+<p>p命名空间注入
+本质也是set注入,不过比直接set注入更方便.主要用于注入过多的时候.</p>
+<p>首先引入p命名空间</p>
+<div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code>&lt;xmlns:p="http://www.springframework.org/schema/p">
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>也要修改注入方式</p>
+<div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>UserService<span class="token punctuation">"</span></span> <span class="token attr-name">class</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>com.service.UserService<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">p:</span>userDao-ref</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div>
+<h5 id="bean的依赖注入的数据类型" tabindex="-1"><a class="header-anchor" href="#bean的依赖注入的数据类型" aria-hidden="true">#</a> <code v-pre>Bean</code>的依赖注入的数据类型</h5>
+<p>前边都是注入引用的<code v-pre>Bean</code>,除了对象的引用可以注入,普通数据类型,集合等都可以在容器中进行注入.为什么要设定这种呢?因为有时候只需要对象的其中几个变量,无需全部注入.</p>
+<p>注入数据的三种数据类型:</p>
+<ul>
+<li>普通数据类型</li>
+<li>引用数据类型</li>
+<li>集合数据类型</li>
+</ul>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">{</span>
+    <span class="token comment">//普通数据类型</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+    <span class="token comment">//引用数据类型</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span>
+    <span class="token comment">//集合数据类型</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> list<span class="token punctuation">;</span>
+    <span class="token comment">//集合引用数据类型</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">></span></span> userList<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">User</span><span class="token punctuation">></span></span> userMap<span class="token punctuation">;</span>
+    
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>配置文件</p>
+<div class="language-xml ext-xml line-numbers-mode"><pre v-pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.taytay.dao.impl.UserDaoImpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user1<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.taytay.pojo.User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zhangsan<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>18<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user2<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.taytay.pojoUser<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lisi<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>20<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userService<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.taytay.Service.impl.UserServiceImpl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- 普通类型数据--></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>张三<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>18<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token comment">&lt;!-- 引用类型数据--></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userDao<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token comment">&lt;!-- 集合类型数据--></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>aaa<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>bbb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>ccc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
+            <span class="token comment">&lt;!-- 另一种方法，需要添加第三方约束 --></span>
+            <span class="token comment">&lt;!-- xmlns:util="http://www.springframework.org/schema/util" --></span>
+            <span class="token comment">&lt;!-- http://www.springframework.org/schema/util --></span>
+            <span class="token comment">&lt;!-- http://www.springframework.org/schema/util/spring-util.xsd --></span>
+            <span class="token comment">&lt;!--&lt;util:list list-class="java.util.ArrayList">
+                &lt;value>aaa&lt;/value>
+                &lt;value>bbb&lt;/value>
+                &lt;value>ccc&lt;/value>
+            &lt;/util:list>--></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>set<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>ddd<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>eee<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>fff<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+    
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userMap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>k_user1<span class="token punctuation">"</span></span> <span class="token attr-name">value-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>k_user2<span class="token punctuation">"</span></span> <span class="token attr-name">value-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userList<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ref</span> <span class="token attr-name">bean</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ref</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ref</span> <span class="token attr-name">bean</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ref</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userMap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>k_user1<span class="token punctuation">"</span></span> <span class="token attr-name">value-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>k_user2<span class="token punctuation">"</span></span> <span class="token attr-name">value-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>properties<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>props</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>prop</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>properties_name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>wangwu<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>prop</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>prop</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>properties_age<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>25<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>prop</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>props</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span> 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="基于注解的装配" tabindex="-1"><a class="header-anchor" href="#基于注解的装配" aria-hidden="true">#</a> 基于注解的装配</h4>
+<p>实际开发中，如果Bean的数量过多，会导致XML文件臃肿，所以Spring提供了注解，通过注解方式也可以实现Bean的装配。以下是常用的注解：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>@Component</code></td>
+<td>用于实例化<code v-pre>Bean</code></td>
+</tr>
+<tr>
+<td><code v-pre>@Controller</code></td>
+<td>实例化<code v-pre>Bean</code>，但是标记为Controller层</td>
+</tr>
+<tr>
+<td><code v-pre>@Service</code></td>
+<td>实例化<code v-pre>Bean</code>，但是标记为Service层</td>
+</tr>
+<tr>
+<td><code v-pre>@Repository</code></td>
+<td>实例化<code v-pre>Bean</code>，但是标记为DAO层</td>
+</tr>
+<tr>
+<td><code v-pre>@Autowired</code></td>
+<td>指定要自动装配的对象</td>
+</tr>
+<tr>
+<td><code v-pre>@Qualifier</code></td>
+<td>指定要自动装配的对象名称，通常与@Autowired联合使用</td>
+</tr>
+<tr>
+<td><code v-pre>@Resource</code></td>
+<td>指定要注入的对象</td>
+</tr>
+<tr>
+<td><code v-pre>@Value</code></td>
+<td>指定要注入的值</td>
+</tr>
+<tr>
+<td><code v-pre>@Scope</code></td>
+<td>标注<code v-pre>Bean</code>的作用范围</td>
+</tr>
+<tr>
+<td><code v-pre>@PostConstruct</code></td>
+<td><code v-pre>Bean</code>初始化使用的方法</td>
+</tr>
+<tr>
+<td><code v-pre>@PreDestroy</code></td>
+<td><code v-pre>Bean</code>销毁后使用的方法</td>
+</tr>
+</tbody>
+</table>
+<p>来个案例：</p>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>taytay<span class="token punctuation">.</span>pojo</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Value</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Scope</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><span class="token string">"User"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Scope</span><span class="token punctuation">(</span><span class="token string">"singleton"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> uid<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> uname<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"技术部"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> apartment<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getUid</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> uid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUid</span><span class="token punctuation">(</span><span class="token keyword">int</span> uid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>uid <span class="token operator">=</span> uid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getUname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> uname<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUname</span><span class="token punctuation">(</span><span class="token class-name">String</span> uname<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>uname <span class="token operator">=</span> uname<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="自动装配" tabindex="-1"><a class="header-anchor" href="#自动装配" aria-hidden="true">#</a> 自动装配</h4>
+<h2 id="spring配置文件引入" tabindex="-1"><a class="header-anchor" href="#spring配置文件引入" aria-hidden="true">#</a> Spring配置文件引入</h2>
+<p>实际开发中,<code v-pre>Spring</code>的配置内容非常多,这就导致<code v-pre>Spring</code>的配置文件非常的臃肿,所以可以通过拆解的方式将不同模块的内容分到不同的配置文件中,这种用法为:</p>
+<div class="language-XML ext-XML line-numbers-mode"><pre v-pre class="language-XML"><code>&lt;import resource=&quot;applicationContext-xxx.xml&quot;/&gt;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="spring的重点配置" tabindex="-1"><a class="header-anchor" href="#spring的重点配置" aria-hidden="true">#</a> Spring的重点配置</h2>
+<div class="language-XML ext-XML line-numbers-mode"><pre v-pre class="language-XML"><code>&lt;bean&gt;
+	id 属性:容器中Bean的唯一标识
+	class 属性:要实例化的Bean的全限定名
+	scope 属性:作用范围,是单例还是多例
+	&lt;property&gt;
+		name 属性:属性名称
+		value 属性:注入的普通属性值
+		ref 属性:注入的对象引用值
+		&lt;list&gt;标签
+		&lt;map&gt;标签
+		&lt;properties&gt;标签
+		&lt;constructor-arg&gt;标签 构造方法注入
+&lt;import&gt; 导入其他的配置文件
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="spring相关api" tabindex="-1"><a class="header-anchor" href="#spring相关api" aria-hidden="true">#</a> Spring相关API</h2>
+<h4 id="applicationcontextd的继承体系" tabindex="-1"><a class="header-anchor" href="#applicationcontextd的继承体系" aria-hidden="true">#</a> ApplicationContextd的继承体系</h4>
+<p>接口类型,代表应用上下文,可以通过其实例获得<code v-pre>Spring</code>容器中的<code v-pre>Bean</code>对象.</p>
+<p><code v-pre>ClassPathApplicationContext</code>
+从类的根路径下加载配置文件</p>
+<p><code v-pre>FileSystemXmlApplicationContext</code>
+文件系统地址,从文件磁盘地址获取配置文件</p>
+<p><code v-pre>AnnotationConfigApplicationContext</code>
+使用注解配置容器对象时,需要此类来创建<code v-pre>Spring</code>容器,用其读取注解</p>
+<h4 id="getbean方法" tabindex="-1"><a class="header-anchor" href="#getbean方法" aria-hidden="true">#</a> <code v-pre>getBean</code>方法</h4>
+<div class="language-Java ext-Java line-numbers-mode"><pre v-pre class="language-Java"><code>public Object getBean(String name) throws BeansException{
+	assertBeanFactoryActive();
+	return getBeanFactory.getBean(name);
+}
+public &lt;T&gt; T getBean(Class&lt;T&gt; requiredType) throws BeanException{
+	assertBeanFactoryActive();
+	return getBeanFactory.getBean(requiredType);
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token class-name">ApplicationContext</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClasspathXmlContext</span><span class="token punctuation">(</span><span class="token string">"xml文件"</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="" tabindex="-1"><a class="header-anchor" href="#" aria-hidden="true">#</a> </h2>
+</div></template>
+
+
