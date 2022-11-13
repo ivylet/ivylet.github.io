@@ -3,16 +3,16 @@ import sidebar from "./sidebar";
 import navbar from "./navbar";
 
 export default hopeTheme({
-  hostname: "https://saytaytay.github.io",
+  hostname: "https://ivylet.github.io",
   // fullscreen:true,
   author: {
     name: "saytaytay",
-    url: "https://saytaytay.github.io",
+    url: "https://ivylet.github.io",
   },
 
   iconAssets: "iconfont",
 
-  repo: "saytaytay/saytaytay.github.io",
+  repo: "ivylet/ivylet.github.io",
 
   // navbarAutoHide: "always",
 
