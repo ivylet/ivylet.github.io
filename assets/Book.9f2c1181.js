@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper.cdc0426e.js";import{h as s,o as n,c as r,t as a}from"./app.ec5faa76.js";const c={__name:"Book",setup(_){const o=s(0);return(l,t)=>(n(),r("button",{onClick:t[0]||(t[0]=u=>o.value++)},"You clicked me "+a(o.value)+" times.",1))}},p=e(c,[["__file","Book.vue"]]);export{p as default};

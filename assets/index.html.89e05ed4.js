@@ -1,0 +1,1 @@
+import{_ as a}from"./_plugin-vue_export-helper.cdc0426e.js";import{o as e,c as n,a as o,F as s,r as c,b as l,d as _,t as i}from"./app.5b5c8f59.js";const m={};function d(p,u){const t=_("Book");return e(),n("div",null,[o("p",null,[(e(),n(s,null,c(3,r=>o("span",null,i(r),1)),64))]),l(t)])}const B=a(m,[["render",d],["__file","index.html.vue"]]);export{B as default};

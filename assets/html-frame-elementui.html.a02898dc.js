@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper.cdc0426e.js";import{o as t,c as r}from"./app.5b5c8f59.js";const m={};function c(o,n){return t(),r("div")}const a=e(m,[["render",c],["__file","html-frame-elementui.html.vue"]]);export{a as default};

@@ -1,1 +1,0 @@
-import{_ as a}from"./_plugin-vue_export-helper.cdc0426e.js";import{o,c as t,a as e,e as r}from"./app.ec5faa76.js";const c={},d=e("h2",{id:"laode",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#laode","aria-hidden":"true"},"#"),r(" laode")],-1),n=[d];function s(_,i){return o(),t("div",null,n)}const f=a(c,[["render",s],["__file","index.html.vue"]]);export{f as default};
