@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>QBook</title><link>http://ivylet.github.io/docs/leetcode/0601-0800/</link><description>Recent content on QBook</description><generator>Hugo -- gohugo.io</generator><atom:link href="http://ivylet.github.io/docs/leetcode/0601-0800/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0601-human-traffic-of-stadium/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0601-human-traffic-of-stadium/</guid><description> 题目 # 难度：Hard 表：Stadium
++---------------+---------+ | Column Name | Type | +---------------+---------+ | id | int | | visit_date | date | | people | int | +---------------+---------+ visit_date 是表的主键 每日人流量信息被记录在这三列信息中：序号 (id)、日期 (visit_date)、&amp;nbsp;人流量 (people) 每天只有一行记录，日期随着 id 的增加而增加 &amp;nbsp;
+编写一个 SQL 查询以找出每行的人数大于或等于 100 且 id 连续的三行或更多行记录。
+返回按 visit_date 升序排列 的结果表。
+查询结果格式如下所示。
+&amp;nbsp;
+示例 1:
+输入： Stadium 表: +------+------------+-----------+ | id | visit_date | people | +------+------------+-----------+ | 1 | 2017-01-01 | 10 | | 2 | 2017-01-02 | 109 | | 3 | 2017-01-03 | 150 | | 4 | 2017-01-04 | 99 | | 5 | 2017-01-05 | 145 | | 6 | 2017-01-06 | 1455 | | 7 | 2017-01-07 | 199 | | 8 | 2017-01-09 | 188 | +------+------------+-----------+ 输出： +------+------------+-----------+ | id | visit_date | people | +------+------------+-----------+ | 5 | 2017-01-05 | 145 | | 6 | 2017-01-06 | 1455 | | 7 | 2017-01-07 | 199 | | 8 | 2017-01-09 | 188 | +------+------------+-----------+ 解释： id 为 5、6、7、8 的四行 id 连续，并且每行都有 &amp;gt;= 100 的人数记录。 请注意，即使第 7 行和第 8 行的 visit_date 不是连续的，输出也应当包含第 8 行，因为我们只需要考虑 id 连续的记录。 不输出 id 为 2 和 3 的行，因为至少需要三条 id 连续的记录。 分析 # 题解 # # Write your MySQL query statement below</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0605-can-place-flowers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0605-can-place-flowers/</guid><description> 题目 # 难度：Easy
+假设有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花不能种植在相邻的地块上，它们会争夺水源，两者都会死去。
+给你一个整数数组 flowerbed 表示花坛，由若干 0 和 1 组成，其中 0 表示没种植花，1 表示种植了花。另有一个数 n ，能否在不打破种植规则的情况下种入 n 朵花？能则返回 true ，不能则返回 false。
+示例 1：
+输入：flowerbed = [1,0,0,0,1], n = 1 输出：true 示例 2：
+输入：flowerbed = [1,0,0,0,1], n = 2 输出：false 提示：
+1 &lt;= flowerbed.length &lt;= 2 * 104 flowerbed[i] 为 0 或 1 flowerbed 中不存在相邻的两朵花 0 &lt;= n &lt;= flowerbed.length 分析 # 题解 # class Solution { public: bool canPlaceFlowers(vector&amp;lt;int&amp;gt;&amp;amp; flowerbed, int n) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0606-construct-string-from-binary-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0606-construct-string-from-binary-tree/</guid><description> 题目 # 难度：Easy
+给你二叉树的根节点 root ，请你采用前序遍历的方式，将二叉树转化为一个由括号和整数组成的字符串，返回构造出的字符串。
+空节点使用一对空括号对 "()" 表示，转化后需要省略所有不影响字符串与原始二叉树之间的一对一映射关系的空括号对。
+&amp;nbsp;
+示例 1：
+输入：root = [1,2,3,4] 输出："1(2(4))(3)" 解释：初步转化后得到 "1(2(4)())(3()())" ，但省略所有不必要的空括号对后，字符串应该是"1(2(4))(3)" 。 示例 2：
+输入：root = [1,2,3,null,4] 输出："1(2()(4))(3)" 解释：和第一个示例类似，但是无法省略第一个空括号对，否则会破坏输入与输出一一映射的关系。 &amp;nbsp;
+提示：
+树中节点的数目范围是 [1, 104] -1000 &amp;lt;= Node.val &amp;lt;= 1000 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: string tree2str(TreeNode* root) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0607-sales-person/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0607-sales-person/</guid><description>题目 # 难度：Easy
+表:&amp;nbsp;SalesPerson
++-----------------+---------+ | Column Name | Type | +-----------------+---------+ | sales_id | int | | name | varchar | | salary | int | | commission_rate | int | | hire_date | date | +-----------------+---------+ sales_id 是该表的主键列。 该表的每一行都显示了销售人员的姓名和 ID ，以及他们的工资、佣金率和雇佣日期。 &amp;nbsp;
+表:&amp;nbsp;Company
++-------------+---------+ | Column Name | Type | +-------------+---------+ | com_id | int | | name | varchar | | city | varchar | +-------------+---------+ com_id 是该表的主键列。 该表的每一行都表示公司的名称和 ID ，以及公司所在的城市。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0608-tree-node/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0608-tree-node/</guid><description>题目 # 难度：Medium
+给定一个表&amp;nbsp;tree，id 是树节点的编号，&amp;nbsp;p_id&amp;nbsp;是它父节点的&amp;nbsp;id 。
++----+------+ | id | p_id | +----+------+ | 1 | null | | 2 | 1 | | 3 | 1 | | 4 | 2 | | 5 | 2 | +----+------+ 树中每个节点属于以下三种类型之一：
+叶子：如果这个节点没有任何孩子节点。 根：如果这个节点是整棵树的根，即没有父节点。 内部节点：如果这个节点既不是叶子节点也不是根节点。 &amp;nbsp;
+写一个查询语句，输出所有节点的编号和节点的类型，并将结果按照节点编号排序。上面样例的结果为：
+&amp;nbsp;
++----+------+ | id | Type | +----+------+ | 1 | Root | | 2 | Inner| | 3 | Leaf | | 4 | Leaf | | 5 | Leaf | +----+------+ &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0609-find-duplicate-file-in-system/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0609-find-duplicate-file-in-system/</guid><description>题目 # 难度：Medium
+给你一个目录信息列表&amp;nbsp;paths ，包括目录路径，以及该目录中的所有文件及其内容，请你按路径返回文件系统中的所有重复文件。答案可按 任意顺序 返回。
+一组重复的文件至少包括 两个 具有完全相同内容的文件。
+输入 列表中的单个目录信息字符串的格式如下：
+"root/d1/d2/.../dm f1.txt(f1_content) f2.txt(f2_content) ... fn.txt(fn_content)" 这意味着，在目录&amp;nbsp;root/d1/d2/.../dm&amp;nbsp;下，有 n 个文件 ( f1.txt,&amp;nbsp;f2.txt&amp;nbsp;...&amp;nbsp;fn.txt ) 的内容分别是 ( f1_content,&amp;nbsp;f2_content&amp;nbsp;...&amp;nbsp;fn_content ) 。注意：n &amp;gt;= 1 且 m &amp;gt;= 0 。如果 m = 0 ，则表示该目录是根目录。
+输出 是由 重复文件路径组 构成的列表。其中每个组由所有具有相同内容文件的文件路径组成。文件路径是具有下列格式的字符串：
+"directory_path/file_name.txt" &amp;nbsp;
+示例 1：
+输入：paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)","root 4.txt(efgh)"] 输出：[["root/a/2.txt","root/c/d/4.txt","root/4.txt"],["root/a/1.txt","root/c/3.txt"]] 示例 2：
+输入：paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)"] 输出：[["root/a/2.txt","root/c/d/4.txt"],["root/a/1.txt","root/c/3.txt"]] &amp;nbsp;
+提示：
+1 &amp;lt;= paths.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0611-valid-triangle-number/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0611-valid-triangle-number/</guid><description> 题目 # 难度：Medium
+给定一个包含非负整数的数组&amp;nbsp;nums ，返回其中可以组成三角形三条边的三元组个数。
+&amp;nbsp;
+示例 1:
+输入: nums = [2,2,3,4] 输出: 3 解释:有效的组合是: 2,3,4 (使用第一个 2) 2,3,4 (使用第二个 2) 2,2,3 示例 2:
+输入: nums = [4,2,3,4] 输出: 4 &amp;nbsp;
+提示:
+1 &amp;lt;= nums.length &amp;lt;= 1000 0 &amp;lt;= nums[i] &amp;lt;= 1000 分析 # 题解 # class Solution { public: int triangleNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0617-merge-two-binary-trees/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0617-merge-two-binary-trees/</guid><description> 题目 # 难度：Easy
+给你两棵二叉树： root1 和 root2 。
+想象一下，当你将其中一棵覆盖到另一棵之上时，两棵树上的一些节点将会重叠（而另一些不会）。你需要将这两棵树合并成一棵新二叉树。合并的规则是：如果两个节点重叠，那么将这两个节点的值相加作为合并后节点的新值；否则，不为 null 的节点将直接作为新二叉树的节点。
+返回合并后的二叉树。
+注意: 合并过程必须从两个树的根节点开始。
+&amp;nbsp;
+示例 1：
+输入：root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7] 输出：[3,4,5,5,4,null,7] 示例 2：
+输入：root1 = [1], root2 = [1,2] 输出：[2,2] &amp;nbsp;
+提示：
+两棵树中的节点数目在范围 [0, 2000] 内 -104 &amp;lt;= Node.val &amp;lt;= 104 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0620-not-boring-movies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0620-not-boring-movies/</guid><description>题目 # 难度：Easy
+某城市开了一家新的电影院，吸引了很多人过来看电影。该电影院特别注意用户体验，专门有个 LED显示板做电影推荐，上面公布着影评和相关电影描述。
+作为该电影院的信息部主管，您需要编写一个 SQL查询，找出所有影片描述为非&amp;nbsp;boring&amp;nbsp;(不无聊)&amp;nbsp;的并且 id 为奇数&amp;nbsp;的影片，结果请按等级 rating 排列。
+&amp;nbsp;
+例如，下表 cinema:
++---------+-----------+--------------+-----------+ | id | movie | description | rating | +---------+-----------+--------------+-----------+ | 1 | War | great 3D | 8.9 | | 2 | Science | fiction | 8.5 | | 3 | irish | boring | 6.2 | | 4 | Ice song | Fantacy | 8.6 | | 5 | House card| Interesting| 9.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0621-task-scheduler/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0621-task-scheduler/</guid><description>题目 # 难度：Medium
+给你一个用字符数组 tasks 表示的 CPU 需要执行的任务列表。其中每个字母表示一种不同种类的任务。任务可以以任意顺序执行，并且每个任务都可以在 1 个单位时间内执行完。在任何一个单位时间，CPU 可以完成一个任务，或者处于待命状态。
+然而，两个 相同种类 的任务之间必须有长度为整数 n 的冷却时间，因此至少有连续 n 个单位时间内 CPU 在执行不同的任务，或者在待命状态。
+你需要计算完成所有任务所需要的 最短时间 。
+示例 1：
+输入：tasks = ["A","A","A","B","B","B"], n = 2 输出：8 解释：A -> B -> (待命) -> A -> B -> (待命) -> A -> B 在本示例中，两个相同类型任务之间必须间隔长度为 n = 2 的冷却时间，而执行一个任务只需要一个单位时间，所以中间出现了（待命）状态。 示例 2：
+输入：tasks = ["A","A","A","B","B","B"], n = 0 输出：6 解释：在这种情况下，任何大小为 6 的排列都可以满足要求，因为 n = 0 ["A","A","A","B","B","B"] ["A","B","A","B","A","B"] ["</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0622-design-circular-queue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0622-design-circular-queue/</guid><description>题目 # 难度：Medium
+设计你的循环队列实现。 循环队列是一种线性数据结构，其操作表现基于 FIFO（先进先出）原则并且队尾被连接在队首之后以形成一个循环。它也被称为&amp;ldquo;环形缓冲器&amp;rdquo;。
+循环队列的一个好处是我们可以利用这个队列之前用过的空间。在一个普通队列里，一旦一个队列满了，我们就不能插入下一个元素，即使在队列前面仍有空间。但是使用循环队列，我们能使用这些空间去存储新的值。
+你的实现应该支持如下操作：
+MyCircularQueue(k): 构造器，设置队列长度为 k 。 Front: 从队首获取元素。如果队列为空，返回 -1 。 Rear: 获取队尾元素。如果队列为空，返回 -1 。 enQueue(value): 向循环队列插入一个元素。如果成功插入则返回真。 deQueue(): 从循环队列中删除一个元素。如果成功删除则返回真。 isEmpty(): 检查循环队列是否为空。 isFull(): 检查循环队列是否已满。 &amp;nbsp;
+示例：
+MyCircularQueue circularQueue = new MyCircularQueue(3); // 设置长度为 3 circularQueue.enQueue(1); &amp;nbsp;// 返回 true circularQueue.enQueue(2); &amp;nbsp;// 返回 true circularQueue.enQueue(3); &amp;nbsp;// 返回 true circularQueue.enQueue(4); &amp;nbsp;// 返回 false，队列已满 circularQueue.Rear(); &amp;nbsp;// 返回 3 circularQueue.isFull(); &amp;nbsp;// 返回 true circularQueue.deQueue(); &amp;nbsp;// 返回 true circularQueue.enQueue(4); &amp;nbsp;// 返回 true circularQueue.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0623-add-one-row-to-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0623-add-one-row-to-tree/</guid><description>题目 # 难度：Medium
+给定一个二叉树的根&amp;nbsp;root&amp;nbsp;和两个整数 val 和&amp;nbsp;depth&amp;nbsp;，在给定的深度&amp;nbsp;depth&amp;nbsp;处添加一个值为 val 的节点行。
+注意，根节点&amp;nbsp;root&amp;nbsp;位于深度&amp;nbsp;1&amp;nbsp;。
+加法规则如下:
+给定整数&amp;nbsp;depth，对于深度为&amp;nbsp;depth - 1 的每个非空树节点 cur ，创建两个值为 val 的树节点作为 cur 的左子树根和右子树根。 cur 原来的左子树应该是新的左子树根的左子树。 cur 原来的右子树应该是新的右子树根的右子树。 如果 depth == 1 意味着&amp;nbsp;depth - 1&amp;nbsp;根本没有深度，那么创建一个树节点，值 val 作为整个原始树的新根，而原始树就是新根的左子树。 &amp;nbsp;
+示例 1:
+输入: root = [4,2,6,3,1,5], val = 1, depth = 2 输出: [4,1,1,2,null,null,6,3,1,5] 示例 2:
+输入: root = [4,2,null,3,1], val = 1, depth = 3 输出: [4,2,null,1,1,3,null,null,1] &amp;nbsp;
+提示:
+节点数在&amp;nbsp;[1, 104]&amp;nbsp;范围内 树的深度在&amp;nbsp;[1, 104]范围内 -100 &amp;lt;= Node.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0626-exchange-seats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0626-exchange-seats/</guid><description> 题目 # 难度：Medium
+表:&amp;nbsp;Seat
++-------------+---------+ | Column Name | Type | +-------------+---------+ | id | int | | name | varchar | +-------------+---------+ Id是该表的主键列。 该表的每一行都表示学生的姓名和ID。 Id是一个连续的增量。 &amp;nbsp;
+编写SQL查询来交换每两个连续的学生的座位号。如果学生的数量是奇数，则最后一个学生的id不交换。
+按 id 升序 返回结果表。
+查询结果格式如下所示。
+&amp;nbsp;
+示例 1:
+输入: Seat 表: +----+---------+ | id | student | +----+---------+ | 1 | Abbot | | 2 | Doris | | 3 | Emerson | | 4 | Green | | 5 | Jeames | +----+---------+ 输出: +----+---------+ | id | student | +----+---------+ | 1 | Doris | | 2 | Abbot | | 3 | Green | | 4 | Emerson | | 5 | Jeames | +----+---------+ 解释: 请注意，如果学生人数为奇数，则不需要更换最后一名学生的座位。 分析 # 题解 # # Write your MySQL query statement below</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0627-swap-salary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0627-swap-salary/</guid><description>题目 # 难度：Easy
+Salary 表：
++-------------+----------+ | Column Name | Type | +-------------+----------+ | id | int | | name | varchar | | sex | ENUM | | salary | int | +-------------+----------+ id 是这个表的主键。 sex 这一列的值是 ENUM 类型，只能从 ('m', 'f') 中取。 本表包含公司雇员的信息。 &amp;nbsp;
+请你编写一个 SQL 查询来交换所有的 'f' 和 'm' （即，将所有 'f' 变为 'm' ，反之亦然），仅使用 单个 update 语句 ，且不产生中间临时表。
+注意，你必须仅使用一条 update 语句，且 不能 使用 select 语句。
+查询结果如下例所示。
+&amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0628-maximum-product-of-three-numbers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0628-maximum-product-of-three-numbers/</guid><description> 题目 # 难度：Easy
+给你一个整型数组 nums ，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
+示例 1：
+输入：nums = [1,2,3] 输出：6 示例 2：
+输入：nums = [1,2,3,4] 输出：24 示例 3：
+输入：nums = [-1,-2,-3] 输出：-6 提示：
+3 &lt;= nums.length &lt;= 104 -1000 &lt;= nums[i] &lt;= 1000 分析 # 题解 # class Solution { public: int maximumProduct(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0629-k-inverse-pairs-array/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0629-k-inverse-pairs-array/</guid><description> 题目 # 难度：Hard
+给出两个整数&amp;nbsp;n&amp;nbsp;和&amp;nbsp;k，找出所有包含从&amp;nbsp;1&amp;nbsp;到&amp;nbsp;n&amp;nbsp;的数字，且恰好拥有&amp;nbsp;k&amp;nbsp;个逆序对的不同的数组的个数。
+逆序对的定义如下：对于数组的第i个和第&amp;nbsp;j个元素，如果满i&amp;nbsp;&amp;lt;&amp;nbsp;j且&amp;nbsp;a[i]&amp;nbsp;&amp;gt;&amp;nbsp;a[j]，则其为一个逆序对；否则不是。
+由于答案可能很大，只需要返回 答案 mod 109&amp;nbsp;+ 7 的值。
+示例 1:
+输入: n = 3, k = 0 输出: 1 解释: 只有数组 [1,2,3] 包含了从1到3的整数并且正好拥有 0 个逆序对。 示例 2:
+输入: n = 3, k = 1 输出: 2 解释: 数组 [1,3,2] 和 [2,1,3] 都有 1 个逆序对。 说明:
+&amp;nbsp;n&amp;nbsp;的范围是 [1, 1000] 并且 k 的范围是 [0, 1000]。 分析 # 题解 # class Solution { public: int kInversePairs(int n, int k) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0630-course-schedule-iii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0630-course-schedule-iii/</guid><description>题目 # 难度：Hard
+这里有 n 门不同的在线课程，按从 1 到 n&amp;nbsp;编号。给你一个数组 courses ，其中 courses[i] = [durationi, lastDayi] 表示第 i 门课将会 持续 上 durationi 天课，并且必须在不晚于 lastDayi 的时候完成。
+你的学期从第 1 天开始。且不能同时修读两门及两门以上的课程。
+返回你最多可以修读的课程数目。
+&amp;nbsp;
+示例 1：
+输入：courses = [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]] 输出：3 解释： 这里一共有 4 门课程，但是你最多可以修 3 门： 首先，修第 1 门课，耗费 100 天，在第 100 天完成，在第 101 天开始下门课。 第二，修第 3 门课，耗费 1000 天，在第 1100 天完成，在第 1101 天开始下门课程。 第三，修第 2 门课，耗时 200 天，在第 1300 天完成。 第 4 门课现在不能修，因为将会在第 3300 天完成它，这已经超出了关闭日期。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0632-smallest-range-covering-elements-from-k-lists/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0632-smallest-range-covering-elements-from-k-lists/</guid><description>题目 # 难度：Hard
+你有&amp;nbsp;k&amp;nbsp;个 非递减排列 的整数列表。找到一个 最小 区间，使得&amp;nbsp;k&amp;nbsp;个列表中的每个列表至少有一个数包含在其中。
+我们定义如果&amp;nbsp;b-a &amp;lt; d-c&amp;nbsp;或者在&amp;nbsp;b-a == d-c&amp;nbsp;时&amp;nbsp;a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。
+&amp;nbsp;
+示例 1：
+输入：nums = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 输出：[20,24] 解释： 列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。 列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。 列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。 示例 2：
+输入：nums = [[1,2,3],[1,2,3],[1,2,3]] 输出：[1,1] &amp;nbsp;
+提示：
+nums.length == k 1 &amp;lt;= k &amp;lt;= 3500 1 &amp;lt;= nums[i].</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0633-sum-of-square-numbers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0633-sum-of-square-numbers/</guid><description> 题目 # 难度：Medium
+给定一个非负整数&amp;nbsp;c&amp;nbsp;，你要判断是否存在两个整数 a 和 b，使得&amp;nbsp;a2 + b2 = c 。
+&amp;nbsp;
+示例 1：
+输入：c = 5 输出：true 解释：1 * 1 + 2 * 2 = 5 示例 2：
+输入：c = 3 输出：false &amp;nbsp;
+提示：
+0 &amp;lt;= c &amp;lt;= 231 - 1 分析 # 题解 # class Solution { public: bool judgeSquareSum(int c) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0636-exclusive-time-of-functions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0636-exclusive-time-of-functions/</guid><description>题目 # 难度：Medium
+有一个 单线程 CPU 正在运行一个含有 n 道函数的程序。每道函数都有一个位于 0 和 n-1 之间的唯一标识符。
+函数调用 存储在一个 调用栈 上 ：当一个函数调用开始时，它的标识符将会推入栈中。而当一个函数调用结束时，它的标识符将会从栈中弹出。标识符位于栈顶的函数是 当前正在执行的函数 。每当一个函数开始或者结束时，将会记录一条日志，包括函数标识符、是开始还是结束、以及相应的时间戳。
+给你一个由日志组成的列表 logs ，其中 logs[i] 表示第 i 条日志消息，该消息是一个按 "{function_id}:{"start" | "end"}:{timestamp}" 进行格式化的字符串。例如，"0:start:3" 意味着标识符为 0 的函数调用在时间戳 3 的 起始开始执行 ；而 "1🔚2" 意味着标识符为 1 的函数调用在时间戳 2 的 末尾结束执行。注意，函数可以 调用多次，可能存在递归调用 。
+函数的 独占时间 定义是在这个函数在程序所有函数调用中执行时间的总和，调用其他函数花费的时间不算该函数的独占时间。例如，如果一个函数被调用两次，一次调用执行 2 单位时间，另一次调用执行 1 单位时间，那么该函数的 独占时间 为 2 + 1 = 3 。
+以数组形式返回每个函数的 独占时间 ，其中第 i 个下标对应的值表示标识符 i 的函数的独占时间。</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0637-average-of-levels-in-binary-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0637-average-of-levels-in-binary-tree/</guid><description> 题目 # 难度：Easy
+给定一个非空二叉树的根节点&amp;nbsp;root&amp;nbsp;, 以数组的形式返回每一层节点的平均值。与实际答案相差&amp;nbsp;10-5 以内的答案可以被接受。
+&amp;nbsp;
+示例 1：
+输入：root = [3,9,20,null,null,15,7] 输出：[3.00000,14.50000,11.00000] 解释：第 0 层的平均值为 3,第 1 层的平均值为 14.5,第 2 层的平均值为 11 。 因此返回 [3, 14.5, 11] 。 示例 2:
+输入：root = [3,9,20,15,7] 输出：[3.00000,14.50000,11.00000] &amp;nbsp;
+提示：
+树中节点数量在&amp;nbsp;[1, 104] 范围内 -231&amp;nbsp;&amp;lt;= Node.val &amp;lt;= 231&amp;nbsp;- 1 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: vector&amp;lt;double&amp;gt; averageOfLevels(TreeNode* root) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0638-shopping-offers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0638-shopping-offers/</guid><description>题目 # 难度：Medium
+在 LeetCode 商店中， 有 n 件在售的物品。每件物品都有对应的价格。然而，也有一些大礼包，每个大礼包以优惠的价格捆绑销售一组物品。
+给你一个整数数组 price 表示物品价格，其中 price[i] 是第 i 件物品的价格。另有一个整数数组 needs 表示购物清单，其中 needs[i] 是需要购买第 i 件物品的数量。
+还有一个数组 special 表示大礼包，special[i] 的长度为 n + 1 ，其中 special[i][j] 表示第 i 个大礼包中内含第 j 件物品的数量，且 special[i][n] （也就是数组中的最后一个整数）为第 i 个大礼包的价格。
+返回 确切 满足购物清单所需花费的最低价格，你可以充分利用大礼包的优惠活动。你不能购买超出购物清单指定数量的物品，即使那样会降低整体价格。任意大礼包可无限次购买。
+示例 1：
+输入：price = [2,5], special = [[3,0,5],[1,2,10]], needs = [3,2] 输出：14 解释：有 A 和 B 两种物品，价格分别为 ¥2 和 ¥5 。 大礼包 1 ，你可以以 ¥5 的价格购买 3A 和 0B 。 大礼包 2 ，你可以以 ¥10 的价格购买 1A 和 2B 。 需要购买 3 个 A 和 2 个 B ， 所以付 ¥10 购买 1A 和 2B（大礼包 2），以及 ¥4 购买 2A 。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0639-decode-ways-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0639-decode-ways-ii/</guid><description>题目 # 难度：Hard
+一条包含字母&amp;nbsp;A-Z 的消息通过以下的方式进行了 编码 ：
+'A' -&amp;gt; "1" 'B' -&amp;gt; "2" ... 'Z' -&amp;gt; "26" 要 解码 一条已编码的消息，所有的数字都必须分组，然后按原来的编码方案反向映射回字母（可能存在多种方式）。例如，"11106" 可以映射为：
+"AAJF" 对应分组 (1 1 10 6) "KJF" 对应分组 (11 10 6) 注意，像 (1 11 06) 这样的分组是无效的，因为 "06" 不可以映射为 'F' ，因为 "6" 与 "06" 不同。
+除了 上面描述的数字字母映射方案，编码消息中可能包含 '*' 字符，可以表示从 '1' 到 '9' 的任一数字（不包括 '0'）。例如，编码字符串 "1*" 可以表示 "11"、"12"、"13"、"14"、"15"、"16"、"17"、"18" 或 "19" 中的任意一条消息。对 "1*" 进行解码，相当于解码该字符串可以表示的任何编码消息。
+给你一个字符串 s ，由数字和 '*' 字符组成，返回 解码 该字符串的方法 数目 。</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0640-solve-the-equation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0640-solve-the-equation/</guid><description> 题目 # 难度：Medium
+求解一个给定的方程，将x以字符串 "x=#value"&amp;nbsp;的形式返回。该方程仅包含 '+' ， '-' 操作，变量&amp;nbsp;x&amp;nbsp;和其对应系数。
+如果方程没有解或存在的解不为整数，请返回&amp;nbsp;"No solution"&amp;nbsp;。如果方程有无限解，则返回 “Infinite solutions” 。
+题目保证，如果方程中只有一个解，则 'x' 的值是一个整数。
+&amp;nbsp;
+示例 1：
+输入: equation = "x+5-3+x=6+x-2" 输出: "x=2" 示例 2:
+输入: equation = "x=x" 输出: "Infinite solutions" 示例 3:
+输入: equation = "2x=x" 输出: "x=0" &amp;nbsp;
+提示:
+3 &amp;lt;= equation.length &amp;lt;= 1000 equation&amp;nbsp;只有一个&amp;nbsp;'='.&amp;nbsp; 方程由绝对值在&amp;nbsp;[0, 100]&amp;nbsp; 范围内且无任何前导零的整数和变量 'x'&amp;nbsp;组成。​​​ 分析 # 题解 # class Solution { public: string solveEquation(string equation) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0641-design-circular-deque/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0641-design-circular-deque/</guid><description>题目 # 难度：Medium
+设计实现双端队列。
+实现 MyCircularDeque 类:
+MyCircularDeque(int k)&amp;nbsp;：构造函数,双端队列最大为 k 。 boolean insertFront()：将一个元素添加到双端队列头部。 如果操作成功返回 true&amp;nbsp;，否则返回 false 。 boolean insertLast()&amp;nbsp;：将一个元素添加到双端队列尾部。如果操作成功返回 true&amp;nbsp;，否则返回 false 。 boolean deleteFront()&amp;nbsp;：从双端队列头部删除一个元素。 如果操作成功返回 true&amp;nbsp;，否则返回 false 。 boolean deleteLast()&amp;nbsp;：从双端队列尾部删除一个元素。如果操作成功返回 true&amp;nbsp;，否则返回 false 。 int getFront()&amp;nbsp;)：从双端队列头部获得一个元素。如果双端队列为空，返回 -1&amp;nbsp;。 int getRear()&amp;nbsp;：获得双端队列的最后一个元素。&amp;nbsp;如果双端队列为空，返回 -1 。 boolean isEmpty()&amp;nbsp;：若双端队列为空，则返回&amp;nbsp;true&amp;nbsp;，否则返回 false &amp;nbsp;。 boolean isFull()&amp;nbsp;：若双端队列满了，则返回&amp;nbsp;true&amp;nbsp;，否则返回 false 。 &amp;nbsp;
+示例 1：
+输入 ["MyCircularDeque", "insertLast", "insertLast", "insertFront", "insertFront", "getRear", "isFull", "deleteLast", "insertFront", "getFront"] [[3], [1], [2], [3], [4], [], [], [], [4], []] 输出 [null, true, true, true, false, 2, true, true, true, 4] 解释 MyCircularDeque circularDeque = new MycircularDeque(3); // 设置容量大小为3 circularDeque.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0643-maximum-average-subarray-i/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0643-maximum-average-subarray-i/</guid><description> 题目 # 难度：Easy
+给你一个由 n 个元素组成的整数数组 nums 和一个整数 k 。
+请你找出平均数最大且 长度为 k 的连续子数组，并输出该最大平均数。
+任何误差小于 10-5 的答案都将被视为正确答案。
+&amp;nbsp;
+示例 1：
+输入：nums = [1,12,-5,-6,50,3], k = 4 输出：12.75 解释：最大平均数 (12-5-6+50)/4 = 51/4 = 12.75 示例 2：
+输入：nums = [5], k = 1 输出：5.00000 &amp;nbsp;
+提示：
+n == nums.length 1 &amp;lt;= k &amp;lt;= n &amp;lt;= 105 -104 &amp;lt;= nums[i] &amp;lt;= 104 分析 # 题解 # class Solution { public: double findMaxAverage(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0645-set-mismatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0645-set-mismatch/</guid><description> 题目 # 难度：Easy
+集合 s 包含从 1 到 n 的整数。不幸的是，因为数据错误，导致集合里面某一个数字复制了成了集合里面的另外一个数字的值，导致集合 丢失了一个数字 并且 有一个数字重复 。
+给定一个数组 nums 代表了集合 S 发生错误后的结果。
+请你找出重复出现的整数，再找到丢失的整数，将它们以数组的形式返回。
+示例 1：
+输入：nums = [1,2,2,4] 输出：[2,3] 示例 2：
+输入：nums = [1,1] 输出：[1,2] 提示：
+2 &lt;= nums.length &lt;= 104 1 &lt;= nums[i] &lt;= 104 分析 # 题解 # class Solution { public: vector&amp;lt;int&amp;gt; findErrorNums(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0646-maximum-length-of-pair-chain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0646-maximum-length-of-pair-chain/</guid><description> 题目 # 难度：Medium
+给你一个由&amp;nbsp;n&amp;nbsp;个数对组成的数对数组&amp;nbsp;pairs&amp;nbsp;，其中&amp;nbsp;pairs[i] = [lefti, righti]&amp;nbsp;且&amp;nbsp;lefti&amp;nbsp;&amp;lt; righti 。
+现在，我们定义一种 跟随 关系，当且仅当&amp;nbsp;b &amp;lt; c&amp;nbsp;时，数对&amp;nbsp;p2 = [c, d]&amp;nbsp;才可以跟在&amp;nbsp;p1 = [a, b]&amp;nbsp;后面。我们用这种形式来构造 数对链 。
+找出并返回能够形成的 最长数对链的长度 。
+你不需要用到所有的数对，你可以以任何顺序选择其中的一些数对来构造。
+&amp;nbsp;
+示例 1：
+输入：pairs =&amp;nbsp;[[1,2], [2,3], [3,4]] 输出：2 解释：最长的数对链是 [1,2] -&amp;gt; [3,4] 。 示例 2：
+输入：pairs = [[1,2],[7,8],[4,5]] 输出：3 解释：最长的数对链是 [1,2] -&amp;gt; [4,5] -&amp;gt; [7,8] 。 &amp;nbsp;
+提示：
+n == pairs.length 1 &amp;lt;= n &amp;lt;= 1000 -1000 &amp;lt;= lefti&amp;nbsp;&amp;lt; righti&amp;nbsp;&amp;lt;= 1000 分析 # 题解 # class Solution { public: int findLongestChain(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; pairs) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0647-palindromic-substrings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0647-palindromic-substrings/</guid><description> 题目 # 难度：Medium
+给你一个字符串 s ，请你统计并返回这个字符串中 回文子串 的数目。
+回文字符串 是正着读和倒过来读一样的字符串。
+子字符串 是字符串中的由连续字符组成的一个序列。
+具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。
+&amp;nbsp;
+示例 1：
+输入：s = "abc" 输出：3 解释：三个回文子串: "a", "b", "c" 示例 2：
+输入：s = "aaa" 输出：6 解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa" &amp;nbsp;
+提示：
+1 &amp;lt;= s.length &amp;lt;= 1000 s 由小写英文字母组成 分析 # 题解 # class Solution { public: int countSubstrings(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0648-replace-words/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0648-replace-words/</guid><description>题目 # 难度：Medium
+在英语中，我们有一个叫做&amp;nbsp;词根(root) 的概念，可以词根后面添加其他一些词组成另一个较长的单词——我们称这个词为&amp;nbsp;继承词(successor)。例如，词根an，跟随着单词&amp;nbsp;other(其他)，可以形成新的单词&amp;nbsp;another(另一个)。
+现在，给定一个由许多词根组成的词典 dictionary 和一个用空格分隔单词形成的句子 sentence。你需要将句子中的所有继承词用词根替换掉。如果继承词有许多可以形成它的词根，则用最短的词根替换它。
+你需要输出替换之后的句子。
+&amp;nbsp;
+示例 1：
+输入：dictionary = ["cat","bat","rat"], sentence = "the cattle was rattled by the battery" 输出："the cat was rat by the bat" 示例 2：
+输入：dictionary = ["a","b","c"], sentence = "aadsfasf absbs bbab cadsfafs" 输出："a a b c" &amp;nbsp;
+提示：
+1 &amp;lt;= dictionary.length&amp;nbsp;&amp;lt;= 1000 1 &amp;lt;= dictionary[i].length &amp;lt;= 100 dictionary[i]&amp;nbsp;仅由小写字母组成。 1 &amp;lt;= sentence.length &amp;lt;= 10^6 sentence&amp;nbsp;仅由小写字母和空格组成。 sentence 中单词的总量在范围 [1, 1000] 内。 sentence 中每个单词的长度在范围 [1, 1000] 内。 sentence 中单词之间由一个空格隔开。 sentence&amp;nbsp;没有前导或尾随空格。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0649-dota0002-senate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0649-dota0002-senate/</guid><description>题目 # 难度：Medium
+Dota2 的世界里有两个阵营：Radiant（天辉）和&amp;nbsp;Dire（夜魇）
+Dota2 参议院由来自两派的参议员组成。现在参议院希望对一个 Dota2 游戏里的改变作出决定。他们以一个基于轮为过程的投票进行。在每一轮中，每一位参议员都可以行使两项权利中的 一 项：
+禁止一名参议员的权利：参议员可以让另一位参议员在这一轮和随后的几轮中丧失 所有的权利 。 宣布胜利：如果参议员发现有权利投票的参议员都是 同一个阵营的 ，他可以宣布胜利并决定在游戏中的有关变化。 给你一个字符串&amp;nbsp;senate 代表每个参议员的阵营。字母 'R' 和 'D'分别代表了&amp;nbsp;Radiant（天辉）和&amp;nbsp;Dire（夜魇）。然后，如果有 n 个参议员，给定字符串的大小将是&amp;nbsp;n。
+以轮为基础的过程从给定顺序的第一个参议员开始到最后一个参议员结束。这一过程将持续到投票结束。所有失去权利的参议员将在过程中被跳过。
+假设每一位参议员都足够聪明，会为自己的政党做出最好的策略，你需要预测哪一方最终会宣布胜利并在 Dota2 游戏中决定改变。输出应该是&amp;nbsp;"Radiant" 或 "Dire" 。
+&amp;nbsp;
+示例 1：
+输入：senate = "RD" 输出："Radiant" 解释： 第 1 轮时，第一个参议员来自 Radiant 阵营，他可以使用第一项权利让第二个参议员失去所有权利。 这一轮中，第二个参议员将会被跳过，因为他的权利被禁止了。 第 2 轮时，第一个参议员可以宣布胜利，因为他是唯一一个有投票权的人。 示例 2：
+输入：senate = "RDD" 输出："Dire" 解释： 第 1 轮时，第一个来自 Radiant 阵营的参议员可以使用第一项权利禁止第二个参议员的权利。 这一轮中，第二个来自 Dire 阵营的参议员会将被跳过，因为他的权利被禁止了。 这一轮中，第三个来自 Dire 阵营的参议员可以使用他的第一项权利禁止第一个参议员的权利。 因此在第二轮只剩下第三个参议员拥有投票的权利,于是他可以宣布胜利 &amp;nbsp;
+提示：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0650-0002-keys-keyboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0650-0002-keys-keyboard/</guid><description> 题目 # 难度：Medium
+最初记事本上只有一个字符 'A' 。你每次可以对这个记事本进行两种操作：
+Copy All（复制全部）：复制这个记事本中的所有字符（不允许仅复制部分字符）。 Paste（粘贴）：粘贴 上一次 复制的字符。 给你一个数字&amp;nbsp;n ，你需要使用最少的操作次数，在记事本上输出 恰好&amp;nbsp;n&amp;nbsp;个 'A' 。返回能够打印出&amp;nbsp;n&amp;nbsp;个 'A' 的最少操作次数。
+&amp;nbsp;
+示例 1：
+输入：3 输出：3 解释： 最初, 只有一个字符 'A'。 第 1 步, 使用 Copy All 操作。 第 2 步, 使用 Paste 操作来获得 'AA'。 第 3 步, 使用 Paste 操作来获得 'AAA'。 示例 2：
+输入：n = 1 输出：0 &amp;nbsp;
+提示：
+1 &amp;lt;= n &amp;lt;= 1000 分析 # 题解 # class Solution { public: int minSteps(int n) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0652-find-duplicate-subtrees/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0652-find-duplicate-subtrees/</guid><description> 题目 # 难度：Medium
+给你一棵二叉树的根节点 root ，返回所有 重复的子树 。
+对于同一类的重复子树，你只需要返回其中任意 一棵 的根结点即可。
+如果两棵树具有 相同的结构 和 相同的结点值 ，则认为二者是 重复 的。
+&amp;nbsp;
+示例 1：
+输入：root = [1,2,3,4,null,2,4,null,null,4] 输出：[[2,4],[4]] 示例 2：
+输入：root = [2,1,1] 输出：[[1]] 示例 3：
+输入：root = [2,2,2,3,null,3,null] 输出：[[2,3],[3]] &amp;nbsp;
+提示：
+树中的结点数在 [1, 5000] 范围内。 -200 &amp;lt;= Node.val &amp;lt;= 200 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: vector&amp;lt;TreeNode*&amp;gt; findDuplicateSubtrees(TreeNode* root) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0653-two-sum-iv-input-is-a-bst/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0653-two-sum-iv-input-is-a-bst/</guid><description> 题目 # 难度：Easy
+给定一个二叉搜索树 root 和一个目标结果 k，如果二叉搜索树中存在两个元素且它们的和等于给定的目标结果，则返回 true。
+&amp;nbsp;
+示例 1：
+输入: root = [5,3,6,2,4,null,7], k = 9 输出: true 示例 2：
+输入: root = [5,3,6,2,4,null,7], k = 28 输出: false &amp;nbsp;
+提示:
+二叉树的节点个数的范围是&amp;nbsp;&amp;nbsp;[1, 104]. -104&amp;nbsp;&amp;lt;= Node.val &amp;lt;= 104 题目数据保证，输入的 root 是一棵 有效 的二叉搜索树 -105&amp;nbsp;&amp;lt;= k &amp;lt;= 105 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: bool findTarget(TreeNode* root, int k) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0654-maximum-binary-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0654-maximum-binary-tree/</guid><description>题目 # 难度：Medium
+给定一个不重复的整数数组&amp;nbsp;nums 。&amp;nbsp;最大二叉树&amp;nbsp;可以用下面的算法从&amp;nbsp;nums 递归地构建:
+创建一个根节点，其值为&amp;nbsp;nums 中的最大值。 递归地在最大值&amp;nbsp;左边&amp;nbsp;的&amp;nbsp;子数组前缀上&amp;nbsp;构建左子树。 递归地在最大值 右边 的&amp;nbsp;子数组后缀上&amp;nbsp;构建右子树。 返回&amp;nbsp;nums 构建的 最大二叉树 。
+&amp;nbsp;
+示例 1：
+输入：nums = [3,2,1,6,0,5] 输出：[6,3,5,null,2,0,null,null,1] 解释：递归调用如下所示： - [3,2,1,6,0,5] 中的最大值是 6 ，左边部分是 [3,2,1] ，右边部分是 [0,5] 。 - [3,2,1] 中的最大值是 3 ，左边部分是 [] ，右边部分是 [2,1] 。 - 空数组，无子节点。 - [2,1] 中的最大值是 2 ，左边部分是 [] ，右边部分是 [1] 。 - 空数组，无子节点。 - 只有一个元素，所以子节点是一个值为 1 的节点。 - [0,5] 中的最大值是 5 ，左边部分是 [0] ，右边部分是 [] 。 - 只有一个元素，所以子节点是一个值为 0 的节点。 - 空数组，无子节点。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0655-print-binary-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0655-print-binary-tree/</guid><description>题目 # 难度：Medium
+给你一棵二叉树的根节点 root ，请你构造一个下标从 0 开始、大小为 m x n 的字符串矩阵 res ，用以表示树的 格式化布局 。构造此格式化布局矩阵需要遵循以下规则：
+树的 高度 为 height ，矩阵的行数 m 应该等于 height + 1 。 矩阵的列数 n 应该等于 2height+1 - 1 。 根节点 需要放置在 顶行 的 正中间 ，对应位置为 res[0][(n-1)/2] 。 对于放置在矩阵中的每个节点，设对应位置为 res[r][c] ，将其左子节点放置在 res[r+1][c-2height-r-1] ，右子节点放置在 res[r+1][c+2height-r-1] 。 继续这一过程，直到树中的所有节点都妥善放置。 任意空单元格都应该包含空字符串 "" 。 返回构造得到的矩阵 res 。
+&amp;nbsp;
+&amp;nbsp;
+示例 1：
+输入：root = [1,2] 输出： [["","1",""], &amp;nbsp;["2","",""]] 示例 2：
+输入：root = [1,2,3,null,4] 输出： [["</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0657-robot-return-to-origin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0657-robot-return-to-origin/</guid><description> 题目 # 难度：Easy
+在二维平面上，有一个机器人从原点 (0, 0) 开始。给出它的移动顺序，判断这个机器人在完成移动后是否在&amp;nbsp;(0, 0) 处结束。
+移动顺序由字符串&amp;nbsp;moves&amp;nbsp;表示。字符 move[i] 表示其第 i 次移动。机器人的有效动作有&amp;nbsp;R（右），L（左），U（上）和 D（下）。
+如果机器人在完成所有动作后返回原点，则返回 true。否则，返回 false。
+注意：机器人“面朝”的方向无关紧要。 “R” 将始终使机器人向右移动一次，“L” 将始终向左移动等。此外，假设每次移动机器人的移动幅度相同。
+&amp;nbsp;
+示例 1:
+输入: moves = "UD" 输出: true 解释：机器人向上移动一次，然后向下移动一次。所有动作都具有相同的幅度，因此它最终回到它开始的原点。因此，我们返回 true。 示例 2:
+输入: moves = "LL" 输出: false 解释：机器人向左移动两次。它最终位于原点的左侧，距原点有两次 “移动” 的距离。我们返回 false，因为它在移动结束时没有返回原点。 &amp;nbsp;
+提示:
+1 &amp;lt;= moves.length &amp;lt;= 2 * 104 moves&amp;nbsp;只包含字符&amp;nbsp;'U',&amp;nbsp;'D',&amp;nbsp;'L'&amp;nbsp;和&amp;nbsp;'R' 分析 # 题解 # class Solution { public: bool judgeCircle(string moves) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0658-find-k-closest-elements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0658-find-k-closest-elements/</guid><description>题目 # 难度：Medium
+给定一个 排序好 的数组&amp;nbsp;arr ，两个整数 k 和 x ，从数组中找到最靠近 x（两数之差最小）的 k 个数。返回的结果必须要是按升序排好的。
+整数 a 比整数 b 更接近 x 需要满足：
+|a - x| &amp;lt; |b - x| 或者 |a - x| == |b - x| 且 a &amp;lt; b &amp;nbsp;
+示例 1：
+输入：arr = [1,2,3,4,5], k = 4, x = 3 输出：[1,2,3,4] 示例 2：
+输入：arr = [1,2,3,4,5], k = 4, x = -1 输出：[1,2,3,4] &amp;nbsp;
+提示：
+1 &amp;lt;= k &amp;lt;= arr.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0659-split-array-into-consecutive-subsequences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0659-split-array-into-consecutive-subsequences/</guid><description>题目 # 难度：Medium
+给你一个按 非递减顺序 排列的整数数组 nums 。
+请你判断是否能在将 nums 分割成 一个或多个子序列 的同时满足下述 两个 条件：
+每个子序列都是一个 连续递增序列（即，每个整数 恰好 比前一个整数大 1 ）。 所有子序列的长度 至少 为 3 。 如果可以分割 nums 并满足上述条件，则返回 true ；否则，返回 false 。
+&amp;nbsp;
+示例 1：
+输入：nums = [1,2,3,3,4,5] 输出：true 解释：nums 可以分割成以下子序列： [1,2,3,3,4,5] --&amp;gt; 1, 2, 3 [1,2,3,3,4,5] --&amp;gt; 3, 4, 5 示例 2：
+输入：nums = [1,2,3,3,4,4,5,5] 输出：true 解释：nums 可以分割成以下子序列： [1,2,3,3,4,4,5,5] --&amp;gt; 1, 2, 3, 4, 5 [1,2,3,3,4,4,5,5] --&amp;gt; 3, 4, 5 示例 3：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0661-image-smoother/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0661-image-smoother/</guid><description>题目 # 难度：Easy
+图像平滑器 是大小为&amp;nbsp;3 x 3 的过滤器，用于对图像的每个单元格平滑处理，平滑处理后单元格的值为该单元格的平均灰度。
+每个单元格的&amp;nbsp; 平均灰度 定义为：该单元格自身及其周围的 8 个单元格的平均值，结果需向下取整。（即，需要计算蓝色平滑器中 9 个单元格的平均值）。
+如果一个单元格周围存在单元格缺失的情况，则计算平均灰度时不考虑缺失的单元格（即，需要计算红色平滑器中 4 个单元格的平均值）。
+给你一个表示图像灰度的 m x n 整数矩阵 img ，返回对图像的每个单元格平滑处理后的图像&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入:img = [[1,1,1],[1,0,1],[1,1,1]] 输出:[[0, 0, 0],[0, 0, 0], [0, 0, 0]] 解释: 对于点 (0,0), (0,2), (2,0), (2,2): 平均(3/4) = 平均(0.75) = 0 对于点 (0,1), (1,0), (1,2), (2,1): 平均(5/6) = 平均(0.83333333) = 0 对于点 (1,1): 平均(8/9) = 平均(0.88888889) = 0 示例 2:</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0662-maximum-width-of-binary-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0662-maximum-width-of-binary-tree/</guid><description>题目 # 难度：Medium
+给你一棵二叉树的根节点 root ，返回树的 最大宽度 。
+树的 最大宽度 是所有层中最大的 宽度 。
+每一层的 宽度 被定义为该层最左和最右的非空节点（即，两个端点）之间的长度。将这个二叉树视作与满二叉树结构相同，两端点间会出现一些延伸到这一层的 null 节点，这些 null 节点也计入长度。
+题目数据保证答案将会在&amp;nbsp; 32 位 带符号整数范围内。
+&amp;nbsp;
+示例 1：
+输入：root = [1,3,2,5,3,null,9] 输出：4 解释：最大宽度出现在树的第 3 层，宽度为 4 (5,3,null,9) 。 示例 2：
+输入：root = [1,3,2,5,null,null,9,6,null,7] 输出：7 解释：最大宽度出现在树的第 4 层，宽度为 7 (6,null,null,null,null,null,7) 。 示例 3：
+输入：root = [1,3,2,5] 输出：2 解释：最大宽度出现在树的第 2 层，宽度为 2 (3,2) 。 &amp;nbsp;
+提示：
+树中节点的数目范围是 [1, 3000] -100 &amp;lt;= Node.val &amp;lt;= 100 分析 # 题解 # /** * Definition for a binary tree node.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0664-strange-printer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0664-strange-printer/</guid><description> 题目 # 难度：Hard
+有台奇怪的打印机有以下两个特殊要求：
+打印机每次只能打印由 同一个字符 组成的序列。 每次可以在从起始到结束的任意位置打印新字符，并且会覆盖掉原来已有的字符。 给你一个字符串 s ，你的任务是计算这个打印机打印它需要的最少打印次数。
+&amp;nbsp; 示例 1：
+输入：s = "aaabbb" 输出：2 解释：首先打印 "aaa" 然后打印 "bbb"。 示例 2：
+输入：s = "aba" 输出：2 解释：首先打印 "aaa" 然后在第二个位置打印 "b" 覆盖掉原来的字符 'a'。 &amp;nbsp;
+提示：
+1 &amp;lt;= s.length &amp;lt;= 100 s 由小写英文字母组成 分析 # 题解 # class Solution { public: int strangePrinter(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0665-non-decreasing-array/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0665-non-decreasing-array/</guid><description> 题目 # 难度：Medium
+给你一个长度为&amp;nbsp;n&amp;nbsp;的整数数组&amp;nbsp;nums&amp;nbsp;，请你判断在 最多 改变&amp;nbsp;1 个元素的情况下，该数组能否变成一个非递减数列。
+我们是这样定义一个非递减数列的：&amp;nbsp;对于数组中任意的&amp;nbsp;i (0 &amp;lt;= i &amp;lt;= n-2)，总满足 nums[i] &amp;lt;= nums[i + 1]。
+&amp;nbsp;
+示例 1:
+输入: nums = [4,2,3] 输出: true 解释: 你可以通过把第一个 4 变成 1 来使得它成为一个非递减数列。 示例 2:
+输入: nums = [4,2,1] 输出: false 解释: 你不能在只改变一个元素的情况下将其变为非递减数列。 &amp;nbsp;
+提示：
+n == nums.length 1 &amp;lt;= n &amp;lt;= 104 -105&amp;nbsp;&amp;lt;= nums[i] &amp;lt;= 105 分析 # 题解 # class Solution { public: bool checkPossibility(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0667-beautiful-arrangement-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0667-beautiful-arrangement-ii/</guid><description>题目 # 难度：Medium
+给你两个整数 n 和 k ，请你构造一个答案列表 answer ，该列表应当包含从 1 到 n 的 n 个不同正整数，并同时满足下述条件：
+假设该列表是 answer = [a1, a2, a3, ... , an] ，那么列表 [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] 中应该有且仅有 k 个不同整数。 返回列表 answer 。如果存在多种答案，只需返回其中 任意一种 。
+示例 1：
+输入：n = 3, k = 1 输出：[1, 2, 3] 解释：[1, 2, 3] 包含 3 个范围在 1-3 的不同整数，并且 [1, 1] 中有且仅有 1 个不同整数：1 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0668-kth-smallest-number-in-multiplication-table/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0668-kth-smallest-number-in-multiplication-table/</guid><description> 题目 # 难度：Hard
+几乎每一个人都用&amp;nbsp;乘法表。但是你能在乘法表中快速找到第 k 小的数字吗？
+乘法表是大小为 m x n 的一个整数矩阵，其中&amp;nbsp;mat[i][j] == i * j（下标从 1 开始）。
+给你三个整数 m、n 和 k，请你在大小为&amp;nbsp;m x n 的乘法表中，找出并返回第 k&amp;nbsp;小的数字。
+&amp;nbsp;
+示例 1：
+输入：m = 3, n = 3, k = 5 输出：3 解释：第 5 小的数字是 3 。 示例 2：
+输入：m = 2, n = 3, k = 6 输出：6 解释：第 6 小的数字是 6 。 &amp;nbsp;
+提示：
+1 &amp;lt;= m, n &amp;lt;= 3 * 104 1 &amp;lt;= k &amp;lt;= m * n 分析 # 题解 # class Solution { public: int findKthNumber(int m, int n, int k) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0669-trim-a-binary-search-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0669-trim-a-binary-search-tree/</guid><description>题目 # 难度：Medium
+给你二叉搜索树的根节点 root ，同时给定最小边界low 和最大边界 high。通过修剪二叉搜索树，使得所有节点的值在[low, high]中。修剪树 不应该&amp;nbsp;改变保留在树中的元素的相对结构 (即，如果没有被移除，原有的父代子代关系都应当保留)。 可以证明，存在&amp;nbsp;唯一的答案&amp;nbsp;。
+所以结果应当返回修剪好的二叉搜索树的新的根节点。注意，根节点可能会根据给定的边界发生改变。
+&amp;nbsp;
+示例 1：
+输入：root = [1,0,2], low = 1, high = 2 输出：[1,null,2] 示例 2：
+输入：root = [3,0,4,null,2,null,null,1], low = 1, high = 3 输出：[3,2,null,1] &amp;nbsp;
+提示：
+树中节点数在范围 [1, 104] 内 0 &amp;lt;= Node.val &amp;lt;= 104 树中每个节点的值都是 唯一 的 题目数据保证输入是一棵有效的二叉搜索树 0 &amp;lt;= low &amp;lt;= high &amp;lt;= 104 分析 # 题解 # /** * Definition for a binary tree node.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0670-maximum-swap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0670-maximum-swap/</guid><description> 题目 # 难度：Medium
+给定一个非负整数，你至多可以交换一次数字中的任意两位。返回你能得到的最大值。
+示例 1 :
+输入: 2736 输出: 7236 解释: 交换数字2和数字7。 示例 2 :
+输入: 9973 输出: 9973 解释: 不需要交换。 注意:
+给定数字的范围是&amp;nbsp;[0, 108] 分析 # 题解 # class Solution { public: int maximumSwap(int num) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0671-second-minimum-node-in-a-binary-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0671-second-minimum-node-in-a-binary-tree/</guid><description> 题目 # 难度：Easy
+给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为&amp;nbsp;2&amp;nbsp;或&amp;nbsp;0。如果一个节点有两个子节点的话，那么该节点的值等于两个子节点中较小的一个。
+更正式地说，即&amp;nbsp;root.val = min(root.left.val, root.right.val) 总成立。
+给出这样的一个二叉树，你需要输出所有节点中的&amp;nbsp;第二小的值 。
+如果第二小的值不存在的话，输出 -1 。
+&amp;nbsp;
+示例 1：
+输入：root = [2,2,5,null,null,5,7] 输出：5 解释：最小的值是 2 ，第二小的值是 5 。 示例 2：
+输入：root = [2,2,2] 输出：-1 解释：最小的值是 2, 但是不存在第二小的值。 &amp;nbsp;
+提示：
+树中节点数目在范围 [1, 25] 内 1 &amp;lt;= Node.val &amp;lt;= 231 - 1 对于树中每个节点 root.val == min(root.left.val, root.right.val) 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: int findSecondMinimumValue(TreeNode* root) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0672-bulb-switcher-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0672-bulb-switcher-ii/</guid><description>题目 # 难度：Medium
+房间中有 n&amp;nbsp;只已经打开的灯泡，编号从 1 到 n 。墙上挂着 4 个开关 。
+这 4 个开关各自都具有不同的功能，其中：
+开关 1 ：反转当前所有灯的状态（即开变为关，关变为开） 开关 2 ：反转编号为偶数的灯的状态（即 0, 2, 4, ...） 开关 3 ：反转编号为奇数的灯的状态（即 1, 3, ...） 开关 4 ：反转编号为 j = 3k + 1 的灯的状态，其中 k = 0, 1, 2, ...（即 1, 4, 7, 10, ...） 你必须 恰好 按压开关 presses 次。每次按压，你都需要从 4 个开关中选出一个来执行按压操作。
+给你两个整数 n 和 presses ，执行完所有按压之后，返回 不同可能状态 的数量。
+&amp;nbsp;
+示例 1：
+输入：n = 1, presses = 1 输出：2 解释：状态可以是： - 按压开关 1 ，[关] - 按压开关 2 ，[开] 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0673-number-of-longest-increasing-subsequence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0673-number-of-longest-increasing-subsequence/</guid><description> 题目 # 难度：Medium
+给定一个未排序的整数数组&amp;nbsp;nums&amp;nbsp;，&amp;nbsp;返回最长递增子序列的个数&amp;nbsp;。
+注意&amp;nbsp;这个数列必须是 严格 递增的。
+&amp;nbsp;
+示例 1:
+输入: [1,3,5,4,7] 输出: 2 解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。 示例 2:
+输入: [2,2,2,2,2] 输出: 5 解释: 最长递增子序列的长度是1，并且存在5个子序列的长度为1，因此输出5。 &amp;nbsp;
+提示:&amp;nbsp;
+1 &amp;lt;= nums.length &amp;lt;= 2000 -106&amp;nbsp;&amp;lt;= nums[i] &amp;lt;= 106 分析 # 题解 # class Solution { public: int findNumberOfLIS(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0674-longest-continuous-increasing-subsequence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0674-longest-continuous-increasing-subsequence/</guid><description> 题目 # 难度：Easy
+给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
+连续递增的子序列 可以由两个下标 l 和 r（l &lt; r）确定，如果对于每个 l &lt;= i &lt; r，都有 nums[i] &lt; nums[i + 1] ，那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。
+示例 1：
+输入：nums = [1,3,5,4,7] 输出：3 解释：最长连续递增序列是 [1,3,5], 长度为3。 尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。 示例 2：
+输入：nums = [2,2,2,2,2] 输出：1 解释：最长连续递增序列是 [2], 长度为1。 提示：
+1 &lt;= nums.length &lt;= 104 -109 &lt;= nums[i] &lt;= 109 分析 # 题解 # class Solution { public: int findLengthOfLCIS(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0675-cut-off-trees-for-golf-event/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0675-cut-off-trees-for-golf-event/</guid><description> 题目 # 难度：Hard
+你被请来给一个要举办高尔夫比赛的树林砍树。树林由一个 m x n 的矩阵表示， 在这个矩阵中：
+0 表示障碍，无法触碰 1 表示地面，可以行走 比 1 大的数 表示有树的单元格，可以行走，数值表示树的高度 每一步，你都可以向上、下、左、右四个方向之一移动一个单位，如果你站的地方有一棵树，那么你可以决定是否要砍倒它。
+你需要按照树的高度从低向高砍掉所有的树，每砍过一颗树，该单元格的值变为 1（即变为地面）。
+你将从 (0, 0) 点开始工作，返回你砍完所有树需要走的最小步数。 如果你无法砍完所有的树，返回 -1 。
+可以保证的是，没有两棵树的高度是相同的，并且你至少需要砍倒一棵树。
+示例 1：
+输入：forest = [[1,2,3],[0,0,4],[7,6,5]] 输出：6 解释：沿着上面的路径，你可以用 6 步，按从最矮到最高的顺序砍掉这些树。 示例 2：
+输入：forest = [[1,2,3],[0,0,0],[7,6,5]] 输出：-1 解释：由于中间一行被障碍阻塞，无法访问最下面一行中的树。 示例 3：
+输入：forest = [[2,3,4],[0,0,5],[8,7,6]] 输出：6 解释：可以按与示例 1 相同的路径来砍掉所有的树。 (0,0) 位置的树，可以直接砍去，不用算步数。 提示：
+m == forest.length n == forest[i].length 1 &lt;= m, n &lt;= 50 0 &lt;= forest[i][j] &lt;= 109 分析 # 题解 # class Solution { public: int cutOffTree(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; forest) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0676-implement-magic-dictionary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0676-implement-magic-dictionary/</guid><description>题目 # 难度：Medium
+设计一个使用单词列表进行初始化的数据结构，单词列表中的单词 互不相同 。 如果给出一个单词，请判定能否只将这个单词中一个字母换成另一个字母，使得所形成的新单词存在于你构建的字典中。
+实现 MagicDictionary 类：
+MagicDictionary() 初始化对象 void buildDict(String[] dictionary) 使用字符串数组 dictionary 设定该数据结构，dictionary 中的字符串互不相同 bool search(String searchWord) 给定一个字符串 searchWord ，判定能否只将字符串中 一个 字母换成另一个字母，使得所形成的新字符串能够与字典中的任一字符串匹配。如果可以，返回 true ；否则，返回 false 。 示例：
+输入 ["MagicDictionary", "buildDict", "search", "search", "search", "search"] [[], [["hello", "leetcode"]], ["hello"], ["hhllo"], ["hell"], ["leetcoded"]] 输出 [null, null, false, true, false, false] 解释 MagicDictionary magicDictionary = new MagicDictionary(); magicDictionary.buildDict(["hello", "leetcode"]); magicDictionary.search("hello"); // 返回 False magicDictionary.search("hhllo"); // 将第二个 'h' 替换为 'e' 可以匹配 "</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0677-map-sum-pairs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0677-map-sum-pairs/</guid><description>题目 # 难度：Medium
+设计一个 map ，满足以下几点:
+字符串表示键，整数表示值 返回具有前缀等于给定字符串的键的值的总和 实现一个 MapSum 类：
+MapSum() 初始化 MapSum 对象 void insert(String key, int val) 插入 key-val 键值对，字符串表示键 key ，整数表示值 val 。如果键 key 已经存在，那么原来的键值对&amp;nbsp;key-value&amp;nbsp;将被替代成新的键值对。 int sum(string prefix) 返回所有以该前缀 prefix 开头的键 key 的值的总和。 &amp;nbsp;
+示例 1：
+输入： ["MapSum", "insert", "sum", "insert", "sum"] [[], ["apple", 3], ["ap"], ["app", 2], ["ap"]] 输出： [null, null, 3, null, 5] 解释： MapSum mapSum = new MapSum(); mapSum.insert("apple", 3); mapSum.sum("ap"); // 返回 3 (apple = 3) mapSum.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0678-valid-parenthesis-string/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0678-valid-parenthesis-string/</guid><description> 题目 # 难度：Medium
+给定一个只包含三种字符的字符串：（&amp;nbsp;，）&amp;nbsp;和 *，写一个函数来检验这个字符串是否为有效字符串。有效字符串具有如下规则：
+任何左括号 (&amp;nbsp;必须有相应的右括号 )。 任何右括号 )&amp;nbsp;必须有相应的左括号 (&amp;nbsp;。 左括号 ( 必须在对应的右括号之前 )。 *&amp;nbsp;可以被视为单个右括号 )&amp;nbsp;，或单个左括号 (&amp;nbsp;，或一个空字符串。 一个空字符串也被视为有效字符串。 示例 1:
+输入: &amp;quot;()&amp;quot; 输出: True 示例 2:
+输入: &amp;quot;(*)&amp;quot; 输出: True 示例 3:
+输入: &amp;quot;(*))&amp;quot; 输出: True 注意:
+字符串大小将在 [1，100] 范围内。 分析 # 题解 # class Solution { public: bool checkValidString(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0679-0024-game/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0679-0024-game/</guid><description>题目 # 难度：Hard
+给定一个长度为4的整数数组&amp;nbsp;cards&amp;nbsp;。你有 4 张卡片，每张卡片上都包含一个范围在 [1,9] 的数字。您应该使用运算符&amp;nbsp;['+', '-', '*', '/']&amp;nbsp;和括号&amp;nbsp;'('&amp;nbsp;和&amp;nbsp;')'&amp;nbsp;将这些卡片上的数字排列成数学表达式，以获得值24。
+你须遵守以下规则:
+除法运算符 '/' 表示实数除法，而不是整数除法。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;例如，&amp;amp;nbsp;&amp;lt;code&amp;gt;4 /(1 - 2 / 3)= 4 /(1 / 3)= 12&amp;lt;/code&amp;gt;&amp;amp;nbsp;。&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;每个运算都在两个数字之间。特别是，不能使用 &amp;lt;code&amp;gt;“-”&amp;lt;/code&amp;gt; 作为一元运算符。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;例如，如果 &amp;lt;code&amp;gt;cards =[1,1,1,1]&amp;lt;/code&amp;gt; ，则表达式 &amp;lt;code&amp;gt;“-1 -1 -1 -1”&amp;lt;/code&amp;gt; 是 &amp;lt;strong&amp;gt;不允许&amp;lt;/strong&amp;gt; 的。&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;你不能把数字串在一起 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;例如，如果 &amp;lt;code&amp;gt;cards =[1,2,1,2]&amp;lt;/code&amp;gt; ，则表达式 &amp;lt;code&amp;gt;“12 + 12”&amp;lt;/code&amp;gt; 无效。&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/li&amp;gt; 如果可以得到这样的表达式，其计算结果为 24 ，则返回 true ，否则返回 false&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入: cards = [4, 1, 8, 7] 输出: true 解释: (8-4) * (7-1) = 24 示例 2:</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0680-valid-palindrome-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0680-valid-palindrome-ii/</guid><description> 题目 # 难度：Easy
+给你一个字符串&amp;nbsp;s，最多 可以从中删除一个字符。
+请你判断 s 是否能成为回文字符串：如果能，返回 true ；否则，返回 false 。
+&amp;nbsp;
+示例 1：
+输入：s = "aba" 输出：true 示例 2：
+输入：s = "abca" 输出：true 解释：你可以删除字符 'c' 。 示例 3：
+输入：s = "abc" 输出：false &amp;nbsp;
+提示：
+1 &amp;lt;= s.length &amp;lt;= 105 s 由小写英文字母组成 分析 # 题解 # class Solution { public: bool validPalindrome(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0682-baseball-game/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0682-baseball-game/</guid><description>题目 # 难度：Easy
+你现在是一场采用特殊赛制棒球比赛的记录员。这场比赛由若干回合组成，过去几回合的得分可能会影响以后几回合的得分。
+比赛开始时，记录是空白的。你会得到一个记录操作的字符串列表 ops，其中 ops[i] 是你需要记录的第 i 项操作，ops 遵循下述规则：
+整数 x - 表示本回合新获得分数 x "+" - 表示本回合新获得的得分是前两次得分的总和。题目数据保证记录此操作时前面总是存在两个有效的分数。 "D" - 表示本回合新获得的得分是前一次得分的两倍。题目数据保证记录此操作时前面总是存在一个有效的分数。 "C" - 表示前一次得分无效，将其从记录中移除。题目数据保证记录此操作时前面总是存在一个有效的分数。 请你返回记录中所有得分的总和。
+示例 1：
+输入：ops = ["5","2","C","D","+"] 输出：30 解释： "5" - 记录加 5 ，记录现在是 [5] "2" - 记录加 2 ，记录现在是 [5, 2] "C" - 使前一次得分的记录无效并将其移除，记录现在是 [5]. "D" - 记录加 2 * 5 = 10 ，记录现在是 [5, 10]. "+" - 记录加 5 + 10 = 15 ，记录现在是 [5, 10, 15].</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0684-redundant-connection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0684-redundant-connection/</guid><description>题目 # 难度：Medium
+树可以看成是一个连通且 无环 的 无向 图。
+给定往一棵 n 个节点 (节点值 1～n) 的树中添加一条边后的图。添加的边的两个顶点包含在 1 到 n 中间，且这条附加的边不属于树中已存在的边。图的信息记录于长度为 n 的二维数组 edges ，edges[i] = [ai, bi] 表示图中在 ai 和 bi 之间存在一条边。
+请找出一条可以删去的边，删除后可使得剩余部分是一个有着 n 个节点的树。如果有多个答案，则返回数组 edges 中最后出现的边。
+示例 1：
+输入: edges = [[1,2], [1,3], [2,3]] 输出: [2,3] 示例 2：
+输入: edges = [[1,2], [2,3], [3,4], [1,4], [1,5]] 输出: [1,4] 提示:
+n == edges.length 3 &lt;= n &lt;= 1000 edges[i].length == 2 1 &lt;= ai &lt; bi &lt;= edges.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0685-redundant-connection-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0685-redundant-connection-ii/</guid><description> 题目 # 难度：Hard
+在本问题中，有根树指满足以下条件的 有向 图。该树只有一个根节点，所有其他节点都是该根节点的后继。该树除了根节点之外的每一个节点都有且只有一个父节点，而根节点没有父节点。
+输入一个有向图，该图由一个有着 n 个节点（节点值不重复，从 1 到 n）的树及一条附加的有向边构成。附加的边包含在 1 到 n 中的两个不同顶点间，这条附加的边不属于树中已存在的边。
+结果图是一个以边组成的二维数组 edges 。 每个元素是一对 [ui, vi]，用以表示 有向 图中连接顶点 ui 和顶点 vi 的边，其中 ui 是 vi 的一个父节点。
+返回一条能删除的边，使得剩下的图是有 n 个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。
+示例 1：
+输入：edges = [[1,2],[1,3],[2,3]] 输出：[2,3] 示例 2：
+输入：edges = [[1,2],[2,3],[3,4],[4,1],[1,5]] 输出：[4,1] 提示：
+n == edges.length 3 &lt;= n &lt;= 1000 edges[i].length == 2 1 &lt;= ui, vi &lt;= n 分析 # 题解 # class Solution { public: vector&amp;lt;int&amp;gt; findRedundantDirectedConnection(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; edges) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0686-repeated-string-match/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0686-repeated-string-match/</guid><description>题目 # 难度：Medium
+给定两个字符串&amp;nbsp;a 和 b，寻找重复叠加字符串 a 的最小次数，使得字符串 b 成为叠加后的字符串 a 的子串，如果不存在则返回 -1。
+注意：字符串 &amp;quot;abc&amp;quot;&amp;nbsp;重复叠加 0 次是 &amp;quot;&amp;quot;，重复叠加 1 次是&amp;nbsp;&amp;quot;abc&amp;quot;，重复叠加 2 次是&amp;nbsp;&amp;quot;abcabc&amp;quot;。
+&amp;nbsp;
+示例 1：
+输入：a = &amp;quot;abcd&amp;quot;, b = &amp;quot;cdabcdab&amp;quot; 输出：3 解释：a 重复叠加三遍后为 &amp;quot;abcdabcdabcd&amp;quot;, 此时 b 是其子串。 示例 2：
+输入：a = &amp;quot;a&amp;quot;, b = &amp;quot;aa&amp;quot; 输出：2 示例 3：
+输入：a = &amp;quot;a&amp;quot;, b = &amp;quot;a&amp;quot; 输出：1 示例 4：
+输入：a = &amp;quot;abc&amp;quot;, b = &amp;quot;wxyz&amp;quot; 输出：-1 &amp;nbsp;
+提示：
+1 &amp;lt;= a.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0687-longest-univalue-path/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0687-longest-univalue-path/</guid><description> 题目 # 难度：Medium
+给定一个二叉树的&amp;nbsp;root&amp;nbsp;，返回&amp;nbsp;最长的路径的长度 ，这个路径中的&amp;nbsp;每个节点具有相同值&amp;nbsp;。 这条路径可以经过也可以不经过根节点。
+两个节点之间的路径长度&amp;nbsp;由它们之间的边数表示。
+&amp;nbsp;
+示例 1:
+输入：root = [5,4,5,1,1,5] 输出：2 示例 2:
+输入：root = [1,4,5,4,4,5] 输出：2 &amp;nbsp;
+提示:
+树的节点数的范围是&amp;nbsp;[0, 104]&amp;nbsp; -1000 &amp;lt;= Node.val &amp;lt;= 1000 树的深度将不超过 1000&amp;nbsp; 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: int longestUnivaluePath(TreeNode* root) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0688-knight-probability-in-chessboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0688-knight-probability-in-chessboard/</guid><description>题目 # 难度：Medium
+在一个&amp;nbsp;n x n&amp;nbsp;的国际象棋棋盘上，一个骑士从单元格 (row, column)&amp;nbsp;开始，并尝试进行 k 次移动。行和列是 从 0 开始 的，所以左上单元格是 (0,0) ，右下单元格是 (n - 1, n - 1) 。
+象棋骑士有8种可能的走法，如下图所示。每次移动在基本方向上是两个单元格，然后在正交方向上是一个单元格。
+每次骑士要移动时，它都会随机从8种可能的移动中选择一种(即使棋子会离开棋盘)，然后移动到那里。
+骑士继续移动，直到它走了 k 步或离开了棋盘。
+返回 骑士在棋盘停止移动后仍留在棋盘上的概率 。
+&amp;nbsp;
+示例 1：
+输入: n = 3, k = 2, row = 0, column = 0 输出: 0.0625 解释: 有两步(到(1,2)，(2,1))可以让骑士留在棋盘上。 在每一个位置上，也有两种移动可以让骑士留在棋盘上。 骑士留在棋盘上的总概率是0.0625。 示例 2：
+输入: n = 1, k = 0, row = 0, column = 0 输出: 1.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0689-maximum-sum-of-0003-non-overlapping-subarrays/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0689-maximum-sum-of-0003-non-overlapping-subarrays/</guid><description>题目 # 难度：Hard
+给你一个整数数组 nums 和一个整数 k ，找出三个长度为 k 、互不重叠、且全部数字和（3 * k 项）最大的子数组，并返回这三个子数组。
+以下标的数组形式返回结果，数组中的每一项分别指示每个子数组的起始位置（下标从 0 开始）。如果有多个结果，返回字典序最小的一个。
+&amp;nbsp;
+示例 1：
+输入：nums = [1,2,1,2,6,7,5,1], k = 2 输出：[0,3,5] 解释：子数组 [1, 2], [2, 6], [7, 5] 对应的起始下标为 [0, 3, 5]。 也可以取 [2, 1], 但是结果 [1, 3, 5] 在字典序上更大。 示例 2：
+输入：nums = [1,2,1,2,1,2,1,2,1], k = 2 输出：[0,2,4] &amp;nbsp;
+提示：
+1 &amp;lt;= nums.length &amp;lt;= 2 * 104 1 &amp;lt;= nums[i] &amp;lt;&amp;nbsp;216 1 &amp;lt;= k &amp;lt;= floor(nums.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0690-employee-importance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0690-employee-importance/</guid><description>题目 # 难度：Medium
+给定一个保存员工信息的数据结构，它包含了员工 唯一的 id ，重要度 和 直系下属的 id 。
+比如，员工 1 是员工 2 的领导，员工 2 是员工 3 的领导。他们相应的重要度为 15 , 10 , 5 。那么员工 1 的数据结构是 [1, 15, [2]] ，员工 2的 数据结构是 [2, 10, [3]] ，员工 3 的数据结构是 [3, 5, []] 。注意虽然员工 3 也是员工 1 的一个下属，但是由于 并不是直系 下属，因此没有体现在员工 1 的数据结构中。
+现在输入一个公司的所有员工信息，以及单个员工 id ，返回这个员工和他所有下属的重要度之和。
+示例：
+输入：[[1, 5, [2, 3]], [2, 3, []], [3, 3, []]], 1 输出：11 解释： 员工 1 自身的重要度是 5 ，他有两个直系下属 2 和 3 ，而且 2 和 3 的重要度均为 3 。因此员工 1 的总重要度是 5 + 3 + 3 = 11 。 提示：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0691-stickers-to-spell-word/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0691-stickers-to-spell-word/</guid><description> 题目 # 难度：Hard
+我们有 n 种不同的贴纸。每个贴纸上都有一个小写的英文单词。
+您想要拼写出给定的字符串 target&amp;nbsp;，方法是从收集的贴纸中切割单个字母并重新排列它们。如果你愿意，你可以多次使用每个贴纸，每个贴纸的数量是无限的。
+返回你需要拼出 target&amp;nbsp;的最小贴纸数量。如果任务不可能，则返回 -1 。
+注意：在所有的测试用例中，所有的单词都是从 1000 个最常见的美国英语单词中随机选择的，并且 target&amp;nbsp;被选择为两个随机单词的连接。
+&amp;nbsp;
+示例 1：
+输入： stickers = ["with","example","science"], target = "thehat" 输出：3 解释： 我们可以使用 2 个 "with" 贴纸，和 1 个 "example" 贴纸。 把贴纸上的字母剪下来并重新排列后，就可以形成目标 “thehat“ 了。 此外，这是形成目标字符串所需的最小贴纸数量。 示例 2:
+输入：stickers = ["notice","possible"], target = "basicbasic" 输出：-1 解释：我们不能通过剪切给定贴纸的字母来形成目标“basicbasic”。 &amp;nbsp;
+提示:
+n == stickers.length 1 &amp;lt;= n &amp;lt;= 50 1 &amp;lt;= stickers[i].length &amp;lt;= 10 1 &amp;lt;= target.length &amp;lt;= 15 stickers[i]&amp;nbsp;和&amp;nbsp;target&amp;nbsp;由小写英文单词组成 分析 # 题解 # class Solution { public: int minStickers(vector&amp;lt;string&amp;gt;&amp;amp; stickers, string target) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0692-top-k-frequent-words/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0692-top-k-frequent-words/</guid><description>题目 # 难度：Medium
+给定一个单词列表&amp;nbsp;words&amp;nbsp;和一个整数 k ，返回前&amp;nbsp;k&amp;nbsp;个出现次数最多的单词。
+返回的答案应该按单词出现频率由高到低排序。如果不同的单词有相同出现频率， 按字典顺序 排序。
+&amp;nbsp;
+示例 1：
+输入: words = ["i", "love", "leetcode", "i", "love", "coding"], k = 2 输出: ["i", "love"] 解析: "i" 和 "love" 为出现次数最多的两个单词，均为2次。 注意，按字母顺序 "i" 在 "love" 之前。 示例 2：
+输入: ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k = 4 输出: ["the", "is", "sunny", "day"] 解析: "the", "is", "sunny" 和 "day" 是出现次数最多的四个单词， 出现次数依次为 4, 3, 2 和 1 次。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0693-binary-number-with-alternating-bits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0693-binary-number-with-alternating-bits/</guid><description> 题目 # 难度：Easy
+给定一个正整数，检查它的二进制表示是否总是 0、1 交替出现：换句话说，就是二进制表示中相邻两位的数字永不相同。
+&amp;nbsp;
+示例 1：
+输入：n = 5 输出：true 解释：5 的二进制表示是：101 示例 2：
+输入：n = 7 输出：false 解释：7 的二进制表示是：111. 示例 3：
+输入：n = 11 输出：false 解释：11 的二进制表示是：1011. &amp;nbsp;
+提示：
+1 &amp;lt;= n &amp;lt;= 231 - 1 分析 # 题解 # class Solution { public: bool hasAlternatingBits(int n) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0695-max-area-of-island/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0695-max-area-of-island/</guid><description> 题目 # 难度：Medium
+给你一个大小为 m x n 的二进制矩阵 grid 。
+岛屿&amp;nbsp;是由一些相邻的&amp;nbsp;1&amp;nbsp;(代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在 水平或者竖直的四个方向上 相邻。你可以假设&amp;nbsp;grid 的四个边缘都被 0（代表水）包围着。
+岛屿的面积是岛上值为 1 的单元格的数目。
+计算并返回 grid 中最大的岛屿面积。如果没有岛屿，则返回面积为 0 。
+&amp;nbsp;
+示例 1：
+输入：grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]] 输出：6 解释：答案不应该是 11 ，因为岛屿只能包含水平或垂直这四个方向上的 1 。 示例 2：
+输入：grid = [[0,0,0,0,0,0,0,0]] 输出：0 &amp;nbsp;
+提示：
+m == grid.length n == grid[i].length 1 &amp;lt;= m, n &amp;lt;= 50 grid[i][j] 为 0 或 1 分析 # 题解 # class Solution { public: int maxAreaOfIsland(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0696-count-binary-substrings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0696-count-binary-substrings/</guid><description> 题目 # 难度：Easy
+给定一个字符串&amp;nbsp;s，统计并返回具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是成组连续的。
+重复出现（不同位置）的子串也要统计它们出现的次数。
+&amp;nbsp; 示例 1：
+输入：s = "00110011" 输出：6 解释：6 个子串满足具有相同数量的连续 1 和 0 ："0011"、"01"、"1100"、"10"、"0011" 和 "01" 。 注意，一些重复出现的子串（不同位置）要统计它们出现的次数。 另外，"00110011" 不是有效的子串，因为所有的 0（还有 1 ）没有组合在一起。 示例 2：
+输入：s = "10101" 输出：4 解释：有 4 个子串："10"、"01"、"10"、"01" ，具有相同数量的连续 1 和 0 。 &amp;nbsp;
+提示：
+1 &amp;lt;= s.length &amp;lt;= 105 s[i] 为 '0' 或 '1' 分析 # 题解 # class Solution { public: int countBinarySubstrings(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0697-degree-of-an-array/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0697-degree-of-an-array/</guid><description>题目 # 难度：Easy
+给定一个非空且只包含非负数的整数数组&amp;nbsp;nums，数组的 度 的定义是指数组里任一元素出现频数的最大值。
+你的任务是在 nums 中找到与&amp;nbsp;nums&amp;nbsp;拥有相同大小的度的最短连续子数组，返回其长度。
+&amp;nbsp;
+示例 1：
+输入：nums = [1,2,2,3,1] 输出：2 解释： 输入数组的度是 2 ，因为元素 1 和 2 的出现频数最大，均为 2 。 连续子数组里面拥有相同度的有如下所示： [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2] 最短连续子数组 [2, 2] 的长度为 2 ，所以返回 2 。 示例 2：
+输入：nums = [1,2,2,3,1,4,2] 输出：6 解释： 数组的度是 3 ，因为元素 2 重复出现 3 次。 所以 [2,2,3,1,4,2] 是最短子数组，因此返回 6 。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0698-partition-to-k-equal-sum-subsets/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0698-partition-to-k-equal-sum-subsets/</guid><description> 题目 # 难度：Medium
+给定一个整数数组&amp;nbsp;&amp;nbsp;nums 和一个正整数 k，找出是否有可能把这个数组分成 k 个非空子集，其总和都相等。
+&amp;nbsp;
+示例 1：
+输入： nums = [4, 3, 2, 3, 5, 2, 1], k = 4 输出： True 说明： 有可能将其分成 4 个子集（5），（1,4），（2,3），（2,3）等于总和。 示例 2:
+输入: nums = [1,2,3,4], k = 3 输出: false &amp;nbsp;
+提示：
+1 &amp;lt;= k &amp;lt;= len(nums) &amp;lt;= 16 0 &amp;lt; nums[i] &amp;lt; 10000 每个元素的频率在 [1,4] 范围内 分析 # 题解 # class Solution { public: bool canPartitionKSubsets(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0699-falling-squares/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0699-falling-squares/</guid><description>题目 # 难度：Hard
+在二维平面上的 x 轴上，放置着一些方块。
+给你一个二维整数数组 positions ，其中 positions[i] = [lefti, sideLengthi] 表示：第 i 个方块边长为 sideLengthi ，其左侧边与 x 轴上坐标点&amp;nbsp;lefti 对齐。
+每个方块都从一个比目前所有的落地方块更高的高度掉落而下。方块沿 y 轴负方向下落，直到着陆到 另一个正方形的顶边 或者是 x 轴上 。一个方块仅仅是擦过另一个方块的左侧边或右侧边不算着陆。一旦着陆，它就会固定在原地，无法移动。
+在每个方块掉落后，你必须记录目前所有已经落稳的 方块堆叠的最高高度 。
+返回一个整数数组 ans ，其中 ans[i] 表示在第 i 块方块掉落后堆叠的最高高度。
+&amp;nbsp;
+示例 1：
+输入：positions = [[1,2],[2,3],[6,1]] 输出：[2,5,5] 解释： 第 1 个方块掉落后，最高的堆叠由方块 1 组成，堆叠的最高高度为 2 。 第 2 个方块掉落后，最高的堆叠由方块 1 和 2 组成，堆叠的最高高度为 5 。 第 3 个方块掉落后，最高的堆叠仍然由方块 1 和 2 组成，堆叠的最高高度为 5 。 因此，返回 [2, 5, 5] 作为答案。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0700-search-in-a-binary-search-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0700-search-in-a-binary-search-tree/</guid><description> 题目 # 难度：Easy
+给定二叉搜索树（BST）的根节点&amp;nbsp;root&amp;nbsp;和一个整数值&amp;nbsp;val。
+你需要在 BST 中找到节点值等于&amp;nbsp;val&amp;nbsp;的节点。 返回以该节点为根的子树。 如果节点不存在，则返回&amp;nbsp;null&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入：root = [4,2,7,1,3], val = 2 输出：[2,1,3] 示例 2:
+输入：root = [4,2,7,1,3], val = 5 输出：[] &amp;nbsp;
+提示：
+数中节点数在&amp;nbsp;[1, 5000]&amp;nbsp;范围内 1 &amp;lt;= Node.val &amp;lt;= 107 root&amp;nbsp;是二叉搜索树 1 &amp;lt;= val &amp;lt;= 107 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: TreeNode* searchBST(TreeNode* root, int val) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0701-insert-into-a-binary-search-tree/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0701-insert-into-a-binary-search-tree/</guid><description> 题目 # 难度：Medium
+给定二叉搜索树（BST）的根节点&amp;nbsp;root&amp;nbsp;和要插入树中的值&amp;nbsp;value&amp;nbsp;，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。
+注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 任意有效的结果 。
+&amp;nbsp;
+示例 1：
+输入：root = [4,2,7,1,3], val = 5 输出：[4,2,7,1,3,5] 解释：另一个满足题目要求可以通过的树是： 示例 2：
+输入：root = [40,20,60,10,30,50,70], val = 25 输出：[40,20,60,10,30,50,70,null,null,25] 示例 3：
+输入：root = [4,2,7,1,3,null,null,null,null,null,null], val = 5 输出：[4,2,7,1,3,5] &amp;nbsp;
+提示：
+树中的节点数将在&amp;nbsp;[0,&amp;nbsp;104]的范围内。 -108&amp;nbsp;&amp;lt;= Node.val &amp;lt;= 108 所有值&amp;nbsp;Node.val&amp;nbsp;是&amp;nbsp;独一无二&amp;nbsp;的。 -108&amp;nbsp;&amp;lt;= val &amp;lt;= 108 保证&amp;nbsp;val&amp;nbsp;在原始BST中不存在。 分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: TreeNode* insertIntoBST(TreeNode* root, int val) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0703-kth-largest-element-in-a-stream/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0703-kth-largest-element-in-a-stream/</guid><description>题目 # 难度：Easy
+设计一个找到数据流中第 k 大元素的类（class）。注意是排序后的第 k 大元素，不是第 k 个不同的元素。
+请实现 KthLargest 类：
+KthLargest(int k, int[] nums) 使用整数 k 和整数流 nums 初始化对象。 int add(int val) 将 val 插入数据流 nums 后，返回当前数据流中第 k 大的元素。 示例：
+输入： ["KthLargest", "add", "add", "add", "add", "add"] [[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]] 输出： [null, 4, 5, 5, 8, 8] 解释： KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]); kthLargest.add(3); // return 4 kthLargest.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0704-binary-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0704-binary-search/</guid><description> 题目 # 难度：Easy
+给定一个&amp;nbsp;n&amp;nbsp;个元素有序的（升序）整型数组&amp;nbsp;nums 和一个目标值&amp;nbsp;target &amp;nbsp;，写一个函数搜索&amp;nbsp;nums&amp;nbsp;中的 target，如果目标值存在返回下标，否则返回 -1。
+示例 1:
+输入: nums = [-1,0,3,5,9,12], target = 9 输出: 4 解释: 9 出现在 nums 中并且下标为 4 示例&amp;nbsp;2:
+输入: nums = [-1,0,3,5,9,12], target = 2 输出: -1 解释: 2 不存在 nums 中因此返回 -1 &amp;nbsp;
+提示：
+你可以假设 nums&amp;nbsp;中的所有元素是不重复的。 n&amp;nbsp;将在&amp;nbsp;[1, 10000]之间。 nums&amp;nbsp;的每个元素都将在&amp;nbsp;[-9999, 9999]之间。 分析 # 题解 # class Solution { public: int search(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0705-design-hashset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0705-design-hashset/</guid><description>题目 # 难度：Easy
+不使用任何内建的哈希表库设计一个哈希集合（HashSet）。
+实现 MyHashSet 类：
+void add(key) 向哈希集合中插入值 key 。 bool contains(key) 返回哈希集合中是否存在这个值 key 。 void remove(key) 将给定值 key 从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。 &amp;nbsp; 示例：
+输入： ["MyHashSet", "add", "add", "contains", "contains", "add", "contains", "remove", "contains"] [[], [1], [2], [1], [3], [2], [2], [2], [2]] 输出： [null, null, null, true, false, null, true, null, false] 解释： MyHashSet myHashSet = new MyHashSet(); myHashSet.add(1); // set = [1] myHashSet.add(2); // set = [1, 2] myHashSet.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0706-design-hashmap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0706-design-hashmap/</guid><description>题目 # 难度：Easy
+不使用任何内建的哈希表库设计一个哈希映射（HashMap）。
+实现 MyHashMap 类：
+MyHashMap() 用空映射初始化对象 void put(int key, int value) 向 HashMap 插入一个键值对 (key, value) 。如果 key 已经存在于映射中，则更新其对应的值 value 。 int get(int key) 返回特定的 key 所映射的 value ；如果映射中不包含 key 的映射，返回 -1 。 void remove(key) 如果映射中存在 key 的映射，则移除 key 和它所对应的 value 。 &amp;nbsp;
+示例：
+输入： ["MyHashMap", "put", "put", "get", "get", "put", "get", "remove", "get"] [[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]] 输出： [null, null, null, 1, -1, null, 1, null, -1] 解释： MyHashMap myHashMap = new MyHashMap(); myHashMap.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0707-design-linked-list/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0707-design-linked-list/</guid><description> 题目 # 难度：Medium
+设计链表的实现。您可以选择使用单链表或双链表。单链表中的节点应该具有两个属性：val&amp;nbsp;和&amp;nbsp;next。val&amp;nbsp;是当前节点的值，next&amp;nbsp;是指向下一个节点的指针/引用。如果要使用双向链表，则还需要一个属性&amp;nbsp;prev&amp;nbsp;以指示链表中的上一个节点。假设链表中的所有节点都是 0-index 的。
+在链表类中实现这些功能：
+get(index)：获取链表中第&amp;nbsp;index&amp;nbsp;个节点的值。如果索引无效，则返回-1。 addAtHead(val)：在链表的第一个元素之前添加一个值为&amp;nbsp;val&amp;nbsp;的节点。插入后，新节点将成为链表的第一个节点。 addAtTail(val)：将值为&amp;nbsp;val 的节点追加到链表的最后一个元素。 addAtIndex(index,val)：在链表中的第&amp;nbsp;index&amp;nbsp;个节点之前添加值为&amp;nbsp;val&amp;nbsp; 的节点。如果&amp;nbsp;index&amp;nbsp;等于链表的长度，则该节点将附加到链表的末尾。如果 index 大于链表长度，则不会插入节点。如果index小于0，则在头部插入节点。 deleteAtIndex(index)：如果索引&amp;nbsp;index 有效，则删除链表中的第&amp;nbsp;index 个节点。 &amp;nbsp;
+示例：
+MyLinkedList linkedList = new MyLinkedList(); linkedList.addAtHead(1); linkedList.addAtTail(3); linkedList.addAtIndex(1,2); //链表变为1-&amp;gt; 2-&amp;gt; 3 linkedList.get(1); //返回2 linkedList.deleteAtIndex(1); //现在链表是1-&amp;gt; 3 linkedList.get(1); //返回3 &amp;nbsp;
+提示：
+0 &amp;lt;= index, val &amp;lt;= 1000 请不要使用内置的 LinkedList 库。 get,&amp;nbsp;addAtHead,&amp;nbsp;addAtTail,&amp;nbsp;addAtIndex&amp;nbsp;和&amp;nbsp;deleteAtIndex&amp;nbsp;的操作次数不超过&amp;nbsp;2000。 分析 # 题解 # class MyLinkedList { public: MyLinkedList() { } int get(int index) { } void addAtHead(int val) { } void addAtTail(int val) { } void addAtIndex(int index, int val) { } void deleteAtIndex(int index) { } }; /** * Your MyLinkedList object will be instantiated and called as such: * MyLinkedList* obj = new MyLinkedList(); * int param_1 = obj-&amp;gt;get(index); * obj-&amp;gt;addAtHead(val); * obj-&amp;gt;addAtTail(val); * obj-&amp;gt;addAtIndex(index,val); * obj-&amp;gt;deleteAtIndex(index); */</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0709-to-lower-case/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0709-to-lower-case/</guid><description> 题目 # 难度：Easy
+给你一个字符串 s ，将该字符串中的大写字母转换成相同的小写字母，返回新的字符串。
+示例 1：
+输入：s = "Hello" 输出："hello" 示例 2：
+输入：s = "here" 输出："here" 示例 3：
+输入：s = "LOVELY" 输出："lovely" 提示：
+1 &lt;= s.length &lt;= 100 s 由 ASCII 字符集中的可打印字符组成 分析 # 题解 # class Solution { public: string toLowerCase(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0710-random-pick-with-blacklist/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0710-random-pick-with-blacklist/</guid><description>题目 # 难度：Hard
+给定一个整数 n 和一个 无重复 黑名单整数数组&amp;nbsp;blacklist&amp;nbsp;。设计一种算法，从 [0, n - 1] 范围内的任意整数中选取一个&amp;nbsp;未加入&amp;nbsp;黑名单&amp;nbsp;blacklist&amp;nbsp;的整数。任何在上述范围内且不在黑名单&amp;nbsp;blacklist&amp;nbsp;中的整数都应该有 同等的可能性 被返回。
+优化你的算法，使它最小化调用语言 内置 随机函数的次数。
+实现&amp;nbsp;Solution&amp;nbsp;类:
+Solution(int n, int[] blacklist)&amp;nbsp;初始化整数 n 和被加入黑名单&amp;nbsp;blacklist&amp;nbsp;的整数 int pick()&amp;nbsp;返回一个范围为 [0, n - 1] 且不在黑名单&amp;nbsp;blacklist 中的随机整数 &amp;nbsp;
+示例 1：
+输入 ["Solution", "pick", "pick", "pick", "pick", "pick", "pick", "pick"] [[7, [2, 3, 5]], [], [], [], [], [], [], []] 输出 [null, 0, 4, 1, 6, 1, 0, 4] 解释 Solution solution = new Solution(7, [2, 3, 5]); solution.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0712-minimum-ascii-delete-sum-for-two-strings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0712-minimum-ascii-delete-sum-for-two-strings/</guid><description>题目 # 难度：Medium
+给定两个字符串s1&amp;nbsp;和&amp;nbsp;s2，返回 使两个字符串相等所需删除字符的&amp;nbsp;ASCII&amp;nbsp;值的最小和&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入: s1 = "sea", s2 = "eat" 输出: 231 解释: 在 "sea" 中删除 "s" 并将 "s" 的值(115)加入总和。 在 "eat" 中删除 "t" 并将 116 加入总和。 结束时，两个字符串相等，115 + 116 = 231 就是符合条件的最小和。 示例&amp;nbsp;2:
+输入: s1 = "delete", s2 = "leet" 输出: 403 解释: 在 "delete" 中删除 "dee" 字符串变成 "let"， 将 100[d]+101[e]+101[e] 加入总和。在 "leet" 中删除 "e" 将 101[e] 加入总和。 结束时，两个字符串都等于 "let"，结果即为 100+101+101+101 = 403 。 如果改为将两个字符串转换为 "</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0713-subarray-product-less-than-k/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0713-subarray-product-less-than-k/</guid><description> 题目 # 难度：Medium 给你一个整数数组 nums 和一个整数 k ，请你返回子数组内所有元素的乘积严格小于 k 的连续子数组的数目。
+&amp;nbsp;
+示例 1：
+输入：nums = [10,5,2,6], k = 100 输出：8 解释：8 个乘积小于 100 的子数组分别为：[10]、[5]、[2],、[6]、[10,5]、[5,2]、[2,6]、[5,2,6]。 需要注意的是 [10,5,2] 并不是乘积小于 100 的子数组。 示例 2：
+输入：nums = [1,2,3], k = 0 输出：0 &amp;nbsp;
+提示:&amp;nbsp;
+1 &amp;lt;= nums.length &amp;lt;= 3 * 104 1 &amp;lt;= nums[i] &amp;lt;= 1000 0 &amp;lt;= k &amp;lt;= 106 分析 # 题解 # class Solution { public: int numSubarrayProductLessThanK(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0714-best-time-to-buy-and-sell-stock-with-transaction-fee/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0714-best-time-to-buy-and-sell-stock-with-transaction-fee/</guid><description> 题目 # 难度：Medium
+给定一个整数数组&amp;nbsp;prices，其中 prices[i]表示第&amp;nbsp;i&amp;nbsp;天的股票价格 ；整数&amp;nbsp;fee 代表了交易股票的手续费用。
+你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。
+返回获得利润的最大值。
+注意：这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。
+&amp;nbsp;
+示例 1：
+输入：prices = [1, 3, 2, 8, 4, 9], fee = 2 输出：8 解释：能够达到的最大利润: 在此处买入&amp;nbsp;prices[0] = 1 在此处卖出 prices[3] = 8 在此处买入 prices[4] = 4 在此处卖出 prices[5] = 9 总利润:&amp;nbsp;((8 - 1) - 2) + ((9 - 4) - 2) = 8 示例 2：
+输入：prices = [1,3,7,5,10,3], fee = 3 输出：6 &amp;nbsp;
+提示：
+1 &amp;lt;= prices.length &amp;lt;= 5 * 104 1 &amp;lt;= prices[i] &amp;lt; 5 * 104 0 &amp;lt;= fee &amp;lt; 5 * 104 分析 # 题解 # class Solution { public: int maxProfit(vector&amp;lt;int&amp;gt;&amp;amp; prices, int fee) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0715-range-module/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0715-range-module/</guid><description>题目 # 难度：Hard
+Range模块是跟踪数字范围的模块。设计一个数据结构来跟踪表示为 半开区间 的范围并查询它们。
+半开区间&amp;nbsp;[left, right)&amp;nbsp;表示所有&amp;nbsp;left &amp;lt;= x &amp;lt; right&amp;nbsp;的实数 x 。
+实现 RangeModule 类:
+RangeModule()&amp;nbsp;初始化数据结构的对象。 void addRange(int left, int right) 添加 半开区间&amp;nbsp;[left, right)，跟踪该区间中的每个实数。添加与当前跟踪的数字部分重叠的区间时，应当添加在区间&amp;nbsp;[left, right)&amp;nbsp;中尚未跟踪的任何数字到该区间中。 boolean queryRange(int left, int right)&amp;nbsp;只有在当前正在跟踪区间&amp;nbsp;[left, right)&amp;nbsp;中的每一个实数时，才返回 true&amp;nbsp;，否则返回 false 。 void removeRange(int left, int right)&amp;nbsp;停止跟踪 半开区间&amp;nbsp;[left, right)&amp;nbsp;中当前正在跟踪的每个实数。 &amp;nbsp;
+示例 1：
+输入 ["RangeModule", "addRange", "removeRange", "queryRange", "queryRange", "queryRange"] [[], [10, 20], [14, 16], [10, 14], [13, 15], [16, 17]] 输出 [null, null, null, true, false, true] 解释 RangeModule rangeModule = new RangeModule(); rangeModule.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0717-0001-bit-and-0002-bit-characters/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0717-0001-bit-and-0002-bit-characters/</guid><description> 题目 # 难度：Easy
+有两种特殊字符：
+第一种字符可以用一比特&amp;nbsp;0 表示 第二种字符可以用两比特（10&amp;nbsp;或&amp;nbsp;11）表示 给你一个以 0 结尾的二进制数组&amp;nbsp;bits&amp;nbsp;，如果最后一个字符必须是一个一比特字符，则返回 true 。
+&amp;nbsp;
+示例&amp;nbsp;1:
+输入: bits = [1, 0, 0] 输出: true 解释: 唯一的解码方式是将其解析为一个两比特字符和一个一比特字符。 所以最后一个字符是一比特字符。 示例&amp;nbsp;2:
+输入：bits = [1,1,1,0] 输出：false 解释：唯一的解码方式是将其解析为两比特字符和两比特字符。 所以最后一个字符不是一比特字符。 &amp;nbsp;
+提示:
+1 &amp;lt;= bits.length &amp;lt;= 1000 bits[i] 为 0 或 1 分析 # 题解 # class Solution { public: bool isOneBitCharacter(vector&amp;lt;int&amp;gt;&amp;amp; bits) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0718-maximum-length-of-repeated-subarray/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0718-maximum-length-of-repeated-subarray/</guid><description> 题目 # 难度：Medium
+给两个整数数组&amp;nbsp;nums1&amp;nbsp;和&amp;nbsp;nums2&amp;nbsp;，返回 两个数组中 公共的 、长度最长的子数组的长度&amp;nbsp;。
+&amp;nbsp;
+示例 1：
+输入：nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7] 输出：3 解释：长度最长的公共子数组是 [3,2,1] 。 示例 2：
+输入：nums1 = [0,0,0,0,0], nums2 = [0,0,0,0,0] 输出：5 &amp;nbsp;
+提示：
+1 &amp;lt;= nums1.length, nums2.length &amp;lt;= 1000 0 &amp;lt;= nums1[i], nums2[i] &amp;lt;= 100 分析 # 题解 # class Solution { public: int findLength(vector&amp;lt;int&amp;gt;&amp;amp; nums1, vector&amp;lt;int&amp;gt;&amp;amp; nums2) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0719-find-k-th-smallest-pair-distance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0719-find-k-th-smallest-pair-distance/</guid><description>题目 # 难度：Hard
+数对 (a,b) 由整数 a 和 b 组成，其数对距离定义为 a 和 b 的绝对差值。
+给你一个整数数组 nums 和一个整数 k ，数对由 nums[i] 和 nums[j] 组成且满足 0 &amp;lt;= i &amp;lt; j &amp;lt; nums.length 。返回 所有数对距离中 第 k 小的数对距离。
+&amp;nbsp;
+示例 1：
+输入：nums = [1,3,1], k = 1 输出：0 解释：数对和对应的距离如下： (1,3) -&amp;gt; 2 (1,1) -&amp;gt; 0 (3,1) -&amp;gt; 2 距离第 1 小的数对是 (1,1) ，距离为 0 。 示例 2：
+输入：nums = [1,1,1], k = 2 输出：0 示例 3：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0720-longest-word-in-dictionary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0720-longest-word-in-dictionary/</guid><description> 题目 # 难度：Medium
+给出一个字符串数组&amp;nbsp;words 组成的一本英语词典。返回&amp;nbsp;words 中最长的一个单词，该单词是由&amp;nbsp;words&amp;nbsp;词典中其他单词逐步添加一个字母组成。
+若其中有多个可行的答案，则返回答案中字典序最小的单词。若无答案，则返回空字符串。
+&amp;nbsp;
+示例 1：
+输入：words = ["w","wo","wor","worl", "world"] 输出："world" 解释： 单词"world"可由"w", "wo", "wor", 和 "worl"逐步添加一个字母组成。 示例 2：
+输入：words = ["a", "banana", "app", "appl", "ap", "apply", "apple"] 输出："apple" 解释："apply" 和 "apple" 都能由词典中的单词组成。但是 "apple" 的字典序小于 "apply" &amp;nbsp;
+提示：
+1 &amp;lt;= words.length &amp;lt;= 1000 1 &amp;lt;= words[i].length &amp;lt;= 30 所有输入的字符串&amp;nbsp;words[i]&amp;nbsp;都只包含小写字母。 分析 # 题解 # class Solution { public: string longestWord(vector&amp;lt;string&amp;gt;&amp;amp; words) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0721-accounts-merge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0721-accounts-merge/</guid><description>题目 # 难度：Medium
+给定一个列表 accounts，每个元素 accounts[i]&amp;nbsp;是一个字符串列表，其中第一个元素 accounts[i][0]&amp;nbsp;是&amp;nbsp;名称 (name)，其余元素是 emails 表示该账户的邮箱地址。
+现在，我们想合并这些账户。如果两个账户都有一些共同的邮箱地址，则两个账户必定属于同一个人。请注意，即使两个账户具有相同的名称，它们也可能属于不同的人，因为人们可能具有相同的名称。一个人最初可以拥有任意数量的账户，但其所有账户都具有相同的名称。
+合并账户后，按以下格式返回账户：每个账户的第一个元素是名称，其余元素是 按字符 ASCII 顺序排列 的邮箱地址。账户本身可以以 任意顺序 返回。
+&amp;nbsp;
+示例 1：
+输入：accounts = [["John", "johnsmith@mail.com", "john00@mail.com"], ["John", "johnnybravo@mail.com"], ["John", "johnsmith@mail.com", "john_newyork@mail.com"], ["Mary", "mary@mail.com"]] 输出：[["John", 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com'], ["John", "johnnybravo@mail.com"], ["Mary", "mary@mail.com"]] 解释： 第一个和第三个 John 是同一个人，因为他们有共同的邮箱地址 "johnsmith@mail.com"。 第二个 John 和 Mary 是不同的人，因为他们的邮箱地址没有被其他帐户使用。 可以以任何顺序返回这些列表，例如答案 [['Mary'，'mary@mail.com']，['John'，'johnnybravo@mail.com']， ['John'，'john00@mail.com'，'john_newyork@mail.com'，'johnsmith@mail.com']] 也是正确的。 示例 2：
+输入：accounts = [["Gabe","Gabe0@m.co","Gabe3@m.co","Gabe1@m.co"],["Kevin","Kevin3@m.co","Kevin5@m.co","Kevin0@m.co"],["Ethan","Ethan5@m.co","Ethan4@m.co","Ethan0@m.co"],["Hanzo","Hanzo3@m.co","Hanzo1@m.co","Hanzo0@m.co"],["Fern","Fern5@m.co","Fern1@m.co","Fern0@m.co"]] 输出：[["Ethan","Ethan0@m.co","Ethan4@m.co","Ethan5@m.co"],["Gabe","Gabe0@m.co","Gabe1@m.co","Gabe3@m.co"],["Hanzo","Hanzo0@m.co","Hanzo1@m.co","Hanzo3@m.co"],["Kevin","Kevin0@m.co","Kevin3@m.co","Kevin5@m.co"],["Fern","Fern0@m.co","Fern1@m.co","Fern5@m.co"]] &amp;nbsp;
+提示：
+1 &amp;lt;= accounts.length &amp;lt;= 1000 2 &amp;lt;= accounts[i].</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0722-remove-comments/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0722-remove-comments/</guid><description>题目 # 难度：Medium
+给一个 C++ 程序，删除程序中的注释。这个程序source是一个数组，其中source[i]表示第&amp;nbsp;i&amp;nbsp;行源码。&amp;nbsp;这表示每行源码由 '\n'&amp;nbsp;分隔。
+在 C++ 中有两种注释风格，行内注释和块注释。
+字符串// 表示行注释，表示//和其右侧的其余字符应该被忽略。 字符串/* 表示一个块注释，它表示直到下一个（非重叠）出现的*/之间的所有字符都应该被忽略。（阅读顺序为从左到右）非重叠是指，字符串/*/并没有结束块注释，因为注释的结尾与开头相重叠。 第一个有效注释优先于其他注释。
+如果字符串//出现在块注释中会被忽略。 同样，如果字符串/*出现在行或块注释中也会被忽略。 如果一行在删除注释之后变为空字符串，那么不要输出该行。即，答案列表中的每个字符串都是非空的。
+样例中没有控制字符，单引号或双引号字符。
+比如，source = "string s = "/* Not a comment. */";" 不会出现在测试样例里。 此外，没有其他内容（如定义或宏）会干扰注释。
+我们保证每一个块注释最终都会被闭合， 所以在行或块注释之外的/*总是开始新的注释。
+最后，隐式换行符可以通过块注释删除。 有关详细信息，请参阅下面的示例。
+从源代码中删除注释后，需要以相同的格式返回源代码。
+&amp;nbsp;
+示例&amp;nbsp;1:
+输入: source = ["/*Test program */", "int main()", "{ ", " // variable declaration ", "int a, b, c;", "/* This is a test", " multiline ", " comment for ", "</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0724-find-pivot-index/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0724-find-pivot-index/</guid><description>题目 # 难度：Easy
+给你一个整数数组&amp;nbsp;nums ，请计算数组的 中心下标 。
+数组 中心下标 是数组的一个下标，其左侧所有元素相加的和等于右侧所有元素相加的和。
+如果中心下标位于数组最左端，那么左侧数之和视为 0 ，因为在下标的左侧不存在元素。这一点对于中心下标位于数组最右端同样适用。
+如果数组有多个中心下标，应该返回 最靠近左边 的那一个。如果数组不存在中心下标，返回 -1 。
+&amp;nbsp;
+示例 1：
+输入：nums = [1, 7, 3, 6, 5, 6] 输出：3 解释： 中心下标是 3 。 左侧数之和 sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11 ， 右侧数之和 sum = nums[4] + nums[5] = 5 + 6 = 11 ，二者相等。 示例 2：
+输入：nums = [1, 2, 3] 输出：-1 解释： 数组中不存在满足此条件的中心下标。 示例 3：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0725-split-linked-list-in-parts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0725-split-linked-list-in-parts/</guid><description>题目 # 难度：Medium
+给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。
+每部分的长度应该尽可能的相等：任意两部分的长度差距不能超过 1 。这可能会导致有些部分为 null 。
+这 k 个部分应该按照在链表中出现的顺序排列，并且排在前面的部分的长度应该大于或等于排在后面的长度。
+返回一个由上述 k 部分组成的数组。
+&amp;nbsp; 示例 1：
+输入：head = [1,2,3], k = 5 输出：[[1],[2],[3],[],[]] 解释： 第一个元素 output[0] 为 output[0].val = 1 ，output[0].next = null 。 最后一个元素 output[4] 为 null ，但它作为 ListNode 的字符串表示是 [] 。 示例 2：
+输入：head = [1,2,3,4,5,6,7,8,9,10], k = 3 输出：[[1,2,3,4],[5,6,7],[8,9,10]] 解释： 输入被分成了几个连续的部分，并且每部分的长度相差不超过 1 。前面部分的长度大于等于后面部分的长度。 &amp;nbsp;
+提示：
+链表中节点的数目在范围 [0, 1000] 0 &amp;lt;= Node.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0726-number-of-atoms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0726-number-of-atoms/</guid><description>题目 # 难度：Hard
+给你一个字符串化学式 formula ，返回 每种原子的数量 。
+原子总是以一个大写字母开始，接着跟随 0 个或任意个小写字母，表示原子的名字。
+如果数量大于 1，原子后会跟着数字表示原子的数量。如果数量等于 1 则不会跟数字。
+例如，"H2O" 和 "H2O2" 是可行的，但 "H1O2" 这个表达是不可行的。 两个化学式连在一起可以构成新的化学式。
+例如 "H2O2He3Mg4" 也是化学式。 由括号括起的化学式并佐以数字（可选择性添加）也是化学式。
+例如 "(H2O2)" 和 "(H2O2)3" 是化学式。 返回所有原子的数量，格式为：第一个（按字典序）原子的名字，跟着它的数量（如果数量大于 1），然后是第二个原子的名字（按字典序），跟着它的数量（如果数量大于 1），以此类推。
+&amp;nbsp;
+示例 1：
+输入：formula = "H2O" 输出："H2O" 解释：原子的数量是 {'H': 2, 'O': 1}。 示例 2：
+输入：formula = "Mg(OH)2" 输出："H2MgO2" 解释：原子的数量是 {'H': 2, 'Mg': 1, 'O': 2}。 示例 3：
+输入：formula = "K4(ON(SO3)2)2" 输出："K4N2O14S4" 解释：原子的数量是 {'K': 4, 'N': 2, 'O': 14, 'S': 4}。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0728-self-dividing-numbers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0728-self-dividing-numbers/</guid><description> 题目 # 难度：Easy
+自除数&amp;nbsp;是指可以被它包含的每一位数整除的数。
+例如，128 是一个 自除数 ，因为&amp;nbsp;128 % 1 == 0，128 % 2 == 0，128 % 8 == 0。 自除数 不允许包含 0 。
+给定两个整数&amp;nbsp;left&amp;nbsp;和&amp;nbsp;right ，返回一个列表，列表的元素是范围&amp;nbsp;[left, right]&amp;nbsp;内所有的 自除数 。
+&amp;nbsp;
+示例 1：
+输入：left = 1, right = 22 输出：[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22] 示例 2:
+输入：left = 47, right = 85 输出：[48,55,66,77] &amp;nbsp;
+提示：
+1 &amp;lt;= left &amp;lt;= right &amp;lt;= 104 分析 # 题解 # class Solution { public: vector&amp;lt;int&amp;gt; selfDividingNumbers(int left, int right) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0729-my-calendar-i/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0729-my-calendar-i/</guid><description>题目 # 难度：Medium
+实现一个 MyCalendar 类来存放你的日程安排。如果要添加的日程安排不会造成 重复预订 ，则可以存储这个新的日程安排。
+当两个日程安排有一些时间上的交叉时（例如两个日程安排都在同一时间内），就会产生 重复预订 。
+日程可以用一对整数 start 和 end 表示，这里的时间是半开区间，即 [start, end), 实数&amp;nbsp;x 的范围为， &amp;nbsp;start &amp;lt;= x &amp;lt; end 。
+实现 MyCalendar 类：
+MyCalendar() 初始化日历对象。 boolean book(int start, int end) 如果可以将日程安排成功添加到日历中而不会导致重复预订，返回 true 。否则，返回 false&amp;nbsp;并且不要将该日程安排添加到日历中。 &amp;nbsp;
+示例：
+输入： ["MyCalendar", "book", "book", "book"] [[], [10, 20], [15, 25], [20, 30]] 输出： [null, true, false, true] 解释： MyCalendar myCalendar = new MyCalendar(); myCalendar.book(10, 20); // return True myCalendar.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0730-count-different-palindromic-subsequences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0730-count-different-palindromic-subsequences/</guid><description> 题目 # 难度：Hard
+给定一个字符串 s，返回 s&amp;nbsp;中不同的非空「回文子序列」个数 。
+通过从 s&amp;nbsp;中删除 0 个或多个字符来获得子序列。
+如果一个字符序列与它反转后的字符序列一致，那么它是「回文字符序列」。
+如果有某个 i , 满足&amp;nbsp;ai&amp;nbsp;!= bi&amp;nbsp;，则两个序列&amp;nbsp;a1, a2, ...&amp;nbsp;和&amp;nbsp;b1, b2, ...&amp;nbsp;不同。
+注意：
+结果可能很大，你需要对&amp;nbsp;109&amp;nbsp;+ 7&amp;nbsp;取模 。 &amp;nbsp;
+示例 1：
+输入：s = 'bccb' 输出：6 解释：6 个不同的非空回文子字符序列分别为：'b', 'c', 'bb', 'cc', 'bcb', 'bccb'。 注意：'bcb' 虽然出现两次但仅计数一次。 示例 2：
+输入：s = 'abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba' 输出：104860361 解释：共有 3104860382 个不同的非空回文子序列，104860361 对 109 + 7 取模后的值。 &amp;nbsp;
+提示：
+1 &amp;lt;= s.length &amp;lt;= 1000 s[i]&amp;nbsp;仅包含&amp;nbsp;'a',&amp;nbsp;'b',&amp;nbsp;'c'&amp;nbsp;或&amp;nbsp;'d'&amp;nbsp; 分析 # 题解 # class Solution { public: int countPalindromicSubsequences(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0731-my-calendar-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0731-my-calendar-ii/</guid><description>题目 # 难度：Medium
+实现一个 MyCalendar 类来存放你的日程安排。如果要添加的时间内不会导致三重预订时，则可以存储这个新的日程安排。
+MyCalendar 有一个 book(int start, int end)方法。它意味着在 start 到 end 时间内增加一个日程安排，注意，这里的时间是半开区间，即 [start, end), 实数&amp;nbsp;x 的范围为， &amp;nbsp;start &amp;lt;= x &amp;lt; end。
+当三个日程安排有一些时间上的交叉时（例如三个日程安排都在同一时间内），就会产生三重预订。
+每次调用 MyCalendar.book方法时，如果可以将日程安排成功添加到日历中而不会导致三重预订，返回 true。否则，返回 false 并且不要将该日程安排添加到日历中。
+请按照以下步骤调用MyCalendar 类: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
+&amp;nbsp;
+示例：
+MyCalendar(); MyCalendar.book(10, 20); // returns true MyCalendar.book(50, 60); // returns true MyCalendar.book(10, 40); // returns true MyCalendar.book(5, 15); // returns false MyCalendar.book(5, 10); // returns true MyCalendar.book(25, 55); // returns true 解释： 前两个日程安排可以添加至日历中。 第三个日程安排会导致双重预订，但可以添加至日历中。 第四个日程安排活动（5,15）不能添加至日历中，因为它会导致三重预订。 第五个日程安排（5,10）可以添加至日历中，因为它未使用已经双重预订的时间10。 第六个日程安排（25,55）可以添加至日历中，因为时间 [25,40] 将和第三个日程安排双重预订； 时间 [40,50] 将单独预订，时间 [50,55）将和第二个日程安排双重预订。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0732-my-calendar-iii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0732-my-calendar-iii/</guid><description>题目 # 难度：Hard
+当 k 个日程安排有一些时间上的交叉时（例如 k 个日程安排都在同一时间内），就会产生 k 次预订。
+给你一些日程安排 [start, end) ，请你在每个日程安排添加后，返回一个整数 k ，表示所有先前日程安排会产生的最大 k 次预订。
+实现一个 MyCalendarThree 类来存放你的日程安排，你可以一直添加新的日程安排。
+MyCalendarThree() 初始化对象。 int book(int start, int end) 返回一个整数 k ，表示日历中存在的 k 次预订的最大值。 示例：
+输入： ["MyCalendarThree", "book", "book", "book", "book", "book", "book"] [[], [10, 20], [50, 60], [10, 40], [5, 15], [5, 10], [25, 55]] 输出： [null, 1, 1, 2, 3, 3, 3] 解释： MyCalendarThree myCalendarThree = new MyCalendarThree(); myCalendarThree.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0733-flood-fill/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0733-flood-fill/</guid><description> 题目 # 难度：Easy
+有一幅以&amp;nbsp;m x n&amp;nbsp;的二维整数数组表示的图画&amp;nbsp;image&amp;nbsp;，其中&amp;nbsp;image[i][j]&amp;nbsp;表示该图画的像素值大小。
+你也被给予三个整数 sr ,&amp;nbsp; sc 和 newColor 。你应该从像素&amp;nbsp;image[sr][sc]&amp;nbsp;开始对图像进行 上色填充 。
+为了完成 上色工作 ，从初始像素开始，记录初始坐标的 上下左右四个方向上 像素值与初始坐标相同的相连像素点，接着再记录这四个方向上符合条件的像素点与他们对应 四个方向上 像素值与初始坐标相同的相连像素点，……，重复该过程。将所有有记录的像素点的颜色值改为&amp;nbsp;newColor&amp;nbsp;。
+最后返回 经过上色渲染后的图像&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入: image = [[1,1,1],[1,1,0],[1,0,1]]，sr = 1, sc = 1, newColor = 2 输出: [[2,2,2],[2,2,0],[2,0,1]] 解析: 在图像的正中间，(坐标(sr,sc)=(1,1)),在路径上所有符合条件的像素点的颜色都被更改成2。 注意，右下角的像素没有更改为2，因为它不是在上下左右四个方向上与初始点相连的像素点。 示例 2:
+输入: image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, newColor = 2 输出: [[2,2,2],[2,2,2]] &amp;nbsp;
+提示:
+m == image.length n == image[i].length 1 &amp;lt;= m, n &amp;lt;= 50 0 &amp;lt;= image[i][j], newColor &amp;lt; 216 0 &amp;lt;= sr &amp;lt;&amp;nbsp;m 0 &amp;lt;= sc &amp;lt;&amp;nbsp;n 分析 # 题解 # class Solution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; floodFill(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; image, int sr, int sc, int color) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0735-asteroid-collision/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0735-asteroid-collision/</guid><description> 题目 # 难度：Medium
+给定一个整数数组 asteroids，表示在同一行的行星。
+对于数组中的每一个元素，其绝对值表示行星的大小，正负表示行星的移动方向（正表示向右移动，负表示向左移动）。每一颗行星以相同的速度移动。
+找出碰撞后剩下的所有行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。
+&amp;nbsp;
+示例 1：
+输入：asteroids = [5,10,-5] 输出：[5,10] 解释：10 和 -5 碰撞后只剩下 10 。 5 和 10 永远不会发生碰撞。 示例 2：
+输入：asteroids = [8,-8] 输出：[] 解释：8 和 -8 碰撞后，两者都发生爆炸。 示例 3：
+输入：asteroids = [10,2,-5] 输出：[10] 解释：2 和 -5 发生碰撞后剩下 -5 。10 和 -5 发生碰撞后剩下 10 。 &amp;nbsp;
+提示：
+2 &amp;lt;= asteroids.length&amp;nbsp;&amp;lt;= 104 -1000 &amp;lt;= asteroids[i] &amp;lt;= 1000 asteroids[i] != 0 分析 # 题解 # class Solution { public: vector&amp;lt;int&amp;gt; asteroidCollision(vector&amp;lt;int&amp;gt;&amp;amp; asteroids) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0736-parse-lisp-expression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0736-parse-lisp-expression/</guid><description>题目 # 难度：Hard
+给你一个类似 Lisp 语句的字符串表达式 expression，求出其计算结果。
+表达式语法如下所示:
+表达式可以为整数，let 表达式，add 表达式，mult 表达式，或赋值的变量。表达式的结果总是一个整数。 (整数可以是正整数、负整数、0) let 表达式采用&amp;nbsp;"(let v1 e1 v2 e2 ... vn en expr)" 的形式，其中&amp;nbsp;let 总是以字符串&amp;nbsp;"let"来表示，接下来会跟随一对或多对交替的变量和表达式，也就是说，第一个变量&amp;nbsp;v1被分配为表达式&amp;nbsp;e1&amp;nbsp;的值，第二个变量&amp;nbsp;v2&amp;nbsp;被分配为表达式&amp;nbsp;e2&amp;nbsp;的值，依次类推；最终 let 表达式的值为&amp;nbsp;expr表达式的值。 add 表达式表示为&amp;nbsp;"(add e1 e2)" ，其中&amp;nbsp;add 总是以字符串&amp;nbsp;"add" 来表示，该表达式总是包含两个表达式 e1、e2 ，最终结果是&amp;nbsp;e1 表达式的值与&amp;nbsp;e2&amp;nbsp;表达式的值之 和 。 mult 表达式表示为&amp;nbsp;"(mult e1 e2)"&amp;nbsp;，其中&amp;nbsp;mult 总是以字符串 "mult" 表示，该表达式总是包含两个表达式 e1、e2，最终结果是&amp;nbsp;e1 表达式的值与&amp;nbsp;e2&amp;nbsp;表达式的值之 积 。 在该题目中，变量名以小写字符开始，之后跟随 0 个或多个小写字符或数字。为了方便，"add" ，"let" ，"mult" 会被定义为 "关键字" ，不会用作变量名。 最后，要说一下作用域的概念。计算变量名所对应的表达式时，在计算上下文中，首先检查最内层作用域（按括号计），然后按顺序依次检查外部作用域。测试用例中每一个表达式都是合法的。有关作用域的更多详细信息，请参阅示例。 &amp;nbsp; 示例 1：
+输入：expression = "(let x 2 (mult x (let x 3 y 4 (add x y))))"</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0738-monotone-increasing-digits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0738-monotone-increasing-digits/</guid><description> 题目 # 难度：Medium
+当且仅当每个相邻位数上的数字&amp;nbsp;x&amp;nbsp;和&amp;nbsp;y&amp;nbsp;满足&amp;nbsp;x &amp;lt;= y&amp;nbsp;时，我们称这个整数是单调递增的。
+给定一个整数 n ，返回 小于或等于 n 的最大数字，且数字呈 单调递增 。
+&amp;nbsp;
+示例 1:
+输入: n = 10 输出: 9 示例 2:
+输入: n = 1234 输出: 1234 示例 3:
+输入: n = 332 输出: 299 &amp;nbsp;
+提示:
+0 &amp;lt;= n &amp;lt;= 109 分析 # 题解 # class Solution { public: int monotoneIncreasingDigits(int n) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0739-daily-temperatures/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0739-daily-temperatures/</guid><description> 题目 # 难度：Medium
+给定一个整数数组&amp;nbsp;temperatures&amp;nbsp;，表示每天的温度，返回一个数组&amp;nbsp;answer&amp;nbsp;，其中&amp;nbsp;answer[i]&amp;nbsp;是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用&amp;nbsp;0 来代替。
+&amp;nbsp;
+示例 1:
+输入: temperatures = [73,74,75,71,69,72,76,73] 输出:&amp;nbsp;[1,1,4,2,1,1,0,0] 示例 2:
+输入: temperatures = [30,40,50,60] 输出:&amp;nbsp;[1,1,1,0] 示例 3:
+输入: temperatures = [30,60,90] 输出: [1,1,0] &amp;nbsp;
+提示：
+1 &amp;lt;=&amp;nbsp;temperatures.length &amp;lt;= 105 30 &amp;lt;=&amp;nbsp;temperatures[i]&amp;nbsp;&amp;lt;= 100 分析 # 题解 # class Solution { public: vector&amp;lt;int&amp;gt; dailyTemperatures(vector&amp;lt;int&amp;gt;&amp;amp; temperatures) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0740-delete-and-earn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0740-delete-and-earn/</guid><description>题目 # 难度：Medium
+给你一个整数数组 nums ，你可以对它进行一些操作。
+每次操作中，选择任意一个 nums[i] ，删除它并获得 nums[i] 的点数。之后，你必须删除 所有 等于 nums[i] - 1 和 nums[i] + 1 的元素。
+开始你拥有 0 个点数。返回你能通过这些操作获得的最大点数。
+示例 1：
+输入：nums = [3,4,2] 输出：6 解释： 删除 4 获得 4 个点数，因此 3 也被删除。 之后，删除 2 获得 2 个点数。总共获得 6 个点数。 示例 2：
+输入：nums = [2,2,3,3,3,4] 输出：9 解释： 删除 3 获得 3 个点数，接着要删除两个 2 和 4 。 之后，再次删除 3 获得 3 个点数，再次删除 3 获得 3 个点数。 总共获得 9 个点数。 提示：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0741-cherry-pickup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0741-cherry-pickup/</guid><description> 题目 # 难度：Hard
+一个N x N的网格(grid)&amp;nbsp;代表了一块樱桃地，每个格子由以下三种数字的一种来表示：
+0 表示这个格子是空的，所以你可以穿过它。 1 表示这个格子里装着一个樱桃，你可以摘到樱桃然后穿过它。 -1 表示这个格子里有荆棘，挡着你的路。 你的任务是在遵守下列规则的情况下，尽可能的摘到最多樱桃：
+从位置&amp;nbsp;(0, 0) 出发，最后到达 (N-1, N-1) ，只能向下或向右走，并且只能穿越有效的格子（即只可以穿过值为0或者1的格子）； 当到达 (N-1, N-1) 后，你要继续走，直到返回到 (0, 0) ，只能向上或向左走，并且只能穿越有效的格子； 当你经过一个格子且这个格子包含一个樱桃时，你将摘到樱桃并且这个格子会变成空的（值变为0）； 如果在 (0, 0) 和 (N-1, N-1) 之间不存在一条可经过的路径，则没有任何一个樱桃能被摘到。 示例 1:
+输入: grid = [[0, 1, -1], [1, 0, -1], [1, 1, 1]] 输出: 5 解释： 玩家从（0,0）点出发，经过了向下走，向下走，向右走，向右走，到达了点(2, 2)。 在这趟单程中，总共摘到了4颗樱桃，矩阵变成了[[0,1,-1],[0,0,-1],[0,0,0]]。 接着，这名玩家向左走，向上走，向上走，向左走，返回了起始点，又摘到了1颗樱桃。 在旅程中，总共摘到了5颗樱桃，这是可以摘到的最大值了。 说明:
+grid 是一个&amp;nbsp;N * N 的二维数组，N的取值范围是1 &amp;lt;= N &amp;lt;= 50。 每一个&amp;nbsp;grid[i][j] 都是集合&amp;nbsp;{-1, 0, 1}其中的一个数。 可以保证起点&amp;nbsp;grid[0][0]&amp;nbsp;和终点&amp;nbsp;grid[N-1][N-1]&amp;nbsp;的值都不会是 -1。 分析 # 题解 # class Solution { public: int cherryPickup(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0743-network-delay-time/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0743-network-delay-time/</guid><description>题目 # 难度：Medium
+有 n 个网络节点，标记为&amp;nbsp;1&amp;nbsp;到 n。
+给你一个列表&amp;nbsp;times，表示信号经过 有向 边的传递时间。&amp;nbsp;times[i] = (ui, vi, wi)，其中&amp;nbsp;ui&amp;nbsp;是源节点，vi&amp;nbsp;是目标节点， wi&amp;nbsp;是一个信号从源节点传递到目标节点的时间。
+现在，从某个节点&amp;nbsp;K&amp;nbsp;发出一个信号。需要多久才能使所有节点都收到信号？如果不能使所有节点收到信号，返回&amp;nbsp;-1 。
+&amp;nbsp;
+示例 1：
+输入：times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2 输出：2 示例 2：
+输入：times = [[1,2,1]], n = 2, k = 1 输出：1 示例 3：
+输入：times = [[1,2,1]], n = 2, k = 2 输出：-1 &amp;nbsp;
+提示：
+1 &amp;lt;= k &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= times.length &amp;lt;= 6000 times[i].length == 3 1 &amp;lt;= ui, vi &amp;lt;= n ui !</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0744-find-smallest-letter-greater-than-target/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0744-find-smallest-letter-greater-than-target/</guid><description> 题目 # 难度：Easy
+给你一个字符数组 letters，该数组按非递减顺序排序，以及一个字符 target。letters&amp;nbsp;里至少有两个不同的字符。
+返回&amp;nbsp;letters&amp;nbsp;中大于 target 的最小的字符。如果不存在这样的字符，则返回&amp;nbsp;letters 的第一个字符。
+&amp;nbsp;
+示例 1：
+输入: letters = ["c", "f", "j"]，target = "a" 输出: "c" 解释：letters 中字典上比 'a' 大的最小字符是 'c'。 示例 2:
+输入: letters = ["c","f","j"], target = "c" 输出: "f" 解释：letters 中字典顺序上大于 'c' 的最小字符是 'f'。 示例 3:
+输入: letters = ["x","x","y","y"], target = "z" 输出: "x" 解释：letters 中没有一个字符在字典上大于 'z'，所以我们返回 letters[0]。 &amp;nbsp;
+提示：
+2 &amp;lt;= letters.length &amp;lt;= 104 letters[i]&amp;nbsp;是一个小写字母 letters 按非递减顺序排序 letters 最少包含两个不同的字母 target 是一个小写字母 分析 # 题解 # class Solution { public: char nextGreatestLetter(vector&amp;lt;char&amp;gt;&amp;amp; letters, char target) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0745-prefix-and-suffix-search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0745-prefix-and-suffix-search/</guid><description>题目 # 难度：Hard
+设计一个包含一些单词的特殊词典，并能够通过前缀和后缀来检索单词。
+实现 WordFilter 类：
+WordFilter(string[] words) 使用词典中的单词 words 初始化对象。 f(string pref, string suff) 返回词典中具有前缀&amp;nbsp;prefix&amp;nbsp;和后缀 suff&amp;nbsp;的单词的下标。如果存在不止一个满足要求的下标，返回其中 最大的下标 。如果不存在这样的单词，返回 -1 。 &amp;nbsp;
+示例：
+输入 ["WordFilter", "f"] [[["apple"]], ["a", "e"]] 输出 [null, 0] 解释 WordFilter wordFilter = new WordFilter(["apple"]); wordFilter.f("a", "e"); // 返回 0 ，因为下标为 0 的单词：前缀 prefix = "a" 且 后缀 suff = "e" 。 提示：
+1 &amp;lt;= words.length &amp;lt;= 104 1 &amp;lt;= words[i].length &amp;lt;= 7 1 &amp;lt;= pref.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0746-min-cost-climbing-stairs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0746-min-cost-climbing-stairs/</guid><description>题目 # 难度：Easy
+给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。
+你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。
+请你计算并返回达到楼梯顶部的最低花费。
+&amp;nbsp;
+示例 1：
+输入：cost = [10,15,20] 输出：15 解释：你将从下标为 1 的台阶开始。 - 支付 15 ，向上爬两个台阶，到达楼梯顶部。 总花费为 15 。 示例 2：
+输入：cost = [1,100,1,1,1,100,1,1,100,1] 输出：6 解释：你将从下标为 0 的台阶开始。 - 支付 1 ，向上爬两个台阶，到达下标为 2 的台阶。 - 支付 1 ，向上爬两个台阶，到达下标为 4 的台阶。 - 支付 1 ，向上爬两个台阶，到达下标为 6 的台阶。 - 支付 1 ，向上爬一个台阶，到达下标为 7 的台阶。 - 支付 1 ，向上爬两个台阶，到达下标为 9 的台阶。 - 支付 1 ，向上爬一个台阶，到达楼梯顶部。 总花费为 6 。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0747-largest-number-at-least-twice-of-others/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0747-largest-number-at-least-twice-of-others/</guid><description> 题目 # 难度：Easy
+给你一个整数数组 nums ，其中总是存在 唯一的 一个最大整数 。
+请你找出数组中的最大元素并检查它是否 至少是数组中每个其他数字的两倍 。如果是，则返回 最大元素的下标 ，否则返回 -1 。
+&amp;nbsp;
+示例 1：
+输入：nums = [3,6,1,0] 输出：1 解释：6 是最大的整数，对于数组中的其他整数，6 至少是数组中其他元素的两倍。6 的下标是 1 ，所以返回 1 。 示例 2：
+输入：nums = [1,2,3,4] 输出：-1 解释：4 没有超过 3 的两倍大，所以返回 -1 。 示例 3：
+输入：nums = [1] 输出：0 解释：因为不存在其他数字，所以认为现有数字 1 至少是其他数字的两倍。 &amp;nbsp;
+提示：
+1 &amp;lt;= nums.length &amp;lt;= 50 0 &amp;lt;= nums[i] &amp;lt;= 100 nums 中的最大元素是唯一的 分析 # 题解 # class Solution { public: int dominantIndex(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0748-shortest-completing-word/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0748-shortest-completing-word/</guid><description>题目 # 难度：Easy
+给你一个字符串 licensePlate 和一个字符串数组 words ，请你找出&amp;nbsp;words 中的 最短补全词 。
+补全词 是一个包含 licensePlate 中所有字母的单词。忽略&amp;nbsp;licensePlate 中的 数字和空格 。不区分大小写。如果某个字母在 licensePlate 中出现不止一次，那么该字母在补全词中的出现次数应当一致或者更多。
+例如：licensePlate = "aBc 12c"，那么它的补全词应当包含字母 'a'、'b' （忽略大写）和两个 'c' 。可能的 补全词 有 "abccdef"、"caaacab" 以及 "cbca" 。
+请返回 words 中的 最短补全词 。题目数据保证一定存在一个最短补全词。当有多个单词都符合最短补全词的匹配条件时取 words 中 第一个 出现的那个。
+&amp;nbsp;
+示例 1：
+输入：licensePlate = "1s3 PSt", words = ["step", "steps", "stripe", "stepple"] 输出："steps" 解释：最短补全词应该包括 "s"、"p"、"s"（忽略大小写） 以及 "t"。 "step" 包含 "t"、"p"，但只包含一个 "s"，所以它不符合条件。 "steps" 包含 "t"、"p" 和两个 "</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0749-contain-virus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0749-contain-virus/</guid><description>题目 # 难度：Hard
+病毒扩散得很快，现在你的任务是尽可能地通过安装防火墙来隔离病毒。
+假设世界由&amp;nbsp;m x n&amp;nbsp;的二维矩阵&amp;nbsp;isInfected&amp;nbsp;组成，&amp;nbsp;isInfected[i][j] == 0&amp;nbsp;表示该区域未感染病毒，而 &amp;nbsp;isInfected[i][j] == 1&amp;nbsp;表示该区域已感染病毒。可以在任意 2 个相邻单元之间的共享边界上安装一个防火墙（并且只有一个防火墙）。
+每天晚上，病毒会从被感染区域向相邻未感染区域扩散，除非被防火墙隔离。现由于资源有限，每天你只能安装一系列防火墙来隔离其中一个被病毒感染的区域（一个区域或连续的一片区域），且该感染区域对未感染区域的威胁最大且 保证唯一&amp;nbsp;。
+你需要努力使得最后有部分区域不被病毒感染，如果可以成功，那么返回需要使用的防火墙个数; 如果无法实现，则返回在世界被病毒全部感染时已安装的防火墙个数。
+&amp;nbsp;
+示例 1：
+输入: isInfected = [[0,1,0,0,0,0,0,1],[0,1,0,0,0,0,0,1],[0,0,0,0,0,0,0,1],[0,0,0,0,0,0,0,0]] 输出: 10 解释:一共有两块被病毒感染的区域。 在第一天，添加 5 墙隔离病毒区域的左侧。病毒传播后的状态是: 第二天，在右侧添加 5 个墙来隔离病毒区域。此时病毒已经被完全控制住了。 示例 2：
+输入: isInfected = [[1,1,1],[1,0,1],[1,1,1]] 输出: 4 解释: 虽然只保存了一个小区域，但却有四面墙。 注意，防火墙只建立在两个不同区域的共享边界上。 示例&amp;nbsp;3:
+输入: isInfected = [[1,1,1,0,0,0,0,0,0],[1,0,1,0,1,1,1,1,1],[1,1,1,0,0,0,0,0,0]] 输出: 13 解释: 在隔离右边感染区域后，隔离左边病毒区域只需要 2 个防火墙。 &amp;nbsp;
+提示:
+m ==&amp;nbsp;isInfected.length n ==&amp;nbsp;isInfected[i].length 1 &amp;lt;= m, n &amp;lt;= 50 isInfected[i][j]&amp;nbsp;is either&amp;nbsp;0&amp;nbsp;or&amp;nbsp;1 在整个描述的过程中，总有一个相邻的病毒区域，它将在下一轮 严格地感染更多未受污染的方块&amp;nbsp; &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0752-open-the-lock/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0752-open-the-lock/</guid><description>题目 # 难度：Medium
+你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' 。每个拨轮可以自由旋转：例如把 '9' 变为&amp;nbsp;'0'，'0' 变为 '9' 。每次旋转都只能旋转一个拨轮的一位数字。
+锁的初始数字为 '0000' ，一个代表四个拨轮的数字的字符串。
+列表 deadends 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。
+字符串 target 代表可以解锁的数字，你需要给出解锁需要的最小旋转次数，如果无论如何不能解锁，返回 -1 。
+&amp;nbsp;
+示例 1:
+输入：deadends = ["0201","0101","0102","1212","2002"], target = "0202" 输出：6 解释： 可能的移动序列为 "0000" -&amp;gt; "1000" -&amp;gt; "1100" -&amp;gt; "1200" -&amp;gt; "1201" -&amp;gt; "1202" -&amp;gt; "0202"。 注意 "0000" -&amp;gt; "0001" -&amp;gt; "0002" -&amp;gt; "0102" -&amp;gt; "0202" 这样的序列是不能解锁的， 因为当拨动到 "0102" 时这个锁就会被锁定。 示例 2:</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0753-cracking-the-safe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0753-cracking-the-safe/</guid><description>题目 # 难度：Hard
+有一个需要密码才能打开的保险箱。密码是&amp;nbsp;n 位数, 密码的每一位都是范围&amp;nbsp;[0, k - 1]&amp;nbsp;中的一个数字。
+保险箱有一种特殊的密码校验方法，你可以随意输入密码序列，保险箱会自动记住 最后&amp;nbsp;n&amp;nbsp;位输入 ，如果匹配，则能够打开保险箱。
+例如，正确的密码是 "345" ，并且你输入的是 "012345" ： &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;输入 &amp;lt;code&amp;gt;0&amp;lt;/code&amp;gt; 之后，最后 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 位输入是 &amp;lt;code&amp;gt;&amp;quot;0&amp;quot;&amp;lt;/code&amp;gt; ，不正确。&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;输入 &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt; 之后，最后 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 位输入是 &amp;lt;code&amp;gt;&amp;quot;01&amp;quot;&amp;lt;/code&amp;gt; ，不正确。&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;输入 &amp;lt;code&amp;gt;2&amp;lt;/code&amp;gt; 之后，最后 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 位输入是 &amp;lt;code&amp;gt;&amp;quot;012&amp;quot;&amp;lt;/code&amp;gt; ，不正确。&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;输入 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 之后，最后 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 位输入是 &amp;lt;code&amp;gt;&amp;quot;123&amp;quot;&amp;lt;/code&amp;gt; ，不正确。&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;输入 &amp;lt;code&amp;gt;4&amp;lt;/code&amp;gt; 之后，最后 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 位输入是 &amp;lt;code&amp;gt;&amp;quot;234&amp;quot;&amp;lt;/code&amp;gt; ，不正确。&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;输入 &amp;lt;code&amp;gt;5&amp;lt;/code&amp;gt; 之后，最后 &amp;lt;code&amp;gt;3&amp;lt;/code&amp;gt; 位输入是 &amp;lt;code&amp;gt;&amp;quot;345&amp;quot;&amp;lt;/code&amp;gt; ，正确，打开保险箱。&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/li&amp;gt; 在只知道密码位数 n 和范围边界 k 的前提下，请你找出并返回确保在输入的 某个时刻 能够打开保险箱的任一 最短 密码序列 。</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0754-reach-a-number/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0754-reach-a-number/</guid><description>题目 # 难度：Medium
+在一根无限长的数轴上，你站在0的位置。终点在target的位置。
+你可以做一些数量的移动 numMoves :
+每次你可以选择向左或向右移动。 第 i&amp;nbsp;次移动（从 &amp;nbsp;i == 1&amp;nbsp;开始，到&amp;nbsp;i == numMoves ），在选择的方向上走 i&amp;nbsp;步。 给定整数&amp;nbsp;target ，返回 到达目标所需的 最小&amp;nbsp;移动次数(即最小 numMoves )&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入: target = 2 输出: 3 解释: 第一次移动，从 0 到 1 。 第二次移动，从 1 到 -1 。 第三次移动，从 -1 到 2 。 示例 2:
+输入: target = 3 输出: 2 解释: 第一次移动，从 0 到 1 。 第二次移动，从 1 到 3 。 &amp;nbsp;
+提示:</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0756-pyramid-transition-matrix/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0756-pyramid-transition-matrix/</guid><description> 题目 # 难度：Medium
+你正在把积木堆成金字塔。每个块都有一个颜色，用一个字母表示。每一行的块比它下面的行 少一个块 ，并且居中。
+为了使金字塔美观，只有特定的 三角形图案 是允许的。一个三角形的图案由&amp;nbsp;两个块&amp;nbsp;和叠在上面的 单个块 组成。模式是以三个字母字符串的列表形式&amp;nbsp;allowed&amp;nbsp;给出的，其中模式的前两个字符分别表示左右底部块，第三个字符表示顶部块。
+例如，"ABC"&amp;nbsp;表示一个三角形图案，其中一个 “C” 块堆叠在一个&amp;nbsp;'A'&amp;nbsp;块(左)和一个&amp;nbsp;'B'&amp;nbsp;块(右)之上。请注意，这与 "BAC"&amp;nbsp;不同，"B"&amp;nbsp;在左下角，"A"&amp;nbsp;在右下角。 你从底部的一排积木&amp;nbsp;bottom&amp;nbsp;开始，作为一个单一的字符串，你 必须 使用作为金字塔的底部。
+在给定&amp;nbsp;bottom&amp;nbsp;和&amp;nbsp;allowed&amp;nbsp;的情况下，如果你能一直构建到金字塔顶部，使金字塔中的 每个三角形图案 都是允许的，则返回 true ，否则返回 false 。
+&amp;nbsp;
+示例 1：
+输入：bottom = "BCD", allowed = ["BCC","CDE","CEA","FFF"] 输出：true 解释：允许的三角形模式显示在右边。 从最底层(第3层)开始，我们可以在第2层构建“CE”，然后在第1层构建“E”。 金字塔中有三种三角形图案，分别是“BCC”、“CDE”和“CEA”。都是允许的。 示例 2：
+输入：bottom = "AABA", allowed = ["AAB","AAC","BCD","BBE","DEF"] 输出：false 解释：允许的三角形模式显示在右边。 从最底层(游戏邦注:即第4个关卡)开始，创造第3个关卡有多种方法，但如果尝试所有可能性，你便会在创造第1个关卡前陷入困境。 &amp;nbsp;
+提示：
+2 &amp;lt;= bottom.length &amp;lt;= 6 0 &amp;lt;= allowed.length &amp;lt;= 216 allowed[i].length == 3 所有输入字符串中的字母来自集合&amp;nbsp;{'A', 'B', 'C', 'D', 'E', 'F', 'G'}。 &amp;nbsp;allowed&amp;nbsp;中所有值都是 唯一的 分析 # 题解 # class Solution { public: bool pyramidTransition(string bottom, vector&amp;lt;string&amp;gt;&amp;amp; allowed) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0757-set-intersection-size-at-least-two/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0757-set-intersection-size-at-least-two/</guid><description>题目 # 难度：Hard
+给你一个二维整数数组 intervals ，其中 intervals[i] = [starti, endi] 表示从 starti 到 endi 的所有整数，包括 starti 和 endi 。
+包含集合 是一个名为 nums 的数组，并满足 intervals 中的每个区间都 至少 有 两个 整数在 nums 中。
+例如，如果 intervals = [[1,3], [3,7], [8,9]] ，那么 [1,2,4,7,8,9] 和 [2,3,4,8,9] 都符合 包含集合 的定义。 返回包含集合可能的最小大小。
+&amp;nbsp;
+示例 1：
+输入：intervals = [[1,3],[3,7],[8,9]] 输出：5 解释：nums = [2, 3, 4, 8, 9]. 可以证明不存在元素数量为 4 的包含集合。 示例 2：
+输入：intervals = [[1,3],[1,4],[2,5],[3,5]] 输出：3 解释：nums = [2, 3, 4].</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0761-special-binary-string/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0761-special-binary-string/</guid><description> 题目 # 难度：Hard
+特殊的二进制序列是具有以下两个性质的二进制序列：
+0 的数量与 1 的数量相等。 二进制序列的每一个前缀码中 1 的数量要大于等于 0 的数量。 给定一个特殊的二进制序列&amp;nbsp;S，以字符串形式表示。定义一个操作 为首先选择&amp;nbsp;S&amp;nbsp;的两个连续且非空的特殊的子串，然后将它们交换。（两个子串为连续的当且仅当第一个子串的最后一个字符恰好为第二个子串的第一个字符的前一个字符。)
+在任意次数的操作之后，交换后的字符串按照字典序排列的最大的结果是什么？
+示例 1:
+输入: S = &amp;quot;11011000&amp;quot; 输出: &amp;quot;11100100&amp;quot; 解释: 将子串 &amp;quot;10&amp;quot; （在S[1]出现） 和 &amp;quot;1100&amp;quot; （在S[3]出现）进行交换。 这是在进行若干次操作后按字典序排列最大的结果。 说明:
+S&amp;nbsp;的长度不超过&amp;nbsp;50。 S&amp;nbsp;保证为一个满足上述定义的特殊 的二进制序列。 分析 # 题解 # class Solution { public: string makeLargestSpecial(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0762-prime-number-of-set-bits-in-binary-representation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0762-prime-number-of-set-bits-in-binary-representation/</guid><description>题目 # 难度：Easy
+给你两个整数&amp;nbsp;left&amp;nbsp;和&amp;nbsp;right ，在闭区间 [left, right]&amp;nbsp;范围内，统计并返回 计算置位位数为质数 的整数个数。
+计算置位位数 就是二进制表示中 1 的个数。
+例如， 21&amp;nbsp;的二进制表示&amp;nbsp;10101&amp;nbsp;有 3 个计算置位。 &amp;nbsp;
+示例 1：
+输入：left = 6, right = 10 输出：4 解释： 6 -&amp;gt; 110 (2 个计算置位，2 是质数) 7 -&amp;gt; 111 (3 个计算置位，3 是质数) 9 -&amp;gt; 1001 (2 个计算置位，2 是质数) 10-&amp;gt; 1010 (2 个计算置位，2 是质数) 共计 4 个计算置位为质数的数字。 示例 2：
+输入：left = 10, right = 15 输出：5 解释： 10 -&amp;gt; 1010 (2 个计算置位, 2 是质数) 11 -&amp;gt; 1011 (3 个计算置位, 3 是质数) 12 -&amp;gt; 1100 (2 个计算置位, 2 是质数) 13 -&amp;gt; 1101 (3 个计算置位, 3 是质数) 14 -&amp;gt; 1110 (3 个计算置位, 3 是质数) 15 -&amp;gt; 1111 (4 个计算置位, 4 不是质数) 共计 5 个计算置位为质数的数字。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0763-partition-labels/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0763-partition-labels/</guid><description> 题目 # 难度：Medium
+给你一个字符串 s 。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。
+注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是 s 。
+返回一个表示每个字符串片段的长度的列表。
+&amp;nbsp;
+示例 1： 输入：s = "ababcbacadefegdehijhklij" 输出：[9,7,8] 解释： 划分结果为 "ababcbaca"、"defegde"、"hijhklij" 。 每个字母最多出现在一个片段中。 像 "ababcbacadefegde", "hijhklij" 这样的划分是错误的，因为划分的片段数较少。 示例 2：
+输入：s = "eccbbbbdec" 输出：[10] &amp;nbsp;
+提示：
+1 &amp;lt;= s.length &amp;lt;= 500 s 仅由小写英文字母组成 分析 # 题解 # class Solution { public: vector&amp;lt;int&amp;gt; partitionLabels(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0764-largest-plus-sign/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0764-largest-plus-sign/</guid><description>题目 # 难度：Medium
+在一个 n x n 的矩阵&amp;nbsp;grid&amp;nbsp;中，除了在数组&amp;nbsp;mines&amp;nbsp;中给出的元素为&amp;nbsp;0，其他每个元素都为&amp;nbsp;1。mines[i] = [xi, yi]表示&amp;nbsp;grid[xi][yi] == 0
+返回 &amp;nbsp;grid 中包含&amp;nbsp;1&amp;nbsp;的最大的 轴对齐 加号标志的阶数 。如果未找到加号标志，则返回 0 。
+一个&amp;nbsp;k&amp;nbsp;阶由&amp;nbsp;1&amp;nbsp;组成的 “轴对称”加号标志 具有中心网格&amp;nbsp;grid[r][c] == 1&amp;nbsp;，以及4个从中心向上、向下、向左、向右延伸，长度为&amp;nbsp;k-1，由&amp;nbsp;1&amp;nbsp;组成的臂。注意，只有加号标志的所有网格要求为 1 ，别的网格可能为 0 也可能为 1 。
+&amp;nbsp;
+示例 1：
+输入: n = 5, mines = [[4, 2]] 输出: 2 解释: 在上面的网格中，最大加号标志的阶只能是2。一个标志已在图中标出。 示例 2：
+输入: n = 1, mines = [[0, 0]] 输出: 0 解释: 没有加号标志，返回 0 。 &amp;nbsp;
+提示：
+1 &amp;lt;= n &amp;lt;= 500 1 &amp;lt;= mines.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0765-couples-holding-hands/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0765-couples-holding-hands/</guid><description> 题目 # 难度：Hard
+n 对情侣坐在连续排列的 2n&amp;nbsp;个座位上，想要牵到对方的手。
+人和座位由一个整数数组 row 表示，其中 row[i] 是坐在第 i 个座位上的人的 ID。情侣们按顺序编号，第一对是&amp;nbsp;(0, 1)，第二对是&amp;nbsp;(2, 3)，以此类推，最后一对是&amp;nbsp;(2n-2, 2n-1)。
+返回 最少交换座位的次数，以便每对情侣可以并肩坐在一起。 每次交换可选择任意两人，让他们站起来交换座位。
+&amp;nbsp;
+示例 1:
+输入: row = [0,2,1,3] 输出: 1 解释: 只需要交换row[1]和row[2]的位置即可。 示例 2:
+输入: row = [3,2,0,1] 输出: 0 解释: 无需交换座位，所有的情侣都已经可以手牵手了。 &amp;nbsp;
+提示:
+2n == row.length 2 &amp;lt;= n &amp;lt;= 30 n&amp;nbsp;是偶数 0 &amp;lt;= row[i] &amp;lt; 2n row&amp;nbsp;中所有元素均无重复 分析 # 题解 # class Solution { public: int minSwapsCouples(vector&amp;lt;int&amp;gt;&amp;amp; row) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0766-toeplitz-matrix/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0766-toeplitz-matrix/</guid><description>题目 # 难度：Easy
+给你一个 m x n 的矩阵 matrix 。如果这个矩阵是托普利茨矩阵，返回 true ；否则，返回 false 。
+如果矩阵上每一条由左上到右下的对角线上的元素都相同，那么这个矩阵是 托普利茨矩阵 。
+示例 1：
+输入：matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]] 输出：true 解释： 在上述矩阵中, 其对角线为: "[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]"。 各条对角线上的所有元素均相同, 因此答案是 True 。 示例 2：
+输入：matrix = [[1,2],[2,2]] 输出：false 解释： 对角线 "[1, 2]" 上的元素不同。 提示：
+m == matrix.length n == matrix[i].length 1 &lt;= m, n &lt;= 20 0 &lt;= matrix[i][j] &lt;= 99 进阶：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0767-reorganize-string/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0767-reorganize-string/</guid><description> 题目 # 难度：Medium
+给定一个字符串&amp;nbsp;s&amp;nbsp;，检查是否能重新排布其中的字母，使得两相邻的字符不同。
+返回 s&amp;nbsp;的任意可能的重新排列。若不可行，返回空字符串&amp;nbsp;""&amp;nbsp;。
+&amp;nbsp;
+示例&amp;nbsp;1:
+输入: s = "aab" 输出: "aba" 示例 2:
+输入: s = "aaab" 输出: "" &amp;nbsp;
+提示:
+1 &amp;lt;= s.length &amp;lt;= 500 s 只包含小写字母 分析 # 题解 # class Solution { public: string reorganizeString(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0768-max-chunks-to-make-sorted-ii/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0768-max-chunks-to-make-sorted-ii/</guid><description> 题目 # 难度：Hard
+给你一个整数数组 arr 。
+将 arr 分割成若干 块 ，并将这些块分别进行排序。之后再连接起来，使得连接的结果和按升序排序后的原数组相同。
+返回能将数组分成的最多块数？
+&amp;nbsp; 示例 1：
+输入：arr = [5,4,3,2,1] 输出：1 解释： 将数组分成2块或者更多块，都无法得到所需的结果。 例如，分成 [5, 4], [3, 2, 1] 的结果是 [4, 5, 1, 2, 3]，这不是有序的数组。 示例 2：
+输入：arr = [2,1,3,4,4] 输出：4 解释： 可以把它分成两块，例如 [2, 1], [3, 4, 4]。 然而，分成 [2, 1], [3], [4], [4] 可以得到最多的块数。 &amp;nbsp;
+提示：
+1 &amp;lt;= arr.length &amp;lt;= 2000 0 &amp;lt;= arr[i] &amp;lt;= 108 分析 # 题解 # class Solution { public: int maxChunksToSorted(vector&amp;lt;int&amp;gt;&amp;amp; arr) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0769-max-chunks-to-make-sorted/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0769-max-chunks-to-make-sorted/</guid><description>题目 # 难度：Medium
+给定一个长度为 n 的整数数组 arr ，它表示在 [0, n - 1] 范围内的整数的排列。
+我们将 arr 分割成若干 块 (即分区)，并对每个块单独排序。将它们连接起来后，使得连接的结果和按升序排序后的原数组相同。
+返回数组能分成的最多块数量。
+&amp;nbsp;
+示例 1:
+输入: arr = [4,3,2,1,0] 输出: 1 解释: 将数组分成2块或者更多块，都无法得到所需的结果。 例如，分成 [4, 3], [2, 1, 0] 的结果是 [3, 4, 0, 1, 2]，这不是有序的数组。 示例 2:
+输入: arr = [1,0,2,3,4] 输出: 4 解释: 我们可以把它分成两块，例如 [1, 0], [2, 3, 4]。 然而，分成 [1, 0], [2], [3], [4] 可以得到最多的块数。 对每个块单独排序后，结果为 [0, 1], [2], [3], [4] &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0770-basic-calculator-iv/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0770-basic-calculator-iv/</guid><description>题目 # 难度：Hard
+给定一个表达式如&amp;nbsp;expression = "e + 8 - a + 5"&amp;nbsp;和一个求值映射，如&amp;nbsp;{"e": 1}（给定的形式为&amp;nbsp;evalvars = ["e"] 和&amp;nbsp;evalints = [1]），返回表示简化表达式的标记列表，例如 ["-1*a","14"]
+表达式交替使用块和符号，每个块和符号之间有一个空格。 块要么是括号中的表达式，要么是变量，要么是非负整数。 变量是一个由小写字母组成的字符串（不包括数字）。请注意，变量可以是多个字母，并注意变量从不具有像&amp;nbsp;"2x"&amp;nbsp;或&amp;nbsp;"-x"&amp;nbsp;这样的前导系数或一元运算符&amp;nbsp;。 表达式按通常顺序进行求值：先是括号，然后求乘法，再计算加法和减法。
+例如，expression = "1 + 2 * 3"&amp;nbsp;的答案是 ["7"]。 输出格式如下：
+对于系数非零的每个自变量项，我们按字典排序的顺序将自变量写在一个项中。 例如，我们永远不会写像 “b*a*c” 这样的项，只写 “a*b*c”。 项的次数等于被乘的自变量的数目，并计算重复项。我们先写出答案的最大次数项，用字典顺序打破关系，此时忽略词的前导系数。 例如，"a*a*b*c" 的次数为 4。 项的前导系数直接放在左边，用星号将它与变量分隔开(如果存在的话)。前导系数 1 仍然要打印出来。 格式良好的一个示例答案是&amp;nbsp;["-2*a*a*a", "3*a*a*b", "3*b*b", "4*a", "5*c", "-6"]&amp;nbsp;。 系数为 0 的项（包括常数项）不包括在内。 例如，“0” 的表达式输出为&amp;nbsp;[]&amp;nbsp;。 注意：你可以假设给定的表达式均有效。所有中间结果都在区间 [-231, 231 - 1] 内。
+&amp;nbsp;
+示例 1：
+输入：expression = "e + 8 - a + 5"</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0771-jewels-and-stones/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0771-jewels-and-stones/</guid><description> 题目 # 难度：Easy
+&amp;nbsp;给你一个字符串 jewels&amp;nbsp;代表石头中宝石的类型，另有一个字符串 stones 代表你拥有的石头。&amp;nbsp;stones&amp;nbsp;中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。
+字母区分大小写，因此 "a" 和 "A" 是不同类型的石头。
+&amp;nbsp;
+示例 1：
+输入：jewels = "aA", stones = "aAAbbbb" 输出：3 示例 2：
+输入：jewels = "z", stones = "ZZ" 输出：0 &amp;nbsp;
+提示：
+1 &amp;lt;=&amp;nbsp;jewels.length, stones.length &amp;lt;= 50 jewels 和 stones 仅由英文字母组成 jewels 中的所有字符都是 唯一的 分析 # 题解 # class Solution { public: int numJewelsInStones(string jewels, string stones) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0773-sliding-puzzle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0773-sliding-puzzle/</guid><description>题目 # 难度：Hard
+在一个 2 x 3 的板上（board）有 5 块砖瓦，用数字 1~5 来表示, 以及一块空缺用&amp;nbsp;0&amp;nbsp;来表示。一次 移动 定义为选择&amp;nbsp;0&amp;nbsp;与一个相邻的数字（上下左右）进行交换.
+最终当板&amp;nbsp;board&amp;nbsp;的结果是&amp;nbsp;[[1,2,3],[4,5,0]]&amp;nbsp;谜板被解开。
+给出一个谜板的初始状态&amp;nbsp;board&amp;nbsp;，返回最少可以通过多少次移动解开谜板，如果不能解开谜板，则返回 -1 。
+&amp;nbsp;
+示例 1：
+输入：board = [[1,2,3],[4,0,5]] 输出：1 解释：交换 0 和 5 ，1 步完成 示例 2:
+输入：board = [[1,2,3],[5,4,0]] 输出：-1 解释：没有办法完成谜板 示例 3:
+输入：board = [[4,1,2],[5,0,3]] 输出：5 解释： 最少完成谜板的最少移动次数是 5 ， 一种移动路径: 尚未移动: [[4,1,2],[5,0,3]] 移动 1 次: [[4,1,2],[0,5,3]] 移动 2 次: [[0,1,2],[4,5,3]] 移动 3 次: [[1,0,2],[4,5,3]] 移动 4 次: [[1,2,0],[4,5,3]] 移动 5 次: [[1,2,3],[4,5,0]] &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0775-global-and-local-inversions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0775-global-and-local-inversions/</guid><description>题目 # 难度：Medium
+给你一个长度为 n 的整数数组 nums ，表示由范围 [0, n - 1] 内所有整数组成的一个排列。
+全局倒置 的数目等于满足下述条件不同下标对 (i, j) 的数目：
+0 &amp;lt;= i &amp;lt; j &amp;lt; n nums[i] &amp;gt; nums[j] 局部倒置 的数目等于满足下述条件的下标 i 的数目：
+0 &amp;lt;= i &amp;lt; n - 1 nums[i] &amp;gt; nums[i + 1] 当数组 nums 中 全局倒置 的数量等于 局部倒置 的数量时，返回 true ；否则，返回 false 。
+&amp;nbsp;
+示例 1：
+输入：nums = [1,0,2] 输出：true 解释：有 1 个全局倒置，和 1 个局部倒置。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0777-swap-adjacent-in-lr-string/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0777-swap-adjacent-in-lr-string/</guid><description> 题目 # 难度：Medium
+在一个由 &amp;#39;L&amp;#39; , &amp;#39;R&amp;#39; 和 &amp;#39;X&amp;#39; 三个字符组成的字符串（例如&amp;quot;RXXLRXRXL&amp;quot;）中进行移动操作。一次移动操作指用一个&amp;quot;LX&amp;quot;替换一个&amp;quot;XL&amp;quot;，或者用一个&amp;quot;XR&amp;quot;替换一个&amp;quot;RX&amp;quot;。现给定起始字符串start和结束字符串end，请编写代码，当且仅当存在一系列移动操作使得start可以转换成end时， 返回True。
+&amp;nbsp;
+示例 :
+输入: start = &amp;quot;RXXLRXRXL&amp;quot;, end = &amp;quot;XRLXXRRLX&amp;quot; 输出: True 解释: 我们可以通过以下几步将start转换成end: RXXLRXRXL -&amp;gt; XRXLRXRXL -&amp;gt; XRLXRXRXL -&amp;gt; XRLXXRRXL -&amp;gt; XRLXXRRLX &amp;nbsp;
+提示：
+1 &amp;lt;= len(start) = len(end) &amp;lt;= 10000。 start和end中的字符串仅限于&amp;#39;L&amp;#39;, &amp;#39;R&amp;#39;和&amp;#39;X&amp;#39;。 分析 # 题解 # class Solution { public: bool canTransform(string start, string end) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0778-swim-in-rising-water/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0778-swim-in-rising-water/</guid><description>题目 # 难度：Hard
+在一个 n x n&amp;nbsp;的整数矩阵&amp;nbsp;grid 中，每一个方格的值 grid[i][j] 表示位置 (i, j) 的平台高度。
+当开始下雨时，在时间为&amp;nbsp;t&amp;nbsp;时，水池中的水位为&amp;nbsp;t&amp;nbsp;。你可以从一个平台游向四周相邻的任意一个平台，但是前提是此时水位必须同时淹没这两个平台。假定你可以瞬间移动无限距离，也就是默认在方格内部游动是不耗时的。当然，在你游泳的时候你必须待在坐标方格里面。
+你从坐标方格的左上平台&amp;nbsp;(0，0) 出发。返回 你到达坐标方格的右下平台&amp;nbsp;(n-1, n-1)&amp;nbsp;所需的最少时间 。
+&amp;nbsp;
+示例 1:
+输入: grid = [[0,2],[1,3]] 输出: 3 解释: 时间为0时，你位于坐标方格的位置为 (0, 0)。 此时你不能游向任意方向，因为四个相邻方向平台的高度都大于当前时间为 0 时的水位。 等时间到达 3 时，你才可以游向平台 (1, 1). 因为此时的水位是 3，坐标方格中的平台没有比水位 3 更高的，所以你可以游向坐标方格中的任意位置 示例 2:
+输入: grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]] 输出: 16 解释: 最终的路线用加粗进行了标记。 我们必须等到时间为 16，此时才能保证平台 (0, 0) 和 (4, 4) 是连通的 &amp;nbsp;
+提示:
+n == grid.length n == grid[i].</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0779-k-th-symbol-in-grammar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0779-k-th-symbol-in-grammar/</guid><description>题目 # 难度：Medium
+我们构建了一个包含 n 行(&amp;nbsp;索引从 1&amp;nbsp; 开始&amp;nbsp;)的表。首先在第一行我们写上一个 0。接下来的每一行，将前一行中的0替换为01，1替换为10。
+例如，对于 n = 3 ，第 1 行是 0 ，第 2 行是 01 ，第3行是 0110 。 给定行数&amp;nbsp;n&amp;nbsp;和序数 k，返回第 n 行中第 k&amp;nbsp;个字符。（&amp;nbsp;k&amp;nbsp;从索引 1 开始）
+示例 1:
+输入: n = 1, k = 1 输出: 0 解释: 第一行：0 示例 2:
+输入: n = 2, k = 1 输出: 0 解释: 第一行: 0 第二行: 01 示例 3:
+输入: n = 2, k = 2 输出: 1 解释: 第一行: 0 第二行: 01 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0780-reaching-points/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0780-reaching-points/</guid><description>题目 # 难度：Hard
+给定四个整数&amp;nbsp;sx&amp;nbsp;,&amp;nbsp;sy&amp;nbsp;，tx&amp;nbsp;和&amp;nbsp;ty，如果通过一系列的转换可以从起点&amp;nbsp;(sx, sy)&amp;nbsp;到达终点&amp;nbsp;(tx, ty)，则返回 true，否则返回&amp;nbsp;false。
+从点&amp;nbsp;(x, y)&amp;nbsp;可以转换到&amp;nbsp;(x, x+y)&amp;nbsp; 或者&amp;nbsp;(x+y, y)。
+&amp;nbsp;
+示例 1:
+输入: sx = 1, sy = 1, tx = 3, ty = 5 输出: true 解释: 可以通过以下一系列转换从起点转换到终点： (1, 1) -&amp;gt; (1, 2) (1, 2) -&amp;gt; (3, 2) (3, 2) -&amp;gt; (3, 5) 示例 2:
+输入: sx = 1, sy = 1, tx = 2, ty = 2 输出: false 示例 3:
+输入: sx = 1, sy = 1, tx = 1, ty = 1 输出: true &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0781-rabbits-in-forest/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0781-rabbits-in-forest/</guid><description> 题目 # 难度：Medium
+森林中有未知数量的兔子。提问其中若干只兔子 "还有多少只兔子与你（指被提问的兔子）颜色相同?" ，将答案收集到一个整数数组 answers 中，其中 answers[i] 是第 i 只兔子的回答。
+给你数组 answers ，返回森林中兔子的最少数量。
+&amp;nbsp;
+示例 1：
+输入：answers = [1,1,2] 输出：5 解释： 两只回答了 "1" 的兔子可能有相同的颜色，设为红色。 之后回答了 "2" 的兔子不会是红色，否则他们的回答会相互矛盾。 设回答了 "2" 的兔子为蓝色。 此外，森林中还应有另外 2 只蓝色兔子的回答没有包含在数组中。 因此森林中兔子的最少数量是 5 只：3 只回答的和 2 只没有回答的。 示例 2：
+输入：answers = [10,10,10] 输出：11 &amp;nbsp;
+提示：
+1 &amp;lt;= answers.length &amp;lt;= 1000 0 &amp;lt;= answers[i] &amp;lt; 1000 分析 # 题解 # class Solution { public: int numRabbits(vector&amp;lt;int&amp;gt;&amp;amp; answers) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0782-transform-to-chessboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0782-transform-to-chessboard/</guid><description> 题目 # 难度：Hard
+一个&amp;nbsp;n x n&amp;nbsp;的二维网络&amp;nbsp;board&amp;nbsp;仅由&amp;nbsp;0&amp;nbsp;和&amp;nbsp;1&amp;nbsp;组成&amp;nbsp;。每次移动，你能任意交换两列或是两行的位置。
+返回 将这个矩阵变为&amp;nbsp; “棋盘”&amp;nbsp;&amp;nbsp;所需的最小移动次数&amp;nbsp;。如果不存在可行的变换，输出 -1。
+“棋盘” 是指任意一格的上下左右四个方向的值均与本身不同的矩阵。
+&amp;nbsp;
+示例 1:
+输入: board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]] 输出: 2 解释:一种可行的变换方式如下，从左到右： 第一次移动交换了第一列和第二列。 第二次移动交换了第二行和第三行。 示例 2:
+输入: board = [[0, 1], [1, 0]] 输出: 0 解释: 注意左上角的格值为0时也是合法的棋盘，也是合法的棋盘. 示例 3:
+输入: board = [[1, 0], [1, 0]] 输出: -1 解释: 任意的变换都不能使这个输入变为合法的棋盘。 &amp;nbsp;
+提示：
+n == board.length n == board[i].length 2 &amp;lt;= n &amp;lt;= 30 board[i][j]&amp;nbsp;将只包含&amp;nbsp;0或&amp;nbsp;1 分析 # 题解 # class Solution { public: int movesToChessboard(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; board) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0783-minimum-distance-between-bst-nodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0783-minimum-distance-between-bst-nodes/</guid><description> 题目 # 难度：Easy
+给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。
+差值是一个正数，其数值等于两值之差的绝对值。
+&amp;nbsp;
+示例 1：
+输入：root = [4,2,6,1,3] 输出：1 示例 2：
+输入：root = [1,0,48,null,null,12,49] 输出：1 &amp;nbsp;
+提示：
+树中节点的数目范围是 [2, 100] 0 &amp;lt;= Node.val &amp;lt;= 105 &amp;nbsp;
+注意：本题与 530：https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/ 相同
+分析 # 题解 # /** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: int minDiffInBST(TreeNode* root) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0784-letter-case-permutation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0784-letter-case-permutation/</guid><description> 题目 # 难度：Medium
+给定一个字符串&amp;nbsp;s&amp;nbsp;，通过将字符串&amp;nbsp;s&amp;nbsp;中的每个字母转变大小写，我们可以获得一个新的字符串。
+返回 所有可能得到的字符串集合 。以 任意顺序 返回输出。
+&amp;nbsp;
+示例 1：
+输入：s = "a1b2" 输出：["a1b2", "a1B2", "A1b2", "A1B2"] 示例 2:
+输入: s = "3z4" 输出: ["3z4","3Z4"] &amp;nbsp;
+提示:
+1 &amp;lt;= s.length &amp;lt;= 12 s&amp;nbsp;由小写英文字母、大写英文字母和数字组成 分析 # 题解 # class Solution { public: vector&amp;lt;string&amp;gt; letterCasePermutation(string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0785-is-graph-bipartite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0785-is-graph-bipartite/</guid><description>题目 # 难度：Medium 存在一个 无向图 ，图中有 n 个节点。其中每个节点都有一个介于 0 到 n - 1 之间的唯一编号。给你一个二维数组 graph ，其中 graph[u] 是一个节点数组，由节点 u 的邻接节点组成。形式上，对于 graph[u] 中的每个 v ，都存在一条位于节点 u 和节点 v 之间的无向边。该无向图同时具有以下属性：
+不存在自环（graph[u] 不包含 u）。 不存在平行边（graph[u] 不包含重复值）。 如果 v 在 graph[u] 内，那么 u 也应该在 graph[v] 内（该图是无向图） 这个图可能不是连通图，也就是说两个节点 u 和 v 之间可能不存在一条连通彼此的路径。 二分图 定义：如果能将一个图的节点集合分割成两个独立的子集 A 和 B ，并使图中的每一条边的两个节点一个来自 A 集合，一个来自 B 集合，就将这个图称为 二分图 。
+如果图是二分图，返回 true ；否则，返回 false 。
+示例 1：
+输入：graph = [[1,2,3],[0,2],[0,1,3],[0,2]] 输出：false 解释：不能将节点分割成两个独立的子集，以使每条边都连通一个子集中的一个节点与另一个子集中的一个节点。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0786-k-th-smallest-prime-fraction/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0786-k-th-smallest-prime-fraction/</guid><description>题目 # 难度：Medium
+给你一个按递增顺序排序的数组 arr 和一个整数 k 。数组 arr 由 1 和若干 素数&amp;nbsp; 组成，且其中所有整数互不相同。
+对于每对满足 0 &amp;lt;= i &amp;lt; j &amp;lt; arr.length 的 i 和 j ，可以得到分数 arr[i] / arr[j] 。
+那么第&amp;nbsp;k&amp;nbsp;个最小的分数是多少呢?&amp;nbsp; 以长度为 2 的整数数组返回你的答案, 这里&amp;nbsp;answer[0] == arr[i]&amp;nbsp;且&amp;nbsp;answer[1] == arr[j] 。
+&amp;nbsp; 示例 1：
+输入：arr = [1,2,3,5], k = 3 输出：[2,5] 解释：已构造好的分数,排序后如下所示: 1/5, 1/3, 2/5, 1/2, 3/5, 2/3 很明显第三个最小的分数是 2/5 示例 2：
+输入：arr = [1,7], k = 1 输出：[1,7] &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0787-cheapest-flights-within-k-stops/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0787-cheapest-flights-within-k-stops/</guid><description>题目 # 难度：Medium
+有 n 个城市通过一些航班连接。给你一个数组&amp;nbsp;flights ，其中&amp;nbsp;flights[i] = [fromi, toi, pricei] ，表示该航班都从城市 fromi 开始，以价格 pricei 抵达 toi。
+现在给定所有的城市和航班，以及出发城市 src 和目的地 dst，你的任务是找到出一条最多经过 k&amp;nbsp;站中转的路线，使得从 src 到 dst 的 价格最便宜 ，并返回该价格。 如果不存在这样的路线，则输出 -1。
+&amp;nbsp;
+示例 1：
+输入: n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]] src = 0, dst = 2, k = 1 输出: 200 解释: 城市航班图如下 从城市 0 到城市 2 在 1 站中转以内的最便宜价格是 200，如图中红色所示。 示例 2：
+输入: n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]] src = 0, dst = 2, k = 0 输出: 500 解释: 城市航班图如下 从城市 0 到城市 2 在 0 站中转以内的最便宜价格是 500，如图中蓝色所示。 &amp;nbsp;</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0788-rotated-digits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0788-rotated-digits/</guid><description> 题目 # 难度：Medium
+我们称一个数 X 为好数, 如果它的每位数字逐个地被旋转 180 度后，我们仍可以得到一个有效的，且和 X 不同的数。要求每位数字都要被旋转。
+如果一个数的每位数字被旋转以后仍然还是一个数字，&amp;nbsp;则这个数是有效的。0, 1, 和 8 被旋转后仍然是它们自己；2 和 5 可以互相旋转成对方（在这种情况下，它们以不同的方向旋转，换句话说，2 和 5 互为镜像）；6 和 9 同理，除了这些以外其他的数字旋转以后都不再是有效的数字。
+现在我们有一个正整数&amp;nbsp;N, 计算从&amp;nbsp;1 到&amp;nbsp;N 中有多少个数&amp;nbsp;X 是好数？
+&amp;nbsp;
+示例：
+输入: 10 输出: 4 解释: 在[1, 10]中有四个好数： 2, 5, 6, 9。 注意 1 和 10 不是好数, 因为他们在旋转之后不变。 &amp;nbsp;
+提示：
+N&amp;nbsp;的取值范围是&amp;nbsp;[1, 10000]。 分析 # 题解 # class Solution { public: int rotatedDigits(int n) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0789-escape-the-ghosts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0789-escape-the-ghosts/</guid><description>题目 # 难度：Medium
+你在进行一个简化版的吃豆人游戏。你从 [0, 0] 点开始出发，你的目的地是&amp;nbsp;target = [xtarget, ytarget] 。地图上有一些阻碍者，以数组 ghosts 给出，第 i 个阻碍者从&amp;nbsp;ghosts[i] = [xi, yi]&amp;nbsp;出发。所有输入均为 整数坐标 。
+每一回合，你和阻碍者们可以同时向东，西，南，北四个方向移动，每次可以移动到距离原位置 1 个单位 的新位置。当然，也可以选择 不动 。所有动作 同时 发生。
+如果你可以在任何阻碍者抓住你 之前 到达目的地（阻碍者可以采取任意行动方式），则被视为逃脱成功。如果你和阻碍者 同时 到达了一个位置（包括目的地）&amp;nbsp;都不算&amp;nbsp;是逃脱成功。
+只有在你有可能成功逃脱时，输出 true ；否则，输出 false 。
+&amp;nbsp; 示例 1：
+输入：ghosts = [[1,0],[0,3]], target = [0,1] 输出：true 解释：你可以直接一步到达目的地 (0,1) ，在 (1, 0) 或者 (0, 3) 位置的阻碍者都不可能抓住你。 示例 2：
+输入：ghosts = [[1,0]], target = [2,0] 输出：false 解释：你需要走到位于 (2, 0) 的目的地，但是在 (1, 0) 的阻碍者位于你和目的地之间。 示例 3：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0790-domino-and-tromino-tiling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0790-domino-and-tromino-tiling/</guid><description> 题目 # 难度：Medium
+有两种形状的瓷砖：一种是&amp;nbsp;2 x 1 的多米诺形，另一种是形如&amp;nbsp;"L" 的托米诺形。两种形状都可以旋转。
+给定整数 n ，返回可以平铺&amp;nbsp;2 x n 的面板的方法的数量。返回对&amp;nbsp;109&amp;nbsp;+ 7&amp;nbsp;取模&amp;nbsp;的值。
+平铺指的是每个正方形都必须有瓷砖覆盖。两个平铺不同，当且仅当面板上有四个方向上的相邻单元中的两个，使得恰好有一个平铺有一个瓷砖占据两个正方形。
+&amp;nbsp;
+示例 1:
+输入: n = 3 输出: 5 解释: 五种不同的方法如上所示。 示例 2:
+输入: n = 1 输出: 1 &amp;nbsp;
+提示：
+1 &amp;lt;= n &amp;lt;= 1000 分析 # 题解 # class Solution { public: int numTilings(int n) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0791-custom-sort-string/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0791-custom-sort-string/</guid><description> 题目 # 难度：Medium
+给定两个字符串 order 和 s 。order 的所有字母都是 唯一 的，并且以前按照一些自定义的顺序排序。
+对 s 的字符进行置换，使其与排序的&amp;nbsp;order&amp;nbsp;相匹配。更具体地说，如果在&amp;nbsp;order&amp;nbsp;中的字符 x 出现字符 y 之前，那么在排列后的字符串中， x&amp;nbsp;也应该出现在 y 之前。
+返回 满足这个性质的 s 的任意一种排列&amp;nbsp;。
+&amp;nbsp;
+示例 1:
+输入: order = "cba", s = "abcd" 输出: "cbad" 解释: “a”、“b”、“c”是按顺序出现的，所以“a”、“b”、“c”的顺序应该是“c”、“b”、“a”。 因为“d”不是按顺序出现的，所以它可以在返回的字符串中的任何位置。“dcba”、“cdba”、“cbda”也是有效的输出。 示例 2:
+输入: order = "cbafg", s = "abcd" 输出: "cbad" &amp;nbsp;
+提示:
+1 &amp;lt;= order.length &amp;lt;= 26 1 &amp;lt;= s.length &amp;lt;= 200 order&amp;nbsp;和&amp;nbsp;s&amp;nbsp;由小写英文字母组成 order&amp;nbsp;中的所有字符都 不同 分析 # 题解 # class Solution { public: string customSortString(string order, string s) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0792-number-of-matching-subsequences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0792-number-of-matching-subsequences/</guid><description> 题目 # 难度：Medium
+给定字符串 s&amp;nbsp;和字符串数组&amp;nbsp;words, 返回&amp;nbsp;&amp;nbsp;words[i]&amp;nbsp;中是s的子序列的单词个数&amp;nbsp;。
+字符串的 子序列 是从原始字符串中生成的新字符串，可以从中删去一些字符(可以是none)，而不改变其余字符的相对顺序。
+例如， “ace” 是 “abcde” 的子序列。 &amp;nbsp;
+示例 1:
+输入: s = "abcde", words = ["a","bb","acd","ace"] 输出: 3 解释: 有三个是&amp;nbsp;s 的子序列的单词: "a", "acd", "ace"。 Example 2:
+输入: s = "dsahjpjauf", words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"] 输出: 2 &amp;nbsp;
+提示:
+1 &amp;lt;= s.length &amp;lt;= 5 * 104 1 &amp;lt;= words.length &amp;lt;= 5000 1 &amp;lt;= words[i].length &amp;lt;= 50 words[i]和 s&amp;nbsp;都只由小写字母组成。 ​​​​ ## 分析 题解 # class Solution { public: int numMatchingSubseq(string s, vector&amp;lt;string&amp;gt;&amp;amp; words) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0793-preimage-size-of-factorial-zeroes-function/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0793-preimage-size-of-factorial-zeroes-function/</guid><description>题目 # 难度：Hard
+&amp;nbsp;f(x)&amp;nbsp;是&amp;nbsp;x!&amp;nbsp;末尾是 0 的数量。回想一下&amp;nbsp;x! = 1 * 2 * 3 * ... * x，且 0! = 1&amp;nbsp;。
+例如，&amp;nbsp;f(3) = 0&amp;nbsp;，因为 3! = 6 的末尾没有 0 ；而 f(11) = 2&amp;nbsp;，因为 11!= 39916800 末端有 2 个 0 。 给定&amp;nbsp;k，找出返回能满足 f(x) = k&amp;nbsp;的非负整数 x&amp;nbsp;的数量。
+&amp;nbsp;
+示例 1： 输入：k = 0 输出：5 解释：0!, 1!, 2!, 3!, 和 4!&amp;nbsp;均符合 k = 0 的条件。 示例 2：
+输入：k = 5 输出：0 解释：没有匹配到这样的 x!，符合 k = 5 的条件。 示例 3:</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0794-valid-tic-tac-toe-state/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0794-valid-tic-tac-toe-state/</guid><description>题目 # 难度：Medium
+给你一个字符串数组 board 表示井字游戏的棋盘。当且仅当在井字游戏过程中，棋盘有可能达到 board 所显示的状态时，才返回 true 。
+井字游戏的棋盘是一个 3 x 3 数组，由字符 ' '，'X' 和 'O' 组成。字符 ' ' 代表一个空位。
+以下是井字游戏的规则：
+玩家轮流将字符放入空位（' '）中。 玩家 1 总是放字符 'X' ，而玩家 2 总是放字符 'O' 。 'X' 和 'O' 只允许放置在空位中，不允许对已放有字符的位置进行填充。 当有 3 个相同（且非空）的字符填充任何行、列或对角线时，游戏结束。 当所有位置非空时，也算为游戏结束。 如果游戏结束，玩家不允许再放置字符。 &amp;nbsp;
+示例 1：
+输入：board = ["O "," "," "] 输出：false 解释：玩家 1 总是放字符 "X" 。 示例 2：
+输入：board = ["XOX"," X "," "] 输出：false 解释：玩家应该轮流放字符。 示例 3:</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0795-number-of-subarrays-with-bounded-maximum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0795-number-of-subarrays-with-bounded-maximum/</guid><description> 题目 # 难度：Medium
+给你一个整数数组 nums 和两个整数：left 及 right 。找出 nums 中连续、非空且其中最大元素在范围&amp;nbsp;[left, right] 内的子数组，并返回满足条件的子数组的个数。
+生成的测试用例保证结果符合 32-bit 整数范围。
+&amp;nbsp;
+示例 1：
+输入：nums = [2,1,4,3], left = 2, right = 3 输出：3 解释：满足条件的三个子数组：[2], [2, 1], [3] 示例 2：
+输入：nums = [2,9,2,5,6], left = 2, right = 8 输出：7 &amp;nbsp;
+提示：
+1 &amp;lt;= nums.length &amp;lt;= 105 0 &amp;lt;= nums[i] &amp;lt;= 109 0 &amp;lt;= left &amp;lt;= right &amp;lt;= 109 分析 # 题解 # class Solution { public: int numSubarrayBoundedMax(vector&amp;lt;int&amp;gt;&amp;amp; nums, int left, int right) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0796-rotate-string/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0796-rotate-string/</guid><description> 题目 # 难度：Easy
+给定两个字符串, s&amp;nbsp;和&amp;nbsp;goal。如果在若干次旋转操作之后，s&amp;nbsp;能变成&amp;nbsp;goal&amp;nbsp;，那么返回&amp;nbsp;true&amp;nbsp;。
+s&amp;nbsp;的 旋转操作 就是将&amp;nbsp;s 最左边的字符移动到最右边。&amp;nbsp;
+例如, 若&amp;nbsp;s = 'abcde'，在旋转一次之后结果就是'bcdea'&amp;nbsp;。 &amp;nbsp;
+示例 1:
+输入: s = "abcde", goal = "cdeab" 输出: true 示例 2:
+输入: s = "abcde", goal = "abced" 输出: false &amp;nbsp;
+提示:
+1 &amp;lt;= s.length, goal.length &amp;lt;= 100 s&amp;nbsp;和&amp;nbsp;goal&amp;nbsp;由小写英文字母组成 分析 # 题解 # class Solution { public: bool rotateString(string s, string goal) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0797-all-paths-from-source-to-target/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0797-all-paths-from-source-to-target/</guid><description> 题目 # 难度：Medium
+给你一个有&amp;nbsp;n&amp;nbsp;个节点的 有向无环图（DAG），请你找出所有从节点 0&amp;nbsp;到节点 n-1&amp;nbsp;的路径并输出（不要求按特定顺序）
+&amp;nbsp;graph[i]&amp;nbsp;是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点&amp;nbsp;graph[i][j]存在一条有向边）。
+&amp;nbsp;
+示例 1：
+输入：graph = [[1,2],[3],[3],[]] 输出：[[0,1,3],[0,2,3]] 解释：有两条路径 0 -&amp;gt; 1 -&amp;gt; 3 和 0 -&amp;gt; 2 -&amp;gt; 3 示例 2：
+输入：graph = [[4,3,1],[3,2,4],[3],[4],[]] 输出：[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]] &amp;nbsp;
+提示：
+n == graph.length 2 &amp;lt;= n &amp;lt;= 15 0 &amp;lt;= graph[i][j] &amp;lt; n graph[i][j] != i（即不存在自环） graph[i] 中的所有元素 互不相同 保证输入为 有向无环图（DAG） &amp;nbsp;
+分析 # 题解 # class Solution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; allPathsSourceTarget(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; graph) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0798-smallest-rotation-with-highest-score/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0798-smallest-rotation-with-highest-score/</guid><description>题目 # 难度：Hard
+给你一个数组&amp;nbsp;nums，我们可以将它按一个非负整数 k 进行轮调，这样可以使数组变为&amp;nbsp;[nums[k], nums[k + 1], ... nums[nums.length - 1], nums[0], nums[1], ..., nums[k-1]]&amp;nbsp;的形式。此后，任何值小于或等于其索引的项都可以记作一分。
+例如，数组为&amp;nbsp;nums = [2,4,1,3,0]，我们按&amp;nbsp;k = 2&amp;nbsp;进行轮调后，它将变成&amp;nbsp;[1,3,0,2,4]。这将记为 3 分，因为 1 &amp;gt; 0 [不计分]、3 &amp;gt; 1 [不计分]、0 &amp;lt;= 2 [计 1 分]、2 &amp;lt;= 3 [计 1 分]，4 &amp;lt;= 4 [计 1 分]。 在所有可能的轮调中，返回我们所能得到的最高分数对应的轮调下标 k 。如果有多个答案，返回满足条件的最小的下标 k 。
+&amp;nbsp;
+示例 1：
+输入：nums = [2,3,1,4,0] 输出：3 解释： 下面列出了每个 k 的得分： k = 0, nums = [2,3,1,4,0], score 2 k = 1, nums = [3,1,4,0,2], score 3 k = 2, nums = [1,4,0,2,3], score 3 k = 3, nums = [4,0,2,3,1], score 4 k = 4, nums = [0,2,3,1,4], score 3 所以我们应当选择&amp;nbsp;k = 3，得分最高。 示例 2：</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0601-0800/0799-champagne-tower/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0601-0800/0799-champagne-tower/</guid><description>题目 # 难度：Medium
+我们把玻璃杯摆成金字塔的形状，其中&amp;nbsp;第一层&amp;nbsp;有 1 个玻璃杯， 第二层&amp;nbsp;有 2 个，依次类推到第 100 层，每个玻璃杯 (250ml) 将盛有香槟。
+从顶层的第一个玻璃杯开始倾倒一些香槟，当顶层的杯子满了，任何溢出的香槟都会立刻等流量的流向左右两侧的玻璃杯。当左右两边的杯子也满了，就会等流量的流向它们左右两边的杯子，依次类推。（当最底层的玻璃杯满了，香槟会流到地板上）
+例如，在倾倒一杯香槟后，最顶层的玻璃杯满了。倾倒了两杯香槟后，第二层的两个玻璃杯各自盛放一半的香槟。在倒三杯香槟后，第二层的香槟满了 - 此时总共有三个满的玻璃杯。在倒第四杯后，第三层中间的玻璃杯盛放了一半的香槟，他两边的玻璃杯各自盛放了四分之一的香槟，如下图所示。
+现在当倾倒了非负整数杯香槟后，返回第 i 行 j&amp;nbsp;个玻璃杯所盛放的香槟占玻璃杯容积的比例（ i 和 j&amp;nbsp;都从0开始）。
+&amp;nbsp;
+示例 1: 输入: poured(倾倒香槟总杯数) = 1, query_glass(杯子的位置数) = 1, query_row(行数) = 1 输出: 0.00000 解释: 我们在顶层（下标是（0，0））倒了一杯香槟后，没有溢出，因此所有在顶层以下的玻璃杯都是空的。 示例 2: 输入: poured(倾倒香槟总杯数) = 2, query_glass(杯子的位置数) = 1, query_row(行数) = 1 输出: 0.50000 解释: 我们在顶层（下标是（0，0）倒了两杯香槟后，有一杯量的香槟将从顶层溢出，位于（1，0）的玻璃杯和（1，1）的玻璃杯平分了这一杯香槟，所以每个玻璃杯有一半的香槟。 示例 3:
+输入: poured = 100000009, query_row = 33, query_glass = 17 输出: 1.</description></item></channel></rss>

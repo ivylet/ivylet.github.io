@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第一章|基本语法储备 on QBook</title><link>http://ivylet.github.io/docs/chapter01/</link><description>Recent content in 第一章|基本语法储备 on QBook</description><generator>Hugo -- gohugo.io</generator><atom:link href="http://ivylet.github.io/docs/chapter01/index.xml" rel="self" type="application/rss+xml"/><item><title>STL中常用算法</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-argo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-argo/</guid><description> STL中常用算法 # STL中定义了常用的一些算法，比如遍历，查找，排序等一些算法。
+遍历 # for_each 查找 # count_if # 函数原型为count_if(v.begin(),v.end(),comp)
+v.begin()为开始，v.end()为结束，comp为自定义判断函数。
+举个例子：
+排序 # 复制与拷贝 # 算术生成 # 集合算法 #</description></item><item><title>常用算法储备知识</title><link>http://ivylet.github.io/docs/chapter01/datastru/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/datastru/</guid><description>时间复杂度 # 对数 ： 每轮排除一半情况 常用于二分法 指数：每轮分别出两倍情况 线性对数：一般为两层循环相互独立，一层为n一层为对数 常常出现在快速排序 空间复杂度 # 位运算 # 位运算有（&amp;amp;、|、^、~、&amp;raquo;、&amp;laquo;）这几种方法，以下为正且位数相同的二进制数进行的位运算，但是还会有其他特殊情况，比如二进制数非正，位数不同的情况。
+符号 描述 运算规则 &amp;amp; 与 两个位都为1时，结果才为1 | 或 两个位都为0时，结果才为0 ^ 异或 两个位相同为0，相异为1 ~ 取反 0变1，1变0 &amp;laquo; 左移 各二进位全部左移若干位，高位丢弃，低位补0 &amp;raquo; 右移 各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不同 按位与运算符（&amp;amp;） # 定义：参加运算的两个数据，按二进制位进行&amp;quot;与&amp;quot;运算。
+运算规则：同时为1才为1，
+0&amp;amp;0=0 0&amp;amp;1=0 1&amp;amp;0=0 1&amp;amp;1=1 //两位同时为1，结果才为1，否则结果为0。 例如：5&amp;amp;7 即 0000 0101&amp;amp; 0000 0111 = 0000 0101，因此 5&amp;amp;7 的值为5。
+注意：负数按补码形式参加按位与运算。
+与运算的用途：
+清零 如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。 取一个数的指定位 比如取数 X=1011 1001 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;amp;Y=0000 1001）即可得到X的指定位。 判断奇偶 二进制的奇偶数只需要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp;amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。 按位或运算符（|） # 定义：参加运算的两个对象，按二进制位进行&amp;quot;或&amp;quot;运算。</description></item><item><title>C++ STL</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</link><pubDate>Thu, 10 Nov 2022 11:18:29 +0800</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</guid><description>什么是C++标准模板库（STL）？ # 标准模板库 STL（Standard Template Library），是 C++ 标准库的一部分，不需要单独安装，只需要#include 头文件。
+C++ 对模板（Template）支持得很好，STL 就是借助模板把常用的数据结构及其算法都实现了一遍，并且做到了数据结构和算法的分离。
+C++ 语言的核心优势之一就是便于软件的复用。
+C++ 语言有两个方面体现了复用：
+面向对象的继承和多态机制 通过模板的概念实现了对泛型程序设计的支持 C++中的模板，就好比英语作文的模板，只换主题，不换句式和结构。对应到C++模板，就是只换类型，不换方法。
+STL有什么优势？ # STL封装了很多实用的容器，省时省力，能够让你将更多心思放到解决问题的步骤上，而非费力去实现数据结构诸多细节上，像极了用python时候的酣畅淋漓。
+STL到底有什么？ # 六大部件:
+容器 分配器 算法 迭代器 适配器 仿函数 自定义 # vector 矢量 # 定义 # 使用前需添加头文件
+#include&amp;lt;vector&amp;gt; using namespace std; 像定义变量一样定义vector变量：
+vector&amp;lt;类型名&amp;gt; 变量名; 类型名可以是int、double、char、struct，也可以是STL容器：vector、set、queue。
+vector&amp;lt;int&amp;gt; name; vector&amp;lt;double&amp;gt; name; vector&amp;lt;char&amp;gt; name; vector&amp;lt;struct node&amp;gt; name; vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; name; vector数组就是一个一维数组,如果定义成vector数组的数组，那就是二维数组**。**
+vector&amp;lt;int&amp;gt; array[SZIE]; //二维变长数组 在此，我送你一句话非常受用的话：低维是高维的地址。
+二维数组中，它的一维形式就是地址。例如：
+#include &amp;lt;iostream&amp;gt; using namespace std; int main(){ int arr[3][2];//定义一个3行2列的地址 cout&amp;lt;&amp;lt;arr[0]&amp;lt;&amp;lt;endl; //输出arr第1行的地址 cout&amp;lt;&amp;lt;arr[1]&amp;lt;&amp;lt;endl; //输出arr第2行的地址 cout&amp;lt;&amp;lt;arr[2]&amp;lt;&amp;lt;endl; //输出arr第3行的地址 return 0; } 输出：</description></item><item><title>算法竞赛常用STL</title><link>http://ivylet.github.io/docs/chapter01/argo-datastru/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/argo-datastru/</guid><description>数据结构 # vector[可变数组] # vector是一种变长数组，即可以自动改变长度的数组。 头文件
+#include&amp;lt;vector&amp;gt; 初始化
+#include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; using namespace std; int main () { //几种初始化的方法 vector&amp;lt;int&amp;gt; a;//定义一个vector 未初始化 输出》 0 vector&amp;lt;int&amp;gt; a(3);//定义一个长度为3的vector 未初始化 输出》0 0 0 vector&amp;lt;int&amp;gt; a(10, 3); //定义一个长度为10，且每个数赋值为3 //将向量b中从下标0 1 2（共三个）的元素赋值给a，a的类型为int型 //它的初始化不和数组一样 vector&amp;lt;int&amp;gt;a(b.begin(),b.begin+3); //从数组中获得初值 int b[7]={1,2,3,4,5,6,7}; vector&amp;lt;int&amp;gt; a(b,b+7）; for(auto x : a) {//遍历输出 cout &amp;lt;&amp;lt; x &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } return 0; } 相关函数
+a.size();//返回元素个数 a.resize();//改变大小 a.empty();//判断a是否为空，空则返回true，非空则返回false a.front(); //返回a的第1个元素,当且仅当a存在 a.back(); //返回vector的最后一个数 a.clear(); //清空a中的元素 a.pop_back(); //删除a向量的最后一个元素 a.</description></item></channel></rss>
