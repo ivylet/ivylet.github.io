@@ -2,8 +2,8 @@
 代码实现 # void quick_sort(int q[], int l, int r){ if(l >= r) return; int x = q[(l + r) >> 1], i = l - 1, j = r + 1; while(i < j) { do i ++ ; while(q[i] < x); do j -- ; while(q[j] > x); if(i < j) swap(q[i],q[j]); } quick_sort(q,l, j); quick_sort(q,j+1,r); } 为什么最后是j与j+1呢?
 因为范围确保的是左边是小于等于x，右边大于等于x。而循环判断结束的限制是i<j,则可能出现的情况是i=j或i = j + 1。如果是i=j+1那么左边为l到i不满足左边都小于等于x，因为q[i]>x。那为什么不是l到i-1呢？如果是l到i-1那么可能出现只有两个数的情况，然后划分的时候右边化为空集，左边为两个数的数组，此时陷入无尽循环。"><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="基础算法一"><meta property="og:description" content="快速排序 # 主要思想: # 在数组中选择一个值，然后遍历数组，比这个值大的放到这个值后边，比这个值小的放到这个值的前边。
 代码实现 # void quick_sort(int q[], int l, int r){ if(l >= r) return; int x = q[(l + r) >> 1], i = l - 1, j = r + 1; while(i < j) { do i ++ ; while(q[i] < x); do j -- ; while(q[j] > x); if(i < j) swap(q[i],q[j]); } quick_sort(q,l, j); quick_sort(q,j+1,r); } 为什么最后是j与j+1呢?
-因为范围确保的是左边是小于等于x，右边大于等于x。而循环判断结束的限制是i<j,则可能出现的情况是i=j或i = j + 1。如果是i=j+1那么左边为l到i不满足左边都小于等于x，因为q[i]>x。那为什么不是l到i-1呢？如果是l到i-1那么可能出现只有两个数的情况，然后划分的时候右边化为空集，左边为两个数的数组，此时陷入无尽循环。"><meta property="og:type" content="article"><meta property="og:url" content="http://ivylet.github.io/docs/chapter02/acwing/base/base-1/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-04-02T18:27:02+08:00"><title>基础算法一 | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.cc8e1bebd82cafba3ee15868d6f81532e0bfa28647f8f99fa84fd6989c43b6f3.js integrity="sha256-zI4b69gsr7o+4Vho1vgVMuC/ooZH+PmfqE/WmJxDtvM=" crossorigin=anonymous></script>
+因为范围确保的是左边是小于等于x，右边大于等于x。而循环判断结束的限制是i<j,则可能出现的情况是i=j或i = j + 1。如果是i=j+1那么左边为l到i不满足左边都小于等于x，因为q[i]>x。那为什么不是l到i-1呢？如果是l到i-1那么可能出现只有两个数的情况，然后划分的时候右边化为空集，左边为两个数的数组，此时陷入无尽循环。"><meta property="og:type" content="article"><meta property="og:url" content="http://ivylet.github.io/docs/chapter02/acwing/base/base-1/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-04-03T00:30:30+08:00"><title>基础算法一 | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.e793397effa5bd7404275b59abe7376d51d1d693aeb13c72509af26ce482cd22.js integrity="sha256-55M5fv+lvXQEJ1tZq+c3bVHR1pOusTxyUJrybOSCzSI=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>QBook</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
 <label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
@@ -297,7 +297,8 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span><span style=display:flex><span>printf(<span style=color:#e6db74>&#34;%d &#34;</span>,num);
 </span></span></code></pre></div><h2 id=离散化>离散化
 <a class=anchor href=#%e7%a6%bb%e6%95%a3%e5%8c%96>#</a></h2><h5 id=主要思想-3>主要思想
-<a class=anchor href=#%e4%b8%bb%e8%a6%81%e6%80%9d%e6%83%b3-3>#</a></h5><p>在一个长区间，是很长很长的区间中，存在零散的数据。这种情况下找区间内的值，如果一个个遍历会很费时（因为区间很长），所以有了离散化的想法。</p><h5 id=全部代码>全部代码
+<a class=anchor href=#%e4%b8%bb%e8%a6%81%e6%80%9d%e6%83%b3-3>#</a></h5><p>在一个长区间，是很长很长的区间中，存在零散的数据。这种情况下找区间内的值，如果一个个遍历会很费时（因为区间很长），所以有了离散化的想法。<br>一般是将数据依照顺序来与自然数一一对应.如果有区间那么也添加到其中.<br>以一个题目为例:
+<a href=https://www.acwing.com/problem/content/804/>802. 区间和 - AcWing题库</a></p><h5 id=全部代码>全部代码
 <a class=anchor href=#%e5%85%a8%e9%83%a8%e4%bb%a3%e7%a0%81>#</a></h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
 </span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
 </span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e>
@@ -309,13 +310,13 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> N <span style=color:#f92672>=</span> <span style=color:#ae81ff>300010</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> n, m;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> a[N], s[N];
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> alls;
-</span></span><span style=display:flex><span>vector<span style=color:#f92672>&lt;</span>PII<span style=color:#f92672>&gt;</span> add, query;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>find</span>(<span style=color:#66d9ef>int</span> x)
-</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> a[N], s[N];<span style=color:#75715e>//定义离散化后的数组,与前缀和数组.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> alls;<span style=color:#75715e>//存储需要离散化的值,并将其与自然数映射.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>vector<span style=color:#f92672>&lt;</span>PII<span style=color:#f92672>&gt;</span> add, query;<span style=color:#75715e>//存储添加数据对,与查询数据范围.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>find</span>(<span style=color:#66d9ef>int</span> x)<span style=color:#75715e>//根据离散化的数查询自然数对应的位置.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> l <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, r <span style=color:#f92672>=</span> alls.size() <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> (l <span style=color:#f92672>&lt;</span> r)
 </span></span><span style=display:flex><span>    {
@@ -323,8 +324,8 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (alls[mid] <span style=color:#f92672>&gt;=</span> x) r <span style=color:#f92672>=</span> mid;
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span> l <span style=color:#f92672>=</span> mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
 </span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> r <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
-</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> r <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;<span style=color:#75715e>//因为要使用前缀和,所以一般数组以1开头,所以这里加一.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>()
 </span></span><span style=display:flex><span>{
@@ -335,8 +336,8 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span><span style=display:flex><span>        cin <span style=color:#f92672>&gt;&gt;</span> x <span style=color:#f92672>&gt;&gt;</span> c;
 </span></span><span style=display:flex><span>        add.push_back({x, c});
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        alls.push_back(x);
-</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>        alls.push_back(x);<span style=color:#75715e>//
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> m; i <span style=color:#f92672>++</span> )
 </span></span><span style=display:flex><span>    {
@@ -351,7 +352,10 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// 去重
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>    sort(alls.begin(), alls.end());
 </span></span><span style=display:flex><span>    alls.erase(unique(alls.begin(), alls.end()), alls.end());
-</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>//担心一个点加两次数却被去重?
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//这里只存储位置,加数在后边遍历添加数据对中,
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>//如果一个点多加两次,那么add中也有两条对应的.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// 处理插入
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> item : add)
 </span></span><span style=display:flex><span>    {
@@ -371,6 +375,6 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/f1ebe8d7409a4c7c0fe1872a78d8849922a170d4 title='最后修改者 saytaytay | April 2, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/2d0a8920675b2595dc4be569f7bc683dbbfcdadd title='最后修改者 saytaytay | April 2, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>April 2, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/edit/main/exampleSite/content/docs/chapter02/acwing/base/base-1.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span></a></div><footer id=footer><div class=container>&copy; 2023, By ivylet</a>。</div></footer></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#快速排序>快速排序</a><ul><li></li></ul></li><li><a href=#归并排序>归并排序</a><ul><li></li></ul></li><li><a href=#二分>二分</a><ul><li></li><li><a href=#整数二分>整数二分</a></li><li><a href=#实数二分>实数二分</a></li></ul></li><li><a href=#高精度>高精度</a><ul><li></li><li><a href=#计算前预处理>计算前预处理</a></li><li><a href=#加法>加法</a></li><li><a href=#减法>减法</a></li><li><a href=#乘法>乘法</a></li><li><a href=#除法>除法</a></li></ul></li><li><a href=#前缀和>前缀和</a><ul><li><a href=#一维前缀和>一维前缀和</a></li><li><a href=#二维前缀和>二维前缀和</a></li></ul></li><li><a href=#差分>差分</a><ul><li><a href=#一维差分>一维差分</a></li><li><a href=#二维差分>二维差分</a></li></ul></li><li><a href=#双指针算法>双指针算法</a><ul><li></li></ul></li><li><a href=#位运算>位运算</a><ul><li><a href=#常用操作>常用操作</a></li></ul></li><li><a href=#离散化>离散化</a><ul><li></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
