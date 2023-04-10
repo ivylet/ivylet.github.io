@@ -490,7 +490,7 @@ double findMedian() 返回到目前为止所有元素的中位数。与实际答
 输入：secret = "1807", guess = "7810" 输出："1A3B" 解释：数字和位置都对（公牛）用 '|' 连接，数字猜对位置不对（奶牛）的采用斜体加粗标识。 "1807" | "7810" 示例 2：
 输入：secret = "1123", guess = "0111" 输出："1A1B" 解释：数字和位置都对（公牛）用 '|' 连接，数字猜对位置不对（奶牛）的采用斜体加粗标识。 "1123" "1123" | or | "0111" "0111" 注意，两个不匹配的 1 中，只有一个会算作奶牛（数字猜对位置不对）。通过重新排列非公牛数字，其中仅有一个 1 可以成为公牛数字。 &amp;nbsp;
 提示：
-1 &amp;lt;= secret.length, guess.length &amp;lt;= 1000 secret.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0201-0400/0300-longest-increasing-subsequence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0201-0400/0300-longest-increasing-subsequence/</guid><description> 题目 # 难度：Medium
+1 &amp;lt;= secret.length, guess.length &amp;lt;= 1000 secret.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0201-0400/0300-longest-increasing-subsequence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0201-0400/0300-longest-increasing-subsequence/</guid><description>题目 # 难度：Medium
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
 子序列&amp;nbsp;是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
 &amp;nbsp; 示例 1：
@@ -500,7 +500,7 @@ double findMedian() 返回到目前为止所有元素的中位数。与实际答
 提示：
 1 &amp;lt;= nums.length &amp;lt;= 2500 -104 &amp;lt;= nums[i] &amp;lt;= 104 &amp;nbsp;
 进阶：
-你能将算法的时间复杂度降低到&amp;nbsp;O(n log(n)) 吗? 分析 # 题解 # class Solution { public: int lengthOfLIS(vector&amp;lt;int&amp;gt;&amp;amp; nums) { } };</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0201-0400/0301-remove-invalid-parentheses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0201-0400/0301-remove-invalid-parentheses/</guid><description> 题目 # 难度：Hard
+你能将算法的时间复杂度降低到&amp;nbsp;O(n log(n)) 吗? 分析 # 题解 # const int N = 2510; int f[N]; class Solution { public: int lengthOfLIS(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int len = nums.</description></item><item><title/><link>http://ivylet.github.io/docs/leetcode/0201-0400/0301-remove-invalid-parentheses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/leetcode/0201-0400/0301-remove-invalid-parentheses/</guid><description> 题目 # 难度：Hard
 给你一个由若干括号和字母组成的字符串 s ，删除最小数量的无效括号，使得输入的字符串有效。
 返回所有可能的结果。答案可以按 任意顺序 返回。
 示例 1：

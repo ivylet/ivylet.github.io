@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 题目 # 难度：Medium
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="题目 # 难度：Medium
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
 子序列&nbsp;是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
 &nbsp; 示例 1：
@@ -8,7 +8,7 @@
 提示：
 1 <= nums.length <= 2500 -104 <= nums[i] <= 104 &nbsp;
 进阶：
-你能将算法的时间复杂度降低到&nbsp;O(n log(n)) 吗? 分析 # 题解 # class Solution { public: int lengthOfLIS(vector<int>& nums) { } }; "><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content=" 题目 # 难度：Medium
+你能将算法的时间复杂度降低到&nbsp;O(n log(n)) 吗? 分析 # 题解 # const int N = 2510; int f[N]; class Solution { public: int lengthOfLIS(vector<int>& nums) { int len = nums."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="题目 # 难度：Medium
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
 子序列&nbsp;是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
 &nbsp; 示例 1：
@@ -18,8 +18,8 @@
 提示：
 1 <= nums.length <= 2500 -104 <= nums[i] <= 104 &nbsp;
 进阶：
-你能将算法的时间复杂度降低到&nbsp;O(n log(n)) 吗? 分析 # 题解 # class Solution { public: int lengthOfLIS(vector<int>& nums) { } }; "><meta property="og:type" content="article"><meta property="og:url" content="http://ivylet.github.io/docs/leetcode/0201-0400/0300-longest-increasing-subsequence/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-04-08T00:02:28+08:00"><title>0300 Longest Increasing Subsequence | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.6a968aca845aff1b0d9692fbb109682e720cfc3f841c3958cc6817624d13a510.js integrity="sha256-apaKyoRa/xsNlpL7sQloLnIM/D+EHDlYzGgXYk0TpRA=" crossorigin=anonymous></script>
+你能将算法的时间复杂度降低到&nbsp;O(n log(n)) 吗? 分析 # 题解 # const int N = 2510; int f[N]; class Solution { public: int lengthOfLIS(vector<int>& nums) { int len = nums."><meta property="og:type" content="article"><meta property="og:url" content="http://ivylet.github.io/docs/leetcode/0201-0400/0300-longest-increasing-subsequence/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-04-11T00:35:32+08:00"><title>0300 Longest Increasing Subsequence | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.e85abcb2940d75d10df5ebc615bfd5d9fd86aeb10c497223acec919be1c79022.js integrity="sha256-6Fq8spQNddEN9evGFb/V2f2GrrEMSXIjrOyRm+HHkCI=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>QBook</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
 <label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
@@ -59,12 +59,47 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 <strong>输出：</strong>1
 </pre><p>&nbsp;</p><p><strong>提示：</strong></p><ul><li><code>1 &lt;= nums.length &lt;= 2500</code></li><li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li></ul><p>&nbsp;</p><p><b>进阶：</b></p><ul><li>你能将算法的时间复杂度降低到&nbsp;<code>O(n log(n))</code> 吗?</li></ul><h2 id=分析>分析
 <a class=anchor href=#%e5%88%86%e6%9e%90>#</a></h2><h2 id=题解>题解
-<a class=anchor href=#%e9%a2%98%e8%a7%a3>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
-</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> lengthOfLIS(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums) {
+<a class=anchor href=#%e9%a2%98%e8%a7%a3>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> N <span style=color:#f92672>=</span> <span style=color:#ae81ff>2510</span>;
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> f[N];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> lengthOfLIS(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> len <span style=color:#f92672>=</span> nums.size();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; i <span style=color:#f92672>&lt;</span> len ; i <span style=color:#f92672>++</span>){
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            f[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; j <span style=color:#f92672>&lt;</span> i ; j <span style=color:#f92672>++</span>){
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span>(nums[i] <span style=color:#f92672>&gt;</span> nums[j])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                f[i] <span style=color:#f92672>=</span> max(f[i],f[j] <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> res <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; i <span style=color:#f92672>&lt;</span> len ; i<span style=color:#f92672>++</span>){
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            res <span style=color:#f92672>=</span> max(res,f[i]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> res;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>};
-</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/2fb75e2bfabbe16163db23e70130baadd9345371 title='最后修改者 saytaytay | April 7, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>April 7, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/edit/main/exampleSite/content/docs/leetcode/0201-0400/0300-longest-increasing-subsequence.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/062bca83d54b97bef3057e97aa189990a44d8ed8 title='最后修改者 saytaytay | April 10, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 10, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/edit/main/exampleSite/content/docs/leetcode/0201-0400/0300-longest-increasing-subsequence.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span></a></div><footer id=footer><div class=container>&copy; 2023, By ivylet</a>。</div></footer></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#题目>题目</a></li><li><a href=#分析>分析</a></li><li><a href=#题解>题解</a></li></ul></li></ul></nav></div></aside></main></body></html>
