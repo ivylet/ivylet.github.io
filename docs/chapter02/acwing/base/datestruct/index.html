@@ -1,7 +1,7 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="链表 # 拿数组模拟链表,其实也就是静态链表. 静态链表的优点是快,但是缺点是必须要提前分配足够空间,并且可能会出现假满状态,即idx到最后但是前边还有很多未使用的节点,
 单链表 # #include<iostream> using namespace std; const int N = 100010; int e[N]; int ne[N]; int idx,head; void init(){ head = -1; idx = 0; } void add_to_head(int x){ e[idx] = x; ne[idx] = head; head = idx++; } //插入到下标为k的后面 void add(int k,int x){ e[idx] = x; ne[idx] = ne[k]; ne[k] = idx ++; } void del(int k){ if(k == -1) head = ne[head]; else ne[k] = ne[ne[k]]; } int main(){ int m; cin >> m; init(); while(m--){ char opt; cin >> opt; if(opt == 'H'){ int x; cin >> x; add_to_head(x); }else if(opt == 'D'){ int k; cin >> k; del(k-1); }else{ int k,x; cin >> k >>x; add(k - 1,x); } } int index = head; while(index !"><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="数据结构"><meta property="og:description" content="链表 # 拿数组模拟链表,其实也就是静态链表. 静态链表的优点是快,但是缺点是必须要提前分配足够空间,并且可能会出现假满状态,即idx到最后但是前边还有很多未使用的节点,
-单链表 # #include<iostream> using namespace std; const int N = 100010; int e[N]; int ne[N]; int idx,head; void init(){ head = -1; idx = 0; } void add_to_head(int x){ e[idx] = x; ne[idx] = head; head = idx++; } //插入到下标为k的后面 void add(int k,int x){ e[idx] = x; ne[idx] = ne[k]; ne[k] = idx ++; } void del(int k){ if(k == -1) head = ne[head]; else ne[k] = ne[ne[k]]; } int main(){ int m; cin >> m; init(); while(m--){ char opt; cin >> opt; if(opt == 'H'){ int x; cin >> x; add_to_head(x); }else if(opt == 'D'){ int k; cin >> k; del(k-1); }else{ int k,x; cin >> k >>x; add(k - 1,x); } } int index = head; while(index !"><meta property="og:type" content="article"><meta property="og:url" content="http://ivylet.github.io/docs/chapter02/acwing/base/datestruct/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-04-20T00:28:18+08:00"><title>数据结构 | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.4442351dcc5ce0e54e65e9b2b427af1175cebffef6f54a94f64c7a68ec081a8e.js integrity="sha256-REI1Hcxc4OVOZemytCevEXXOv/729UqU9kx6aOwIGo4=" crossorigin=anonymous></script>
+单链表 # #include<iostream> using namespace std; const int N = 100010; int e[N]; int ne[N]; int idx,head; void init(){ head = -1; idx = 0; } void add_to_head(int x){ e[idx] = x; ne[idx] = head; head = idx++; } //插入到下标为k的后面 void add(int k,int x){ e[idx] = x; ne[idx] = ne[k]; ne[k] = idx ++; } void del(int k){ if(k == -1) head = ne[head]; else ne[k] = ne[ne[k]]; } int main(){ int m; cin >> m; init(); while(m--){ char opt; cin >> opt; if(opt == 'H'){ int x; cin >> x; add_to_head(x); }else if(opt == 'D'){ int k; cin >> k; del(k-1); }else{ int k,x; cin >> k >>x; add(k - 1,x); } } int index = head; while(index !"><meta property="og:type" content="article"><meta property="og:url" content="http://ivylet.github.io/docs/chapter02/acwing/base/datestruct/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-04-21T10:05:51+08:00"><title>数据结构 | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.a794b37161410c48b35fb5084c271eb112156f09cdfcc1d792f5c33ea293ea34.js integrity="sha256-p5SzcWFBDEizX7UITCcesRIVbwnN/MHXkvXDPqKT6jQ=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>QBook</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
 <label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
@@ -464,8 +464,107 @@ Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li><
 </span></span></code></pre></div><h2 id=哈希表>哈希表
 <a class=anchor href=#%e5%93%88%e5%b8%8c%e8%a1%a8>#</a></h2><h3 id=哈希表存储结构>哈希表存储结构
 <a class=anchor href=#%e5%93%88%e5%b8%8c%e8%a1%a8%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84>#</a></h3><p>将一个集合中的数通过一个函数映射到另外一个集合中。例如离散化中，将大范围中的数据映射到小范围的区间上，这是一种哈希映射，但这种映射需要保存前后顺序，属于特殊的哈希映射。哈希表一般指比较一般情况下的映射。<br>但是哈希映射函数可能会出现哈希冲突的情况，比如有一个数据范围为<code>0~1e9</code>的数组，映射到<code>0~1e5</code>范围内，使用的映射函数为<code>h(x) = x MOD 1e5</code>，这种情况可能会出现某两个数经过哈希映射函数计算的哈希值相同，就发生了冲突。这就是所谓的哈希冲突，解决哈希冲突一般有两种方法：开放寻址法和拉链法。</p><h4 id=开放寻址法>开放寻址法
-<a class=anchor href=#%e5%bc%80%e6%94%be%e5%af%bb%e5%9d%80%e6%b3%95>#</a></h4><h4 id=拉链法>拉链法
-<a class=anchor href=#%e6%8b%89%e9%93%be%e6%b3%95>#</a></h4><h3 id=字符串哈希>字符串哈希
-<a class=anchor href=#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%93%88%e5%b8%8c>#</a></h3></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/29a10bd2f16f7fc908dc42113052d0bc571425ba title='最后修改者 saytaytay | April 19, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>April 19, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/edit/main/exampleSite/content/docs/chapter02/acwing/base/datestruct.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<a class=anchor href=#%e5%bc%80%e6%94%be%e5%af%bb%e5%9d%80%e6%b3%95>#</a></h4><p>所谓开放寻址，就是某个点如果发生哈希冲突，就在这个点哈希值加一位置插入数据，如果这个点还有数，就继续往后加，直到为空。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstring&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//一般取质数情况下，发生哈希冲突的概率较低。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//开放寻址法 一般要数组开大一点.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//因为h[N]存的是哈希值为N的值是多少
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> N <span style=color:#f92672>=</span> <span style=color:#ae81ff>200003</span>,null <span style=color:#f92672>=</span> <span style=color:#ae81ff>0x3f3f3f3f</span>;
+</span></span><span style=display:flex><span><span style=color:#75715e>//按位寻址法
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> h[N];
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>find</span>(<span style=color:#66d9ef>int</span> x)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>   <span style=color:#75715e>//负数模后是负数，所以加N
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> (x <span style=color:#f92672>%</span> N <span style=color:#f92672>+</span> N) <span style=color:#f92672>%</span> N;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span>(h[k] <span style=color:#f92672>!=</span> null <span style=color:#f92672>&amp;&amp;</span> h[k] <span style=color:#f92672>!=</span> x){
+</span></span><span style=display:flex><span>        k<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//找到头还没找到 就从0开始
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>//一般不会出现找不到的情况，有的话就把数组开大
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span>(k <span style=color:#f92672>==</span> N) k <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> k;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> n;
+</span></span><span style=display:flex><span>    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>,<span style=color:#f92672>&amp;</span>n);
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//初始化全部为null 以便标记该位置没存过数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    memset (h, null , <span style=color:#66d9ef>sizeof</span> h);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span>(n <span style=color:#f92672>--</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>char</span> opt[<span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> x;
+</span></span><span style=display:flex><span>        scanf(<span style=color:#e6db74>&#34;%s%d&#34;</span>,opt,<span style=color:#f92672>&amp;</span>x);
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//先找到位置，如果是没有的话就返回null。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>//插入就是把null赋值为x
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>//查找的话 是null就是没找到
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> find(x);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>*</span>opt <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;I&#39;</span>) h[k] <span style=color:#f92672>=</span> x;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span>(h[k] <span style=color:#f92672>!=</span> null) puts(<span style=color:#e6db74>&#34;Yes&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span> puts(<span style=color:#e6db74>&#34;No&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h4 id=拉链法>拉链法
+<a class=anchor href=#%e6%8b%89%e9%93%be%e6%b3%95>#</a></h4><p>所谓拉链法，就是某个点如果发生哈希冲突，就在这个点上建立一个链表，然后把数加到链表上。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstring&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//一般取质数情况下，发生哈希冲突的概率较低。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> N <span style=color:#f92672>=</span> <span style=color:#ae81ff>100003</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 拉链法
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//定义链表，e[idx]存序号为idx的数值，ne[idx]存序号为idx的下一项;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// h[k]存哈希值为k的第一个数的idx序号
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> h[N],e[N],ne[N],idx;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>insert</span>(<span style=color:#66d9ef>int</span> x)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//负数模后是负数，所以加N
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> (x <span style=color:#f92672>%</span> N <span style=color:#f92672>+</span> N) <span style=color:#f92672>%</span> N;
+</span></span><span style=display:flex><span>    e[idx] <span style=color:#f92672>=</span> x;
+</span></span><span style=display:flex><span>    ne[idx] <span style=color:#f92672>=</span> h[k];
+</span></span><span style=display:flex><span>    h[k] <span style=color:#f92672>=</span> idx <span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>find</span>(<span style=color:#66d9ef>int</span> x)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> (x <span style=color:#f92672>%</span> N <span style=color:#f92672>+</span> N) <span style=color:#f92672>%</span> N;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> h[k]; i <span style=color:#f92672>!=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> ; i <span style=color:#f92672>=</span> ne[i])
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>(e[i] <span style=color:#f92672>==</span> x) <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> n;
+</span></span><span style=display:flex><span>    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>,<span style=color:#f92672>&amp;</span>n);
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//初始化全部为-1 以便标记为空
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    memset (h, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> , <span style=color:#66d9ef>sizeof</span> h);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span>(n <span style=color:#f92672>--</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>char</span> opt[<span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> x;
+</span></span><span style=display:flex><span>        scanf(<span style=color:#e6db74>&#34;%s%d&#34;</span>,opt,<span style=color:#f92672>&amp;</span>x);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>*</span>opt <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;I&#39;</span>) insert(x);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span>(find(x)) puts(<span style=color:#e6db74>&#34;Yes&#34;</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span> puts(<span style=color:#e6db74>&#34;No&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=字符串哈希>字符串哈希
+<a class=anchor href=#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%93%88%e5%b8%8c>#</a></h3><p>将字符串转换为一串数字然后计算哈希值存入哈希表，如<code>abcde</code>中每个字母对应的ASCII码中的编号按顺序为<code>1 2 3 4 5</code>（计算方法为<code>'a' - 'a' + 1</code>，<code>'b' - 'a' + 1</code>，<code>'c' - 'a' + 1</code>等）那么可以将这段数字转换为<code>P</code>进制数，这样就可以区分不同字符串对应的哈希值。但是如果字符串位数比较多，会出现哈希值溢出的情况，那么就需要取模<code>Q</code>运算！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>//一般情况下
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>P <span style=color:#f92672>=</span> <span style=color:#ae81ff>131</span>;<span style=color:#75715e>//P = 131;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Q <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#ae81ff>64</span>;
+</span></span></code></pre></div><p>也可以利用这个算法实现前缀哈希，即某个字符串前<code>i</code>位的哈希值。然后我们就可以通过这个数组计算某个子串的哈希值。</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/b6b6dfbd3917c8b09f67895d47abf80e611e913a title='最后修改者 saytaytay | April 21, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 21, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/edit/main/exampleSite/content/docs/chapter02/acwing/base/datestruct.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span></a></div><footer id=footer><div class=container>&copy; 2023, By ivylet</a>。</div></footer></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#链表>链表</a><ul><li></li></ul></li><li><a href=#栈和队列>栈和队列</a><ul><li><a href=#模拟栈>模拟栈</a></li><li><a href=#模拟队列>模拟队列</a></li></ul></li><li><a href=#单调栈与单调队列>单调栈与单调队列</a><ul><li><a href=#单调栈>单调栈</a></li><li><a href=#单调队列>单调队列</a></li></ul></li><li><a href=#kmp>KMP</a></li><li><a href=#trie树字典树>Trie树(字典树)</a><ul><li></li></ul></li><li><a href=#并查集>并查集</a><ul><li></li></ul></li><li><a href=#哈希表>哈希表</a><ul><li><a href=#哈希表存储结构>哈希表存储结构</a></li><li><a href=#字符串哈希>字符串哈希</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
