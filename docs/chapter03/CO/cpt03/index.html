@@ -1,0 +1,106 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="存储器的层次结构 # 寄存器 Cache(高速缓冲存储器) 主存(内存) 磁盘(辅存) 磁带、光盘。 主存-辅存：实现了虚拟存储系统，结果主存容量不够的问题。辅存与主存内容交换一般是由硬件和操作系统完成，涉及到操作系统中的页面置换算法。 Cache-主存：解决了主存与CPU速度不匹配的问题。是由硬件自动完成的。 辅存的数据必须调入主存后才能被CPU访问。 频繁被访问的数据可以复制一份到Cache中，更方便CPU读取。 CPU进行一些加减运算时，操作数就存在寄存器，寄存器访问更快，但是其价格贵，数量更少。 存储器的分类 # 按层次分类 # 高速缓存 主存储器 辅助存储器 按存储介质分类 # 半导体存储器：主存、Cache 磁表面存储器：磁盘、磁带 光存储器：光盘
+按存取方式分类 # 随机存取存储器（Random Acess Memory）： 读写任何一个存储单元所需时间都一样，与物理位置无关。 顺序存取存储器（Sequential Acess Memory）： 读写每一个存储单元所需的时间取决于存储单元所在的物理位置。 直接存取存储器（Direct Acess Memory）： 既有随机读取的特性，又有顺序读取的特性，先随机选取目标数据扇区，再顺序方式读取数据。 顺序存取和直接读取都是串行访问存储器，读写某个存储单元所需时间与存储器单元的物理位置有关。 相联存储器（Associative Memory）： 即可以按内容访问的存储器，也可以按照内容检索到存储位置进行读写，“快表”就是一种。 按信息的更改性分类 # 读写存取器：可读可写（磁盘，内存，Cache等） 只读存储器（Read Only Memory）：只能读，不能写。（BIOS写到ROM上，实体音乐专辑存储到CD-ROM上）
+按信息的可保存性分类 # 易失性存储器：断电后存储信息消失，（Cache、主存） 非易失性存储器：断电后存储信息依旧保存，（磁盘、光盘） 破坏性读出：信息读出后，原存储信息被破坏。（DRAM芯片，读出数据后要进行重写） 非破坏性读出：信息读出后，原存储信息不被破坏。（SRAM、磁盘、光盘）
+存储器的性能指标 # 存储容量：存储字数 * 字长（如1M*8位) MDR位数反映存储字长，MAR位数反映存储字数。 单位成本：每位(bit)价格 = 总成本 / 总容量 存储速度：数据传输率=数据的宽度/存储周期。 数据宽度位存储字长。 存储周期包括存取时间和恢复时间。 存取时间是从一次启动存储器操作到完成该操作所经历的时间，分为读出时间和写入时间。 存储周期也被称为读写周期或访问周期。指存储器进行一次完整的读写操作所需的全部时间，即连续两次独立地访问存储器操作之间所需的最小时间间隔。"><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="存储系统"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="http://ivylet.github.io/docs/chapter03/CO/cpt03/"><title>存储系统 | QBook</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.4b35fed0bea034bbc19c89c71e14b73fb9c68cfcc586b9382adfb9b7b103ba06.css integrity="sha256-SzX+0L6gNLvBnInHHhS3P7nGjPzFhrk4Kt+5t7EDugY=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.1dcb420d64f7e70f71ec0b0b8e64d90d36275301ef7c1f2f19e5c27114eae536.js integrity="sha256-HctCDWT35w9x7AsLjmTZDTYnUwHvfB8vGeXCcRTq5TY=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=http://ivylet.github.io/docs/chapter03/CO/cpt03/index.xml title=QBook></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>QBook</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+Chinese</a></label><ul><li><a href=http://ivylet.github.io/en/>English</a></li></ul></li></ul><ul><li><input type=checkbox id=section-903d3e7635db560eef69c6ad03432b92 class=toggle>
+<label for=section-903d3e7635db560eef69c6ad03432b92 class="flex justify-between"><a role=button>第一章|基本语法储备</a></label><ul><li><a href=/docs/chapter01/cpp-stl-argo/>STL中常用算法</a></li><li><a href=/docs/chapter01/datastru/>常用算法储备知识</a></li><li><a href=/docs/chapter01/cpp-stl-intro/>C++ STL</a></li><li><a href=/docs/chapter01/argo-datastru/>算法竞赛常用STL</a></li></ul></li><li><input type=checkbox id=section-144f7b511d4fbbff231a670ff00b5f9e class=toggle>
+<label for=section-144f7b511d4fbbff231a670ff00b5f9e class="flex justify-between"><a role=button>第二章|基础算法</a></label><ul><li><input type=checkbox id=section-9db364c0dccf0502e8049e61bd8b0d86 class=toggle>
+<label for=section-9db364c0dccf0502e8049e61bd8b0d86 class="flex justify-between"><a role=button>Acwing</a></label><ul><li><input type=checkbox id=section-96943a9cc0137d53acdca869bdf27124 class=toggle>
+<label for=section-96943a9cc0137d53acdca869bdf27124 class="flex justify-between"><a role=button>Base</a></label><ul><li><a href=/docs/chapter02/acwing/base/base-1/>基础算法一</a></li><li><a href=/docs/chapter02/acwing/base/datestruct/>数据结构</a></li><li><a href=/docs/chapter02/acwing/base/search_and_graph/>搜索与图论</a></li><li><a href=/docs/chapter02/acwing/base/greedy/>贪心</a></li></ul></li><li><input type=checkbox id=section-88eae5c1d766baf874d32d1908707564 class=toggle>
+<label for=section-88eae5c1d766baf874d32d1908707564 class="flex justify-between"><a role=button>Dp</a></label><ul><li><a href=/docs/chapter02/acwing/DP/DP/>DP</a></li><li><a href=/docs/chapter02/acwing/DP/package/>背包问题</a></li></ul></li><li><input type=checkbox id=section-a50d07f316054aeee9419b25ddf950a0 class=toggle>
+<label for=section-a50d07f316054aeee9419b25ddf950a0 class="flex justify-between"><a role=button>Math</a></label><ul><li><a href=/docs/chapter02/acwing/math/others/>其他</a></li><li><a href=/docs/chapter02/acwing/math/shulun/>数论</a></li></ul></li></ul></li></ul></li><li><input type=checkbox id=section-fca257306a653a028d58c47b763ab4c5 class=toggle checked>
+<label for=section-fca257306a653a028d58c47b763ab4c5 class="flex justify-between"><a role=button>408|内容</a></label><ul><li><input type=checkbox id=section-c6a658a9eab81ef20c403bdfcfbb322f class=toggle>
+<label for=section-c6a658a9eab81ef20c403bdfcfbb322f class="flex justify-between"><a role=button>数据结构</a></label><ul><li><a href=/docs/chapter03/DS/cpter08/>排序算法</a><ul></ul></li></ul></li><li><input type=checkbox id=section-40effe6a2504b41caa4ca2922e36dd2a class=toggle checked>
+<label for=section-40effe6a2504b41caa4ca2922e36dd2a class="flex justify-between"><a role=button>计算机组成原理</a></label><ul><li><a href=/docs/chapter03/CO/cpt02/>第二章|数据的表示与运算</a><ul></ul></li><li><a href=/docs/chapter03/CO/cpt03/ class=active>存储系统</a><ul></ul></li></ul></li><li><input type=checkbox id=section-25823a2461316869125b231cfddbbdc4 class=toggle>
+<label for=section-25823a2461316869125b231cfddbbdc4 class="flex justify-between"><a role=button>机器学习</a></label><ul><li><a href=/docs/chapter03/machine-learning/tools/>常用工具</a></li><li><a href=/docs/chapter03/machine-learning/LinerRegression/>线性回归</a><ul></ul></li></ul></li></ul></li><li><input type=checkbox id=section-f9b7daea96f44f74565c58211968d9f8 class=toggle>
+<label for=section-f9b7daea96f44f74565c58211968d9f8 class="flex justify-between"><a href=/docs/chapter05/>其他</a></label><ul><li><a href=/docs/chapter05/%E5%AF%BB%E6%89%BE%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E5%BF%83%E7%B4%A2%E5%BC%95/>寻找数组的中心索引</a></li><li><a href=/docs/chapter05/%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/>搜索插入位置</a></li><li><a href=/docs/chapter05/part1/>第一章</a></li></ul></li></ul><ul><li><a href=https://github.com/ivylet target=_blank rel=noopener>Github</a></li><li><a href=https://leetcode.cn/ target=_blank rel=noopener>Leetcode</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>存储系统</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#存储器的层次结构>存储器的层次结构</a></li><li><a href=#存储器的分类>存储器的分类</a></li><li><a href=#存储器的性能指标>存储器的性能指标</a></li></ul></li><li><a href=#主存储器的基本组成>主存储器的基本组成</a><ul><li><a href=#基本半导体元件>基本半导体元件</a></li><li><a href=#存储芯片的结构>存储芯片的结构</a></li><li><a href=#寻址>寻址</a></li></ul></li><li><a href=#sram与dram>SRAM与DRAM</a><ul><li><a href=#存储元件不同而导致的特性差异>存储元件不同而导致的特性差异</a></li><li><a href=#dram的刷新>DRAM的刷新</a></li><li><a href=#dram的地址线复用技术>DRAM的地址线复用技术</a></li><li><a href=#单块存储芯片与cpu的链接>单块存储芯片与CPU的链接</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h3 id=存储器的层次结构>存储器的层次结构
+<a class=anchor href=#%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e5%b1%82%e6%ac%a1%e7%bb%93%e6%9e%84>#</a></h3><p>寄存器 Cache(高速缓冲存储器) 主存(内存) 磁盘(辅存) 磁带、光盘。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121558197.png alt=image.png>
+主存-辅存：实现了虚拟存储系统，结果主存容量不够的问题。辅存与主存内容交换一般是由硬件和操作系统完成，涉及到操作系统中的页面置换算法。
+Cache-主存：解决了主存与CPU速度不匹配的问题。是由硬件自动完成的。
+辅存的数据必须调入主存后才能被CPU访问。
+频繁被访问的数据可以复制一份到Cache中，更方便CPU读取。
+CPU进行一些加减运算时，操作数就存在寄存器，寄存器访问更快，但是其价格贵，数量更少。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121558271.png alt=image.png></p><h3 id=存储器的分类>存储器的分类
+<a class=anchor href=#%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e5%88%86%e7%b1%bb>#</a></h3><h4 id=按层次分类>按层次分类
+<a class=anchor href=#%e6%8c%89%e5%b1%82%e6%ac%a1%e5%88%86%e7%b1%bb>#</a></h4><p>高速缓存
+主存储器
+辅助存储器
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121607679.png alt=image.png></p><h4 id=按存储介质分类>按存储介质分类
+<a class=anchor href=#%e6%8c%89%e5%ad%98%e5%82%a8%e4%bb%8b%e8%b4%a8%e5%88%86%e7%b1%bb>#</a></h4><p>半导体存储器：主存、Cache
+磁表面存储器：磁盘、磁带
+光存储器：光盘</p><h4 id=按存取方式分类>按存取方式分类
+<a class=anchor href=#%e6%8c%89%e5%ad%98%e5%8f%96%e6%96%b9%e5%bc%8f%e5%88%86%e7%b1%bb>#</a></h4><ul><li>随机存取存储器（Random Acess Memory）：
+读写任何一个存储单元所需时间都一样，与物理位置无关。</li><li>顺序存取存储器（Sequential Acess Memory）：
+读写每一个存储单元所需的时间取决于存储单元所在的物理位置。</li><li>直接存取存储器（Direct Acess Memory）：
+既有随机读取的特性，又有顺序读取的特性，先随机选取目标数据扇区，再顺序方式读取数据。
+顺序存取和直接读取都是串行访问存储器，读写某个存储单元所需时间与存储器单元的物理位置有关。</li><li>相联存储器（Associative Memory）：
+即可以按内容访问的存储器，也可以按照内容检索到存储位置进行读写，“快表”就是一种。</li></ul><h4 id=按信息的更改性分类>按信息的更改性分类
+<a class=anchor href=#%e6%8c%89%e4%bf%a1%e6%81%af%e7%9a%84%e6%9b%b4%e6%94%b9%e6%80%a7%e5%88%86%e7%b1%bb>#</a></h4><p>读写存取器：可读可写（磁盘，内存，Cache等）
+只读存储器（Read Only Memory）：只能读，不能写。（BIOS写到ROM上，实体音乐专辑存储到CD-ROM上）</p><h4 id=按信息的可保存性分类>按信息的可保存性分类
+<a class=anchor href=#%e6%8c%89%e4%bf%a1%e6%81%af%e7%9a%84%e5%8f%af%e4%bf%9d%e5%ad%98%e6%80%a7%e5%88%86%e7%b1%bb>#</a></h4><p>易失性存储器：断电后存储信息消失，（Cache、主存）
+非易失性存储器：断电后存储信息依旧保存，（磁盘、光盘）
+破坏性读出：信息读出后，原存储信息被破坏。（DRAM芯片，读出数据后要进行重写）
+非破坏性读出：信息读出后，原存储信息不被破坏。（SRAM、磁盘、光盘）</p><h3 id=存储器的性能指标>存储器的性能指标
+<a class=anchor href=#%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87>#</a></h3><p>存储容量：存储字数 * 字长（如1M*8位)
+MDR位数反映存储字长，MAR位数反映存储字数。
+单位成本：每位(bit)价格 = 总成本 / 总容量
+存储速度：数据传输率=数据的宽度/存储周期。
+数据宽度位存储字长。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121635855.png alt=image.png></p><p>存储周期包括存取时间和恢复时间。
+存取时间是从一次启动存储器操作到完成该操作所经历的时间，分为读出时间和写入时间。
+存储周期也被称为读写周期或访问周期。指存储器进行一次完整的读写操作所需的全部时间，即连续两次独立地访问存储器操作之间所需的最小时间间隔。</p><p>主存带宽又称为数据传输率。表示每秒从主存进出信息的最大数量。单位为字、字节Byte、位bit 每秒。</p><h2 id=主存储器的基本组成>主存储器的基本组成
+<a class=anchor href=#%e4%b8%bb%e5%ad%98%e5%82%a8%e5%99%a8%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e6%88%90>#</a></h2><h3 id=基本半导体元件>基本半导体元件
+<a class=anchor href=#%e5%9f%ba%e6%9c%ac%e5%8d%8a%e5%af%bc%e4%bd%93%e5%85%83%e4%bb%b6>#</a></h3><p>MOS管：施加的电压达到某个阈值，MOS管就可以连通。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121641169.png alt=image.png>
+MOS管接通后，电容与外部导线连接。
+电容如果存储的电荷在放电后电荷流出，外部导线监测到高电平即信号1，若电容不存储电荷，则外部导线监测到低电平即信号0。</p><h3 id=存储芯片的结构>存储芯片的结构
+<a class=anchor href=#%e5%ad%98%e5%82%a8%e8%8a%af%e7%89%87%e7%9a%84%e7%bb%93%e6%9e%84>#</a></h3><p><img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121645513.png alt=image.png>
+存储字长与每个存储体设计有关。
+与CPU相连的地址总线连通MAR，然后通过译码器连接存储的单元的字选线来选择。字选线
+与CPU与相连的数据总线宽度未存储字长，即图中绿线。位选线。
+存储体总容量为 存储单元个数 * 存储字长。
+控制电路
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121655339.png alt=image.png></p><p>片选线：一个内存条可能包含多个存储芯片，用片选线来判断选择的存储芯片编号。
+读写控制线：可能为两根，一根控制写，一根控制读，或只用一根。向外暴露的引脚个数。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121656037.png alt=image.png>
+上图中每个线都会对应一个金属引脚。
+n位地址 对应 2<sup>n</sup>的存储单元。
+8K * 8位 即2<sup>13</sup> * 8bit容量，地址线有13位，数据线有8位。</p><h3 id=寻址>寻址
+<a class=anchor href=#%e5%af%bb%e5%9d%80>#</a></h3><p>现代计算机通常按字节编址，即每个字节对应一个地址。
+对于总容量为1KB的存储体。地址线为10条，数据线为8条</p><ul><li>按字节寻址，1K个单元，每个单元存储1B的二进制数据。</li><li>按字寻址，将四个连续的字节合并为一个字，一次读取一个字，即256个单元，每个单元4B，字节地址算数左移两位转换为按字寻址的地址。</li><li>按半字寻址，将连续的两个字节合并为一个字。总共512个单元，每个单元存储2B的二进制数据。</li><li>按双字寻址，将连续的八个字节合并为一个字。总共128个单元，每个单元存储8B的二进制数据。</li></ul><h2 id=sram与dram>SRAM与DRAM
+<a class=anchor href=#sram%e4%b8%8edram>#</a></h2><p>静态RAM与动态RAM
+DRAM用于主存，SRAM用于Cache</p><h3 id=存储元件不同而导致的特性差异>存储元件不同而导致的特性差异
+<a class=anchor href=#%e5%ad%98%e5%82%a8%e5%85%83%e4%bb%b6%e4%b8%8d%e5%90%8c%e8%80%8c%e5%af%bc%e8%87%b4%e7%9a%84%e7%89%b9%e6%80%a7%e5%b7%ae%e5%bc%82>#</a></h3><h5 id=栅极电容>栅极电容
+<a class=anchor href=#%e6%a0%85%e6%9e%81%e7%94%b5%e5%ae%b9>#</a></h5><p><img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121734757.png alt=image.png>
+电容放电后，信息会被破坏，是破坏性读出，读出后应该对数据重写。
+每个存储元制造成本低，集成度高，功耗低。
+电容中的电荷信息即使不读取也会丢失，一般只能维持2ms，所以需要频繁对电容进行刷新。</p><h5 id=双稳态触发器>双稳态触发器
+<a class=anchor href=#%e5%8f%8c%e7%a8%b3%e6%80%81%e8%a7%a6%e5%8f%91%e5%99%a8>#</a></h5><p><img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121735704.png alt=image.png>
+有两种稳定的状态：
+1：A高电平，B低电平。
+0：A低电平，B高电平。
+读出数据后，触发器状态依旧稳定，读数据为非破坏性读出，无需重写。
+每个存储元制造成本高，器件多，集成度低，功耗高。</p><h5 id=两种器件的特性对比>两种器件的特性对比：
+<a class=anchor href=#%e4%b8%a4%e7%a7%8d%e5%99%a8%e4%bb%b6%e7%9a%84%e7%89%b9%e6%80%a7%e5%af%b9%e6%af%94>#</a></h5><p><img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121740416.png alt=image.png>
+两种断电之后信息都会消失，都是易失性读出。</p><h3 id=dram的刷新>DRAM的刷新
+<a class=anchor href=#dram%e7%9a%84%e5%88%b7%e6%96%b0>#</a></h3><p>多久需要刷新一次？
+刷新周期一般为2ms，
+每次刷新多少存储单元？
+以行为单位，每次刷新一行存储单元。简单模型为存储单元按号排序，20位地址线就排0到2<sup>20</sup> - 1号存储单元，译码器出线非常多。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121758329.png alt=image.png>
+如果用行列地址来定址，那么只需要一个行地址译码器和一个列地址译码器，每个译码器只需要确定0到1023号，相比来说减少了很多。
+<img src=https://cdn.staticaly.com/gh/ivylet/blog_picg-@master/img/202306121759394.png alt=image.png></p><h3 id=dram的地址线复用技术>DRAM的地址线复用技术
+<a class=anchor href=#dram%e7%9a%84%e5%9c%b0%e5%9d%80%e7%ba%bf%e5%a4%8d%e7%94%a8%e6%8a%80%e6%9c%af>#</a></h3><h3 id=单块存储芯片与cpu的链接>单块存储芯片与CPU的链接
+<a class=anchor href=#%e5%8d%95%e5%9d%97%e5%ad%98%e5%82%a8%e8%8a%af%e7%89%87%e4%b8%8ecpu%e7%9a%84%e9%93%be%e6%8e%a5>#</a></h3><h4 id=字扩展>字扩展
+<a class=anchor href=#%e5%ad%97%e6%89%a9%e5%b1%95>#</a></h4><p>扩展主存字数</p><h4 id=位扩展>位扩展
+<a class=anchor href=#%e4%bd%8d%e6%89%a9%e5%b1%95>#</a></h4><p>数据总线宽度大于存储芯片</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/commit/3de00497b1d0385c9ea8469d8b8483d2b6ee1d42 title='最后修改者 saytaytay | June 12, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>June 12, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/ivylet/book-shelf/edit/main/exampleSite/content/docs/chapter03/CO/cpt03/_index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span></a></div><footer id=footer><div class=container>&copy; 2023, By ivylet</a>。</div></footer></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#存储器的层次结构>存储器的层次结构</a></li><li><a href=#存储器的分类>存储器的分类</a></li><li><a href=#存储器的性能指标>存储器的性能指标</a></li></ul></li><li><a href=#主存储器的基本组成>主存储器的基本组成</a><ul><li><a href=#基本半导体元件>基本半导体元件</a></li><li><a href=#存储芯片的结构>存储芯片的结构</a></li><li><a href=#寻址>寻址</a></li></ul></li><li><a href=#sram与dram>SRAM与DRAM</a><ul><li><a href=#存储元件不同而导致的特性差异>存储元件不同而导致的特性差异</a></li><li><a href=#dram的刷新>DRAM的刷新</a></li><li><a href=#dram的地址线复用技术>DRAM的地址线复用技术</a></li><li><a href=#单块存储芯片与cpu的链接>单块存储芯片与CPU的链接</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
