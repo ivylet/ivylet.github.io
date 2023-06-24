@@ -8,7 +8,29 @@ v.begin()为开始，v.end()为结束，comp为自定义判断函数。
 0&amp;amp;0=0 0&amp;amp;1=0 1&amp;amp;0=0 1&amp;amp;1=1 //两位同时为1，结果才为1，否则结果为0。 例如：5&amp;amp;7 即 0000 0101&amp;amp; 0000 0111 = 0000 0101，因此 5&amp;amp;7 的值为5。
 注意：负数按补码形式参加按位与运算。
 与运算的用途：
-清零 如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。 取一个数的指定位 比如取数 X=1011 1001 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;amp;Y=0000 1001）即可得到X的指定位。 判断奇偶 二进制的奇偶数只需要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp;amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。 按位或运算符（|） # 定义：参加运算的两个对象，按二进制位进行&amp;quot;或&amp;quot;运算。</description></item><item><title>C++ STL</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</link><pubDate>Thu, 10 Nov 2022 11:18:29 +0800</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</guid><description>什么是C++标准模板库（STL）？ # 标准模板库 STL（Standard Template Library），是 C++ 标准库的一部分，不需要单独安装，只需要#include 头文件。
+清零 如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。 取一个数的指定位 比如取数 X=1011 1001 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;amp;Y=0000 1001）即可得到X的指定位。 判断奇偶 二进制的奇偶数只需要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp;amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。 按位或运算符（|） # 定义：参加运算的两个对象，按二进制位进行&amp;quot;或&amp;quot;运算。</description></item><item><title>暂且第一记</title><link>http://ivylet.github.io/docs/notes/thinknote/00001/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/notes/thinknote/00001/</guid><description>不是为了个文凭吧，还是要自己想要去做什么东西？
+不要焦虑
+进一步学习 当前国内计算机现状，
+如何成神？ 做大佬 所谓大佬 都是努力
+知道努力很重要的人，并为之努力的人。
+超越别人努力就行了。
+焦虑来源：看错书，走弯路。我要学习，考研是顺带的东西。 拖延症，今天事情今天做完。
+专注，有事情 就只考研。
+考研没时间玩
+化压力为动力
+成神
+别想着抄底！
+别估分洗脑自己
+说自己考70 70 130 130 想着想着以为自己真能考那么多？
+复试焦虑？初试过了担心？ 初试有信心能过，复试为什么不能？
+找研友，适当玩一小会，放空大脑 出去逛逛，有个兴趣爱好，
+如何高效学习 正确的心态 瞄准目标使劲打 终身学习 培养自己 平复自己 任务拆解能力 整体任务 暑期任务 周报 日报 月报 时间管理能力 合理的学习计划 有学习梯度， 定一下计划吧，比如高数强化，是不是赶得有点紧了， 这也是一门学问。 做完之后能给自己带来多少收益。 学习技巧 给别人讲解 模拟考对自己狠一点 模拟考就是要严格考自己。该扣分就扣， 复习范围大于考试范围 自拍复习法 外接的支持 后期重要 前期准备好，后期才不慌。 对自己狠点
+引用西游记中： 如果三心二意 就去看西游记。
+得之泰然，
+失之淡然，
+争其必然，
+顺其自然。
+费曼学习法 我有学习动力，掌握方法工具。 及时输出。总结也是一种学习，备周！</description></item><item><title>C++ STL</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</link><pubDate>Thu, 10 Nov 2022 11:18:29 +0800</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</guid><description>什么是C++标准模板库（STL）？ # 标准模板库 STL（Standard Template Library），是 C++ 标准库的一部分，不需要单独安装，只需要#include 头文件。
 C++ 对模板（Template）支持得很好，STL 就是借助模板把常用的数据结构及其算法都实现了一遍，并且做到了数据结构和算法的分离。
 C++ 语言的核心优势之一就是便于软件的复用。
 C++ 语言有两个方面体现了复用：
@@ -38,26 +60,4 @@ bool is_prime(int n){ if(n &amp;lt; 2) return false; for(int i = 2; i &amp;lt;= 
 #include&amp;lt;iostream&amp;gt; using namespace std; const int N = 210,INF = 1e9; int dic[N][N]; int n,m,Q; void floyd(){ for(int k = 1 ; k &amp;lt;=n ; k++) for(int i = 1 ; i &amp;lt;= n ;i ++) for(int j = 1 ; j &amp;lt;=n ;j ++) dic[i][j] = min(dic[i][j],dic[i][k] + dic[k][j]); } int main(){ scanf(&amp;#34;%d%d%d&amp;#34;,&amp;amp;n,&amp;amp;m,&amp;amp;Q); for(int i = 1 ; i &amp;lt;= n ;i ++) for(int j = 1 ; j&amp;lt;=n;j++) if(i == j) dic[i][j] = 0; else dic[i][j] = INF; while(m--) { int a,b,w; scanf(&amp;#34;%d%d%d&amp;#34;,&amp;amp;a,&amp;amp;b,&amp;amp;w); dic[a][b] = min(dic[a][b],w); } floyd(); while(Q--) { int a,b; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;a,&amp;amp;b); if(dic[a][b] &amp;lt; INF / 2) printf(&amp;#34;%d&amp;#34;,dic[a][b]); else printf(&amp;#34;impossible&amp;#34;); printf(&amp;#34;\n&amp;#34;); } return 0; }</description></item><item><title>算法竞赛常用STL</title><link>http://ivylet.github.io/docs/chapter01/argo-datastru/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/argo-datastru/</guid><description>数据结构 # vector[可变数组] # vector是一种变长数组，即可以自动改变长度的数组。 头文件
 #include&amp;lt;vector&amp;gt; 初始化
 #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; using namespace std; int main () { //几种初始化的方法 vector&amp;lt;int&amp;gt; a;//定义一个vector 未初始化 输出》 0 vector&amp;lt;int&amp;gt; a(3);//定义一个长度为3的vector 未初始化 输出》0 0 0 vector&amp;lt;int&amp;gt; a(10, 3); //定义一个长度为10，且每个数赋值为3 //将向量b中从下标0 1 2（共三个）的元素赋值给a，a的类型为int型 //它的初始化不和数组一样 vector&amp;lt;int&amp;gt;a(b.begin(),b.begin+3); //从数组中获得初值 int b[7]={1,2,3,4,5,6,7}; vector&amp;lt;int&amp;gt; a(b,b+7）; for(auto x : a) {//遍历输出 cout &amp;lt;&amp;lt; x &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } return 0; } 相关函数
-a.size();//返回元素个数 a.resize();//改变大小 a.empty();//判断a是否为空，空则返回true，非空则返回false a.front(); //返回a的第1个元素,当且仅当a存在 a.back(); //返回vector的最后一个数 a.clear(); //清空a中的元素 a.pop_back(); //删除a向量的最后一个元素 a.</description></item><item><title>贪心</title><link>http://ivylet.github.io/docs/chapter02/acwing/base/greedy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter02/acwing/base/greedy/</guid><description> 与区间有关的问题 #</description></item><item><title>暂且第一记</title><link>http://ivylet.github.io/docs/notes/thinknote/00001/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/notes/thinknote/00001/</guid><description>不是为了个文凭吧，还是要自己想要去做什么东西？
-不要焦虑
-进一步学习 当前国内计算机现状，
-如何成神？ 做大佬 所谓大佬 都是努力
-知道努力很重要的人，并为之努力的人。
-超越别人努力就行了。
-焦虑来源：看错书，走弯路。我要学习，考研是顺带的东西。 拖延症，今天事情今天做完。
-专注，有事情 就只考研。
-考研没时间玩
-化压力为动力
-成神
-别想着抄底！
-别估分洗脑自己
-说自己考70 70 130 130 想着想着以为自己真能考那么多？
-复试焦虑？初试过了担心？ 初试有信心能过，复试为什么不能？
-找研友，适当玩一小会，放空大脑 出去逛逛，有个兴趣爱好，
-如何高效学习 正确的心态 瞄准目标使劲打 终身学习 培养自己 平复自己 任务拆解能力 整体任务 暑期任务 周报 日报 月报 时间管理能力 合理的学习计划 有学习梯度， 定一下计划吧，比如高数强化，是不是赶得有点紧了， 这也是一门学问。 做完之后能给自己带来多少收益。 学习技巧 给别人讲解 模拟考对自己狠一点 模拟考就是要严格考自己。该扣分就扣， 复习范围大于考试范围 自拍复习法 外接的支持 后期重要 前期准备好，后期才不慌。 对自己狠点
-引用西游记中： 如果三心二意 就去看西游记。
-得之泰然，
-失之淡然，
-争其必然，
-顺其自然。
-费曼学习法 我有学习动力，掌握方法工具。 及时输出。总结也是一种学习，备周！</description></item></channel></rss>
+a.size();//返回元素个数 a.resize();//改变大小 a.empty();//判断a是否为空，空则返回true，非空则返回false a.front(); //返回a的第1个元素,当且仅当a存在 a.back(); //返回vector的最后一个数 a.clear(); //清空a中的元素 a.pop_back(); //删除a向量的最后一个元素 a.</description></item><item><title>贪心</title><link>http://ivylet.github.io/docs/chapter02/acwing/base/greedy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter02/acwing/base/greedy/</guid><description> 与区间有关的问题 #</description></item></channel></rss>
