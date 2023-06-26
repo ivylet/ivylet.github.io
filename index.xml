@@ -8,7 +8,8 @@ v.begin()为开始，v.end()为结束，comp为自定义判断函数。
 0&amp;amp;0=0 0&amp;amp;1=0 1&amp;amp;0=0 1&amp;amp;1=1 //两位同时为1，结果才为1，否则结果为0。 例如：5&amp;amp;7 即 0000 0101&amp;amp; 0000 0111 = 0000 0101，因此 5&amp;amp;7 的值为5。
 注意：负数按补码形式参加按位与运算。
 与运算的用途：
-清零 如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。 取一个数的指定位 比如取数 X=1011 1001 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;amp;Y=0000 1001）即可得到X的指定位。 判断奇偶 二进制的奇偶数只需要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp;amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。 按位或运算符（|） # 定义：参加运算的两个对象，按二进制位进行&amp;quot;或&amp;quot;运算。</description></item><item><title>暂且第一记</title><link>http://ivylet.github.io/docs/notes/thinknote/00001/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/notes/thinknote/00001/</guid><description>不是为了个文凭吧，还是要自己想要去做什么东西？
+清零 如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。 取一个数的指定位 比如取数 X=1011 1001 的低4位，只需要另找一个数Y，令Y的低4位为1，其余位为0，即Y=0000 1111，然后将X与Y进行按位与运算（X&amp;amp;Y=0000 1001）即可得到X的指定位。 判断奇偶 二进制的奇偶数只需要根据最未位是0还是1来决定，为0就是偶数，为1就是奇数。因此可以用if ((a &amp;amp; 1) == 0)代替if (a % 2 == 0)来判断a是不是偶数。 按位或运算符（|） # 定义：参加运算的两个对象，按二进制位进行&amp;quot;或&amp;quot;运算。</description></item><item><title>无意识？！</title><link>http://ivylet.github.io/docs/notes/other/00001/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/notes/other/00001/</guid><description>无意识是什么？ 自动机 循环运动
+怎么计组这么多东西？ 还有两门课没学呢!</description></item><item><title>暂且第一记</title><link>http://ivylet.github.io/docs/notes/thinknote/00001/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/notes/thinknote/00001/</guid><description>不是为了个文凭吧，还是要自己想要去做什么东西？
 不要焦虑
 进一步学习 当前国内计算机现状，
 如何成神？ 做大佬 所谓大佬 都是努力
