@@ -31,7 +31,8 @@ v.begin()为开始，v.end()为结束，comp为自定义判断函数。
 失之淡然，
 争其必然，
 顺其自然。
-费曼学习法 我有学习动力，掌握方法工具。 及时输出。总结也是一种学习，备周！</description></item><item><title>C++ STL</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</link><pubDate>Thu, 10 Nov 2022 11:18:29 +0800</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</guid><description>什么是C++标准模板库（STL）？ # 标准模板库 STL（Standard Template Library），是 C++ 标准库的一部分，不需要单独安装，只需要#include 头文件。
+费曼学习法 我有学习动力，掌握方法工具。 及时输出。总结也是一种学习，备周！
+2023年6月26日 22:33:39 # 不知道在搞什么 害!</description></item><item><title>C++ STL</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</link><pubDate>Thu, 10 Nov 2022 11:18:29 +0800</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-intro/</guid><description>什么是C++标准模板库（STL）？ # 标准模板库 STL（Standard Template Library），是 C++ 标准库的一部分，不需要单独安装，只需要#include 头文件。
 C++ 对模板（Template）支持得很好，STL 就是借助模板把常用的数据结构及其算法都实现了一遍，并且做到了数据结构和算法的分离。
 C++ 语言的核心优势之一就是便于软件的复用。
 C++ 语言有两个方面体现了复用：
