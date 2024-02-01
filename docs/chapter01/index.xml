@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第一章|基本语法储备 on QBook</title><link>http://ivylet.github.io/docs/chapter01/</link><description>Recent content in 第一章|基本语法储备 on QBook</description><generator>Hugo -- gohugo.io</generator><atom:link href="http://ivylet.github.io/docs/chapter01/index.xml" rel="self" type="application/rss+xml"/><item><title>STL中常用算法</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-argo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-argo/</guid><description> STL中常用算法 # STL中定义了常用的一些算法，比如遍历，查找，排序等一些算法。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第一章|基础知识储备 on QBook</title><link>http://ivylet.github.io/docs/chapter01/</link><description>Recent content in 第一章|基础知识储备 on QBook</description><generator>Hugo -- gohugo.io</generator><atom:link href="http://ivylet.github.io/docs/chapter01/index.xml" rel="self" type="application/rss+xml"/><item><title>STL中常用算法</title><link>http://ivylet.github.io/docs/chapter01/cpp-stl-argo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp-stl-argo/</guid><description> STL中常用算法 # STL中定义了常用的一些算法，比如遍历，查找，排序等一些算法。
+遍历 # for_each 查找 # count_if # 函数原型为count_if(v.begin(),v.end(),comp)
+v.begin()为开始，v.end()为结束，comp为自定义判断函数。
+举个例子：
+排序 # 复制与拷贝 # 算术生成 # 集合算法 #</description></item><item><title>STL中常用算法1</title><link>http://ivylet.github.io/docs/chapter01/cpp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://ivylet.github.io/docs/chapter01/cpp/</guid><description> STL 中常用算法 # STL 中定义了常用的一些算法，比如遍历，查找，排序等一些算法。
 遍历 # for_each 查找 # count_if # 函数原型为count_if(v.begin(),v.end(),comp)
 v.begin()为开始，v.end()为结束，comp为自定义判断函数。
 举个例子：
