@@ -3,6 +3,8 @@ dist/
 # generated types
 .astro/
 
+push-posts.sh
+
 # dependencies
 node_modules/
 
