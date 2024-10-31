@@ -16,8 +16,8 @@ import Layout from '@/layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 
 const blog = (await getCollection('blog'))
-  .filter((post: { data: { draft: any } }) => !post.data.draft)
-  .sort((a: { data: { date: number } }, b: { data: { date: number } }) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post: any) => !post.data.draft)
+  .sort((a: any, b: any) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
 ---
 
