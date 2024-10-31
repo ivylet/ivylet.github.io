@@ -1,0 +1,33 @@
+---
+import AuthorCard from '@/components/AuthorCard.astro'
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import Container from '@/components/Container.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const notes = await getCollection('notes')
+---
+
+
+
+<Layout title="Authors" description="A list of authors on this site.">
+    
+  <Container class="flex flex-col gap-y-6">
+    
+    <Breadcrumbs items={[{ label: 'Authors', icon: 'lucide:users' }]} />
+    # 有史以来最伟大的文章 
+    {
+      notes.length > 0 ? (
+        <ul class="not-prose flex flex-col gap-4">
+          {notes.map((author) => (
+            <li>
+            author
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-center text-muted-foreground">No authors found.</p>
+      )
+    }
+  </Container>
+</Layout>
