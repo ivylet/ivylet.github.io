@@ -21,7 +21,7 @@ import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ivylet.github.io',
+  site: 'https://bonheur831.github.io',
   // base: '/astro-erudite',
   integrations: [
     tailwind({

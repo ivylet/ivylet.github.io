@@ -2,6 +2,7 @@
 import BlogCard from '@/components/BlogCard.astro'
 import Container from '@/components/Container.astro'
 import Link from '@/components/Link.astro'
+import GithubCalendar from '@/components/ysevn/GithubClander'
 import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
@@ -27,7 +28,7 @@ const blog = (await getCollection('blog'))
         <CardHeader>
           <CardTitle className="text-3xl">你好👋</CardTitle>
           <CardDescription
-            >/类好<span class="font-semibold">adjective</span
+            >Hello!<span class="font-semibold">..This is lucky</span
             ></CardDescription
           >
         </CardHeader>
@@ -42,6 +43,15 @@ const blog = (await getCollection('blog'))
         </CardContent>
       </Card>
     </section>
+    <div
+    class="has-overlay relative flex aspect-square items-center justify-center overflow-hidden [grid-area:f] hover:bg-none sm:aspect-[2.1/1] xl:aspect-auto "
+  >
+    <div
+      class="overlay absolute inset-0 z-[1] size-full rounded-3xl  bg-cover bg-center bg-no-repeat transition-opacity duration-200  xl:opacity-0 border-2 border-solid border-white/10 hover:opacity-100"
+    >
+    </div>
+    <GithubCalendar username="bonheur831" client:load />
+  </div>
     <section class="flex flex-col gap-y-4">
       <h2 class="text-2xl font-bold">最近的...</h2>
       <ul class="not-prose flex flex-col gap-y-4">
