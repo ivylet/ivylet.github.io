@@ -30,7 +30,7 @@ export const NAV_LINKS: Link[] = [
 ]
 
 export const SOCIAL_LINKS: Link[] = [
-  { href: 'https://github.com/jktrn', label: 'GitHub' },
+  { href: 'https://github.com/ivylet', label: 'GitHub' },
   { href: 'https://twitter.com/enscry', label: 'Twitter' },
   { href: 'jason@enscribe.dev', label: 'Email' },
   { href: '/rss.xml', label: 'RSS' },

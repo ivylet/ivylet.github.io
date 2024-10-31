@@ -6,6 +6,8 @@ import Layout from '@/layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 
 const notes = await getCollection('notes')
+
+
 ---
 
 
@@ -16,18 +18,6 @@ const notes = await getCollection('notes')
     
     <Breadcrumbs items={[{ label: 'Authors', icon: 'lucide:users' }]} />
     # 有史以来最伟大的文章 
-    {
-      notes.length > 0 ? (
-        <ul class="not-prose flex flex-col gap-4">
-          {notes.map((author) => (
-            <li>
-            author
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p class="text-center text-muted-foreground">No authors found.</p>
-      )
-    }
+    {notes}
   </Container>
 </Layout>
