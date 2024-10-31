@@ -1,10 +1,10 @@
 ---
-name: 'enscribe'
+name: 'heureux'
 pronouns: 'he/him'
-avatar: 'https://gravatar.com/avatar/9bfdc4ec972793cf05cb91efce5f4aaaec2a0da1bf4ec34dad0913f1d845faf6.webp?size=256'
+avatar: 'https://gravatar.com/enthusiasticallyjovial054a8a89e1'
 bio: 'd(-_-)b'
-website: 'https://enscribe.dev'
-twitter: 'https://twitter.com/enscry'
-github: 'https://github.com/jktrn'
-mail: 'jason@enscribe.dev'
+website: 'https://heureux831.github.io'
+twitter: 'https://twitter.com/heureux831'
+github: 'https://github.com/heureux831'
+mail: 'heureux831@qq.com'
 ---

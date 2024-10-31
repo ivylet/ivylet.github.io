@@ -16,8 +16,8 @@ import Layout from '@/layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 
 const blog = (await getCollection('blog'))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post: { data: { draft: any } }) => !post.data.draft)
+  .sort((a: { data: { date: number } }, b: { data: { date: number } }) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
 ---
 
@@ -28,7 +28,7 @@ const blog = (await getCollection('blog'))
         <CardHeader>
           <CardTitle className="text-3xl">你好👋</CardTitle>
           <CardDescription
-            >Hello!<span class="font-semibold">..This is lucky</span
+            >Hello!<span class="font-semibold">..This is heureux</span
             ></CardDescription
           >
         </CardHeader>
@@ -50,13 +50,13 @@ const blog = (await getCollection('blog'))
       class="overlay absolute inset-0 z-[1] size-full rounded-3xl  bg-cover bg-center bg-no-repeat transition-opacity duration-200  xl:opacity-0 border-2 border-solid border-white/10 hover:opacity-100"
     >
     </div>
-    <GithubCalendar username="bonheur831" client:load />
+    <GithubCalendar username="heureux831" client:load />
   </div>
     <section class="flex flex-col gap-y-4">
       <h2 class="text-2xl font-bold">最近的...</h2>
       <ul class="not-prose flex flex-col gap-y-4">
         {
-          blog.map((post) => (
+          blog.map((post: any) => (
             <li>
               <BlogCard entry={post} />
             </li>
